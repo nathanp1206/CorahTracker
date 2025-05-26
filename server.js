@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 
 // Setup Express
 const app = express();
-const port = 3002;
+const port = 80;
 
 // Serve static files from public folder
 app.use(express.static(path.join(__dirname, 'public')));

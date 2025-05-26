@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "docker": "^1.0.0",
     "express": "^5.1.0",
     "lowdb": "^7.0.1",
     "nowdb": "^0.0.7"
