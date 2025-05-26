@@ -3,6 +3,7 @@ import path from 'path';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 // Needed to emulate __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -360,6 +361,17 @@ app.get('/api/test', async (req, res) => {
         players: playersDb.data.players.length
       }
     });
+});
+
+// Serve XP values
+app.get('/api/xp-values', (req, res) => {
+    try {
+        const xpValues = JSON.parse(fs.readFileSync(path.join(__dirname, 'db', 'xpValues.json'), 'utf8'));
+        res.json(xpValues);
+    } catch (error) {
+        console.error('Error reading XP values:', error);
+        res.status(500).json({ error: 'Failed to read XP values' });
+    }
 });
 
 // Initialize DB and start server

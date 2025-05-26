@@ -15,6 +15,14 @@
     <a href="index.html" class="tab-button">Summary</a>
     <a href="add-data.html" class="tab-button">Add Data</a>
     <a href="graphs.html" class="tab-button">Graphs</a>
+    <button class="theme-toggle" onclick="toggleTheme()">
+      <svg class="sun-icon" viewBox="0 0 24 24">
+        <path d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3zm0-2V4c0-.55-.45-1-1-1s-1 .45-1 1v3c0 .55.45 1 1 1s1-.45 1-1zm0 14c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1s1-.45 1-1v-3c0-.55-.45-1-1-1zM4.93 6.35L3.51 4.93c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41zm14.14 14.14l1.42 1.42c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.42-1.42c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41zM4 13c-.55 0-1 .45-1 1s.45 1 1 1h3c.55 0 1-.45 1-1s-.45-1-1-1H4zm14 0c-.55 0-1 .45-1 1s.45 1 1 1h3c.55 0 1-.45 1-1s-.45-1-1-1h-3zM4.93 17.65c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.42-1.42c-.39-.39-1.02-.39-1.41 0zm14.14-14.14c.39-.39.39-1.02 0-1.41l-1.42-1.42c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39 1.02.39 1.41 0z"/>
+      </svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" style="display: none;">
+        <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+      </svg>
+    </button>
   </div>
 
   <div class="container">
@@ -32,23 +40,37 @@
     <!-- New Player Snapshot Section -->
     <div class="content-box" id="player-snapshot">
         <h2>Player Snapshot</h2>
-        <div class="snapshot-controls">
-            <label for="snapshotPlayerSelect">Select Player:</label>
-            <select id="snapshotPlayerSelect"></select>
-            <label for="snapshotTimeSelect">Initial Date/Time:</label>
-            <select id="snapshotTimeSelect"></select>
-            <label for="goalDateTime">Goal Date:</label>
-            <input type="date" id="goalDateTime">
-            <label for="goalLevel">Goal Level:</label>
-            <input type="number" id="goalLevel" min="0">
-        </div>
-        <div class="snapshot-details">
-            <h3>Initial Snapshot</h3>
-            <p><strong>Total EXP:</strong> <span id="initialSnapshotExp">--</span></p>
-            <p><strong>Date/Time:</strong> <span id="initialSnapshotDate">--</span></p>
-            <h3>Goal Snapshot</h3>
-            <p><strong>Total EXP:</strong> <span id="goalSnapshotExp">--</span></p>
-            <p><strong>Date/Time:</strong> <span id="goalSnapshotDate">--</span></p>
+        <div class="snapshot-grid">
+            <div class="grid-item player-select">
+                <label for="snapshotPlayerSelect">Player:</label>
+                <select id="snapshotPlayerSelect"></select>
+            </div>
+            <div class="grid-item goal-datetime">
+                <label for="goalDate">Goal Date:</label>
+                <input type="date" id="goalDate">
+            </div>
+            <div class="grid-item initial-datetime">
+                <label for="snapshotTimeSelect">Initial Date and Time:</label>
+                <select id="snapshotTimeSelect"></select>
+            </div>
+            <div class="grid-item goal-level">
+                <label for="goalLevel">Goal Level:</label>
+                <select id="goalLevel"></select>
+            </div>
+            <div class="grid-item daily-xp">
+                <h3>Daily XP Needed</h3>
+                <p><strong>Required Daily EXP:</strong> <span id="dailyXPNeeded">--</span></p>
+            </div>
+            <div class="grid-item goal-snapshot">
+                <h3>Goal Snapshot</h3>
+                <p><strong>Level:</strong> <span id="goalLevelDisplay">--</span></p>
+                <p><strong>Experience:</strong> <span id="goalXP">--</span></p>
+            </div>
+            <div class="grid-item initial-snapshot">
+                <h3>Initial Snapshot</h3>
+                <p><strong>Level:</strong> <span id="initialLevel">--</span></p>
+                <p><strong>Experience:</strong> <span id="initialXP">--</span></p>
+            </div>
         </div>
     </div>
   </div>

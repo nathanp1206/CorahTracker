@@ -1,27 +1,115 @@
-// Chart instances
-let playerChart = null;
-let scrollChartGold = null;
-let scrollChartDiamond = null;
-let goldChart = null;
+// Theme handling
+const themeStorageKey = 'theme';
+const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
-// Define a color palette for multiple players
-const playerColors = [
-    '#4CAF50', // Green (Level)
-    '#FFC107', // Yellow (Gold)
-    '#2196F3', // Blue (Mobs Killed)
-    '#9C27B0', // Purple
-    '#F44336', // Red
-    '#000000', // Black
-    '#607D8B', // Grey
-    '#795548', // Brown
-    '#E91E63', // Pink
-    '#00BCD4'  // Cyan
-];
+// Initialize theme
+function initializeTheme() {
+    const savedTheme = localStorage.getItem(themeStorageKey);
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcons(savedTheme === 'dark');
+    } else {
+        // Default to dark theme if no saved preference
+        document.documentElement.setAttribute('data-theme', 'dark');
+        updateThemeIcons(true);
+    }
+    updateChartThemes();
+}
 
-const filterGigalogicStorageKey = 'filterGigalogic';
+// Toggle theme
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem(themeStorageKey, newTheme);
+    updateThemeIcons(newTheme === 'dark');
+    updateChartThemes();
+}
 
-// Initialize charts when the page loads
+// Update theme icons
+function updateThemeIcons(isDark) {
+    const sunIcons = document.querySelectorAll('.sun-icon');
+    const moonIcons = document.querySelectorAll('.moon-icon');
+    
+    sunIcons.forEach(icon => {
+        icon.style.display = isDark ? 'none' : 'block';
+    });
+    moonIcons.forEach(icon => {
+        icon.style.display = isDark ? 'block' : 'none';
+    });
+}
+
+// Update chart themes
+function updateChartThemes() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const textColor = isDark ? '#ffffff' : '#333333';
+    const gridColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+    
+    const chartOptions = {
+        color: textColor,
+        scales: {
+            x: {
+                grid: {
+                    color: gridColor
+                },
+                ticks: {
+                    color: textColor
+                }
+            },
+            y: {
+                grid: {
+                    color: gridColor
+                },
+                ticks: {
+                    color: textColor
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: textColor
+                }
+            }
+        }
+    };
+
+    // Update all charts if they exist
+    if (playerChart) {
+        playerChart.options = {
+            ...playerChart.options,
+            ...chartOptions
+        };
+        playerChart.update();
+    }
+    if (scrollChartGold) {
+        scrollChartGold.options = {
+            ...scrollChartGold.options,
+            ...chartOptions
+        };
+        scrollChartGold.update();
+    }
+    if (scrollChartDiamond) {
+        scrollChartDiamond.options = {
+            ...scrollChartDiamond.options,
+            ...chartOptions
+        };
+        scrollChartDiamond.update();
+    }
+    if (goldChart) {
+        goldChart.options = {
+            ...goldChart.options,
+            ...chartOptions
+        };
+        goldChart.update();
+    }
+}
+
+// Initialize theme when the page loads
 document.addEventListener('DOMContentLoaded', function() {
+    initializeTheme();
+    
+    // Initialize charts if on the graphs page
     if (document.getElementById('playerChart')) {
         initializeCharts();
         // Load filter state from local storage
@@ -51,7 +139,41 @@ document.addEventListener('DOMContentLoaded', function() {
         populatePlayerDropdown();
         setupPlayerDropdownListener();
     }
+
+    // Setup player snapshot section if on the index page
+    if (document.getElementById('player-snapshot')) {
+        console.log('DOMContentLoaded: Setting up player snapshot...');
+        setupPlayerSnapshot();
+    }
+
+    // Display latest player stats if on the index page
+    if (document.getElementById('latest-player-stats')) {
+        console.log('DOMContentLoaded: Displaying latest player stats...');
+        displayLatestPlayerStats();
+    }
 });
+
+// Chart instances
+let playerChart = null;
+let scrollChartGold = null;
+let scrollChartDiamond = null;
+let goldChart = null;
+
+// Define a color palette for multiple players
+const playerColors = [
+    '#4CAF50', // Green (Level)
+    '#FFC107', // Yellow (Gold)
+    '#2196F3', // Blue (Mobs Killed)
+    '#9C27B0', // Purple
+    '#F44336', // Red
+    '#000000', // Black
+    '#607D8B', // Grey
+    '#795548', // Brown
+    '#E91E63', // Pink
+    '#00BCD4'  // Cyan
+];
+
+const filterGigalogicStorageKey = 'filterGigalogic';
 
 function initializeCharts() {
     // Player Progress Chart
@@ -65,6 +187,14 @@ function initializeCharts() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    top: 10,
+                    right: 10,
+                    bottom: 10,
+                    left: 10
+                }
+            },
             scales: {
                 'y-level': { // Configuration for the Level y-axis
                     type: 'linear',
@@ -162,6 +292,14 @@ function initializeCharts() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    top: 10,
+                    right: 10,
+                    bottom: 10,
+                    left: 10
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true,
@@ -192,6 +330,14 @@ function initializeCharts() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    top: 10,
+                    right: 10,
+                    bottom: 10,
+                    left: 10
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true,
@@ -220,6 +366,14 @@ function initializeCharts() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    top: 10,
+                    right: 10,
+                    bottom: 10,
+                    left: 10
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true
@@ -850,140 +1004,376 @@ async function displayLatestPlayerStats() {
 
 // Function to setup the Player Snapshot section
 async function setupPlayerSnapshot() {
+    console.log('setupPlayerSnapshot: Function started.');
     const playerSelect = document.getElementById('snapshotPlayerSelect');
     const timeSelect = document.getElementById('snapshotTimeSelect');
-    const goalDateTimeInput = document.getElementById('goalDateTime');
-    const initialSnapshotExpSpan = document.getElementById('initialSnapshotExp');
-    const initialSnapshotDateSpan = document.getElementById('initialSnapshotDate');
-    const goalSnapshotExpSpan = document.getElementById('goalSnapshotExp');
-    const goalSnapshotDateSpan = document.getElementById('goalSnapshotDate');
+    const goalDateTimeInput = document.getElementById('goalDate'); // Corrected ID
+    const goalLevelSelect = document.getElementById('goalLevel');
+    const initialSnapshotLevelSpan = document.getElementById('initialLevel'); // Corrected ID
+    const initialSnapshotExpSpan = document.getElementById('initialXP'); // Corrected ID
+    const goalLevelDisplaySpan = document.getElementById('goalLevelDisplay'); // Corrected ID
+    const goalXPDisplaySpan = document.getElementById('goalXP'); // Corrected ID
+    const dailyXPNeededSpan = document.getElementById('dailyXPNeeded'); // Corrected ID
 
-    if (!playerSelect || !timeSelect || !goalDateTimeInput || !initialSnapshotExpSpan || !initialSnapshotDateSpan || !goalSnapshotExpSpan || !goalSnapshotDateSpan) return;
+    // Added checks for each element
+    if (!playerSelect) { console.error('setupPlayerSnapshot: playerSelect not found.'); return; }
+    if (!timeSelect) { console.error('setupPlayerSnapshot: timeSelect not found.'); return; }
+    if (!goalDateTimeInput) { console.error('setupPlayerSnapshot: goalDateTimeInput not found.'); return; }
+    if (!goalLevelSelect) { console.error('setupPlayerSnapshot: goalLevelSelect not found.'); return; }
+    if (!initialSnapshotLevelSpan) { console.error('setupPlayerSnapshot: initialSnapshotLevelSpan not found.'); return; }
+    if (!initialSnapshotExpSpan) { console.error('setupPlayerSnapshot: initialSnapshotExpSpan not found.'); return; }
+    if (!goalLevelDisplaySpan) { console.error('setupPlayerSnapshot: goalLevelDisplaySpan not found.'); return; }
+    if (!goalXPDisplaySpan) { console.error('setupPlayerSnapshot: goalXPDisplaySpan not found.'); return; }
+    if (!dailyXPNeededSpan) { console.error('setupPlayerSnapshot: dailyXPNeededSpan not found.'); return; }
+
+    console.log('setupPlayerSnapshot: All elements found.');
 
     let allPlayerStatsData = []; // Store all stats for the selected player
+    let xpValues = []; // Store XP values for levels
+
+    // Load XP values
+    try {
+        console.log('setupPlayerSnapshot: Fetching XP values...');
+        const response = await fetch('/api/xp-values');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('setupPlayerSnapshot: XP values fetched.', data);
+        // Check if data.levels exists and is an array before filtering
+        if (data && Array.isArray(data.levels)) {
+             xpValues = data.levels.filter(level => level.total_exp !== "" && level.level !== undefined); // Filter out empty XP values and levels without level number
+        } else {
+            console.error('setupPlayerSnapshot: Invalid XP values data format.', data);
+            goalLevelSelect.innerHTML = '<option value="">Error loading levels</option>';
+            return; // Stop execution if XP data is bad
+        }
+        
+        // Populate goal level dropdown
+        goalLevelSelect.innerHTML = '<option value="">Select a level</option>';
+        xpValues.forEach(level => {
+            const option = document.createElement('option');
+            option.value = level.total_exp;
+            option.textContent = level.level;
+            goalLevelSelect.appendChild(option);
+        });
+        console.log('setupPlayerSnapshot: Goal level dropdown populated.');
+
+    } catch (error) {
+        console.error('Error loading XP values:', error);
+        goalLevelSelect.innerHTML = '<option value="">Error loading levels</option>';
+    }
 
     // Function to find the closest data point to a given date/time
     function findClosestStat(targetDateString) {
+        console.log('findClosestStat: targetDateString =', targetDateString);
         if (!allPlayerStatsData || allPlayerStatsData.length === 0 || !targetDateString) {
+            console.log('findClosestStat: Insufficient data or target date missing.');
             return null;
         }
 
-        // Combine the target date string with a default time (3 PM EST - considering potential timezone issues)
-        // A simple approach is to append a fixed time string. A more robust approach might involve timezone handling.
-        // Let's assume 3 PM UTC for simplicity, or convert EST to UTC.
-        // EST is UTC-5, so 3 PM EST is 20:00 UTC.
-        const targetDateTimeString = `${targetDateString}T20:00:00.000Z`; // 3 PM EST is 20:00 UTC
-        const targetTime = new Date(targetDateTimeString).getTime();
+        // Use the full target date string including time from input, no hardcoded T20:00:00
+        // Assuming goalDateTimeInput.value provides a date string like 'YYYY-MM-DD'
+        // We need to consider time if the input type was datetime-local, but it's 'date'.
+        // For date inputs, the time is usually assumed to be midnight UTC or the user's local midnight.
+        // Let's assume local midnight for simplicity with date input.
+        const targetDate = new Date(targetDateString);
+        targetDate.setHours(0, 0, 0, 0); // Set to local midnight
+        const targetTime = targetDate.getTime();
+        console.log('findClosestStat: targetTime =', new Date(targetTime).toLocaleString());
 
-        // Find the stat closest in time, preferring one before or exactly at the target date
         let closestStat = null;
         let closestBefore = null;
 
         for (const stat of allPlayerStatsData) {
-            const statTime = new Date(stat.dateTime).getTime();
+            const statDate = new Date(stat.dateTime);
+            // Set stat date to local midnight for comparison if only comparing dates
+            // statDate.setHours(0, 0, 0, 0);
+            const statTime = statDate.getTime();
 
             if (statTime <= targetTime) {
-                 if (!closestBefore || (targetTime - statTime) < (targetTime - new Date(closestBefore.dateTime).getTime())) {
-                     closestBefore = stat;
-                 }
+                if (!closestBefore || (targetTime - statTime) < (targetTime - new Date(closestBefore.dateTime).getTime())) {
+                    closestBefore = stat;
+                }
             }
-             const diff = Math.abs(statTime - targetTime);
-             if (closestStat === null || diff < Math.abs(new Date(closestStat.dateTime).getTime() - targetTime)) {
-                 closestStat = stat;
-             }
-
+            const diff = Math.abs(statTime - targetTime);
+            if (closestStat === null || diff < Math.abs(new Date(closestStat.dateTime).getTime() - targetTime)) {
+                closestStat = stat;
+            }
         }
-         // If a stat exists exactly at or before the target date, prefer that one
-        return closestBefore || closestStat;
+        console.log('findClosestStat: closestBefore =', closestBefore);
+        console.log('findClosestStat: closestStat =', closestStat);
+        return closestBefore || closestStat; // Prefer stat before or on the date, otherwise closest overall
     }
-
-     // Function to update the displayed snapshot data for both initial and goal
-    function updateSnapshotDisplays() {
-        const initialTime = timeSelect.value;
-        const goalTime = goalDateTimeInput.value;
-
-        const initialStat = allPlayerStatsData.find(stat => stat.dateTime === initialTime);
-        const goalStat = findClosestStat(goalTime);
-
-        // Update Initial Snapshot details
-        if (initialStat) {
-            initialSnapshotExpSpan.textContent = initialStat.exp.toLocaleString();
-            initialSnapshotDateSpan.textContent = new Date(initialStat.dateTime).toLocaleString();
-        } else {
-            initialSnapshotExpSpan.textContent = '--';
-            initialSnapshotDateSpan.textContent = '--';
-        }
-
-        // Update Goal Snapshot details
-        if (goalStat) {
-            goalSnapshotExpSpan.textContent = goalStat.exp.toLocaleString();
-            goalSnapshotDateSpan.textContent = new Date(goalStat.dateTime).toLocaleString();
-        } else {
-            goalSnapshotExpSpan.textContent = '--';
-            goalSnapshotDateSpan.textContent = '--';
-        }
-    }
-
 
     // Function to load stats for the selected player and populate the initial time dropdown
     async function loadPlayerStatsAndPopulateTimeDropdown(selectedPlayer) {
+        console.log('loadPlayerStatsAndPopulateTimeDropdown: Function started for player', selectedPlayer);
+        const timeSelect = document.getElementById('snapshotTimeSelect'); // Ensure timeSelect is correctly referenced
+        const initialSnapshotLevelSpan = document.getElementById('initialLevel'); // Get reference
+        const initialSnapshotExpSpan = document.getElementById('initialXP'); // Get reference
+        const goalLevelDisplaySpan = document.getElementById('goalLevelDisplay'); // Get reference
+        const goalXPDisplaySpan = document.getElementById('goalXP'); // Get reference
+        const dailyXPNeededSpan = document.getElementById('dailyXPNeeded'); // Get reference
+
+        if (!timeSelect || !initialSnapshotLevelSpan || !initialSnapshotExpSpan || !goalLevelDisplaySpan || !goalXPDisplaySpan || !dailyXPNeededSpan) {
+             console.error('loadPlayerStatsAndPopulateTimeDropdown: One or more necessary display elements not found.');
+             // Log which element is missing for easier debugging
+             if (!timeSelect) console.error('loadPlayerStatsAndPopulateTimeDropdown: timeSelect not found.');
+             if (!initialSnapshotLevelSpan) console.error('loadPlayerStatsAndPopulateTimeDropdown: initialSnapshotLevelSpan not found.');
+             if (!initialSnapshotExpSpan) console.error('loadPlayerStatsAndPopulateTimeDropdown: initialSnapshotExpSpan not found.');
+             if (!goalLevelDisplaySpan) console.error('loadPlayerStatsAndPopulateTimeDropdown: goalLevelDisplaySpan not found.');
+             if (!goalXPDisplaySpan) console.error('loadPlayerStatsAndPopulateTimeDropdown: goalXPDisplaySpan not found.');
+             if (!dailyXPNeededSpan) console.error('loadPlayerStatsAndPopulateTimeDropdown: dailyXPNeededSpan not found.');
+
+             return;
+        }
+
         timeSelect.innerHTML = '<option value="">Loading data points...</option>';
-        updateSnapshotData(null, null); // Clear previous snapshot data
+        
+        // Manually clear relevant fields instead of calling a non-existent function
+        initialSnapshotLevelSpan.textContent = '--';
+        initialSnapshotExpSpan.textContent = '--';
+        goalLevelDisplaySpan.textContent = '--';
+        goalXPDisplaySpan.textContent = '--';
+        dailyXPNeededSpan.textContent = '--';
+
+
         allPlayerStatsData = []; // Clear previous player's data
 
         if (!selectedPlayer) {
+            console.log('loadPlayerStatsAndPopulateTimeDropdown: No player selected.');
             timeSelect.innerHTML = '<option value="">Select a player</option>';
+            updateSnapshotDisplays(); // Update display to reflect no player selected
             return;
         }
 
         try {
+            console.log('loadPlayerStatsAndPopulateTimeDropdown: Fetching stats for player', selectedPlayer);
             const statsResponse = await fetch(`/api/player-stats?player=${encodeURIComponent(selectedPlayer)}`);
             if (!statsResponse.ok) {
                  throw new Error(`HTTP error! status: ${statsResponse.status}`);
             }
             const playerStats = await statsResponse.json();
+            console.log('loadPlayerStatsAndPopulateTimeDropdown: Player stats fetched.', playerStats);
             allPlayerStatsData = playerStats;
 
              // Sort stats by date/time
             allPlayerStatsData.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
+            console.log('loadPlayerStatsAndPopulateTimeDropdown: allPlayerStatsData after sort:', allPlayerStatsData);
 
             timeSelect.innerHTML = ''; // Clear loading message
 
-            if (allPlayerStatsData.length === 0) {
+            if (!allPlayerStatsData || allPlayerStatsData.length === 0) {
+                console.log('loadPlayerStatsAndPopulateTimeDropdown: No data points found for player.');
                 timeSelect.innerHTML = '<option value="">No data points</option>';
-                updateSnapshotData(null, null);
+                updateSnapshotDisplays(); // Update display to reflect no data
                 return;
             }
 
+            // Populate the time dropdown with all data points
+            console.log('loadPlayerStatsAndPopulateTimeDropdown: Populating time dropdown...');
             allPlayerStatsData.forEach(stat => {
-                const option = document.createElement('option');
-                option.value = stat.dateTime;
-                option.textContent = new Date(stat.dateTime).toLocaleString(); // Format date for readability
-                timeSelect.appendChild(option);
+                if (stat && stat.dateTime) { // Add check for stat and dateTime
+                    const option = document.createElement('option');
+                    option.value = stat.dateTime;
+                    const formattedDate = new Date(stat.dateTime).toLocaleString();
+                    option.textContent = formattedDate;
+                    timeSelect.appendChild(option);
+                    console.log('loadPlayerStatsAndPopulateTimeDropdown: Added option', option.value, option.textContent);
+                } else {
+                    console.warn('loadPlayerStatsAndPopulateTimeDropdown: Skipping invalid stat entry:', stat);
+                }
             });
+            console.log('loadPlayerStatsAndPopulateTimeDropdown: Initial time dropdown populated.');
 
             // Select the last data point by default in the initial time dropdown
             if (allPlayerStatsData.length > 0) {
                  timeSelect.value = allPlayerStatsData[allPlayerStatsData.length - 1].dateTime;
+                 console.log('loadPlayerStatsAndPopulateTimeDropdown: Default initial time selected.', timeSelect.value);
             }
 
              // Trigger initial display based on the default selected time and any pre-selected goal time
              updateSnapshotDisplays();
+             console.log('loadPlayerStatsAndPopulateTimeDropdown: updateSnapshotDisplays called after populating dropdown.');
 
         } catch (error) {
             console.error('Error fetching player stats for snapshot time dropdown:', error);
             timeSelect.innerHTML = '<option value="">Error loading data</option>';
-            updateSnapshotData(null, null);
+            updateSnapshotDisplays(); // Update display to reflect error
         }
+    }
+
+    // Function to update the displayed snapshot data for both initial and goal
+    function updateSnapshotDisplays() {
+        console.log('updateSnapshotDisplays: Function started.');
+        // Get references to the necessary display spans within this function's scope
+        const initialSnapshotLevelSpan = document.getElementById('initialLevel');
+        const initialSnapshotExpSpan = document.getElementById('initialXP');
+        // const initialSnapshotDateSpan = document.getElementById('initialSnapshotDate'); // This span doesn't exist - REMOVED
+        const goalLevelDisplaySpan = document.getElementById('goalLevelDisplay');
+        const goalXPDisplaySpan = document.getElementById('goalXP');
+        // const goalSnapshotDateSpan = document.getElementById('goalSnapshotDate'); // This span doesn't exist - REMOVED
+        const dailyXPNeededSpan = document.getElementById('dailyXPNeeded');
+
+        // Get references to the input/select elements
+        const timeSelect = document.getElementById('snapshotTimeSelect');
+        const goalDateTimeInput = document.getElementById('goalDate');
+        const goalLevelSelect = document.getElementById('goalLevel');
+
+        // Check if necessary elements are found (excluding the non-existent date spans)
+         if (!timeSelect || !goalDateTimeInput || !goalLevelSelect || !initialSnapshotLevelSpan || !initialSnapshotExpSpan || !goalLevelDisplaySpan || !goalXPDisplaySpan || !dailyXPNeededSpan) {
+            console.error('updateSnapshotDisplays: One or more required elements not found.');
+             // Log which element is missing for easier debugging
+             if (!timeSelect) console.error('updateSnapshotDisplays: timeSelect not found.');
+             if (!goalDateTimeInput) console.error('updateSnapshotDisplays: goalDateTimeInput not found.');
+             if (!goalLevelSelect) console.error('updateSnapshotDisplays: goalLevelSelect not found.');
+             if (!initialSnapshotLevelSpan) console.error('updateSnapshotDisplays: initialSnapshotLevelSpan not found.');
+             if (!initialSnapshotExpSpan) console.error('updateSnapshotDisplays: initialSnapshotExpSpan not found.');
+             if (!goalLevelDisplaySpan) console.error('updateSnapshotDisplays: goalLevelDisplaySpan not found.');
+             if (!goalXPDisplaySpan) console.error('updateSnapshotDisplays: goalXPDisplaySpan not found.');
+             if (!dailyXPNeededSpan) console.error('updateSnapshotDisplays: dailyXPNeededSpan not found.');
+            return;
+        }
+
+        const initialTimeValue = timeSelect.value;
+        const goalDateValue = goalDateTimeInput.value; // Get the date value
+        const goalLevelValue = goalLevelSelect.value;
+
+        console.log('updateSnapshotDisplays: initialTimeValue =', initialTimeValue);
+        console.log('updateSnapshotDisplays: goalDateValue =', goalDateValue);
+        console.log('updateSnapshotDisplays: goalLevelValue =', goalLevelValue);
+
+        const initialStat = allPlayerStatsData.find(stat => stat.dateTime === initialTimeValue);
+        console.log('updateSnapshotDisplays: initialStat =', initialStat);
+        const goalStat = findClosestStat(goalDateValue);
+        console.log('updateSnapshotDisplays: goalStat =', goalStat);
+
+        // Update Initial Snapshot details
+        if (initialStat && initialStat.exp !== undefined) {
+            // Find the level based on initialStat.exp
+            let initialLevel = '--';
+            // Ensure xpValues is sorted by total_exp ascending for correct level finding
+            const sortedXpValues = [...xpValues].sort((a, b) => parseInt(a.total_exp) - parseInt(b.total_exp));
+
+            for (let i = 0; i < sortedXpValues.length; i++) {
+                const currentLevel = sortedXpValues[i];
+                const nextLevel = sortedXpValues[i + 1];
+
+                const currentExp = parseInt(currentLevel.total_exp);
+                const initialExp = parseInt(initialStat.exp);
+
+                if (initialExp >= currentExp) {
+                    if (!nextLevel || initialExp < parseInt(nextLevel.total_exp)) {
+                        initialLevel = currentLevel.level;
+                        break; // Found the level
+                    }
+                } else if (initialExp < currentExp && i === 0) {
+                    // If initialExp is less than the lowest level's exp, it's below the first level in data (e.g., level 1)
+                    initialLevel = sortedXpValues[0].level; // Or handle as level 1 if appropriate
+                     break;
+                }
+            }
+             initialSnapshotLevelSpan.textContent = initialLevel.toLocaleString(); // Display found level
+            initialSnapshotExpSpan.textContent = initialStat.exp.toLocaleString();
+            // Update Initial Snapshot Date using the text content of the selected option
+            const selectedOption = timeSelect.options[timeSelect.selectedIndex];
+            // Check if selectedOption and a span for date display exists before updating
+            const initialSnapshotDateSpan = document.getElementById('initialSnapshotDate'); // Get reference here if needed for logging/checks
+            if (initialSnapshotDateSpan && selectedOption) {
+                 initialSnapshotDateSpan.textContent = selectedOption.textContent; // Use text content of selected option
+            }
+        } else {
+            initialSnapshotLevelSpan.textContent = '--';
+            initialSnapshotExpSpan.textContent = '--';
+            const initialSnapshotDateSpan = document.getElementById('initialSnapshotDate'); // Get reference here if needed for logging/checks
+             if (initialSnapshotDateSpan) initialSnapshotDateSpan.textContent = '--';
+        }
+        console.log('updateSnapshotDisplays: Initial snapshot updated.');
+
+        // Update Goal Snapshot details
+        // Note: Goal Snapshot Date display needs a span with ID 'goalSnapshotDate' in HTML
+        const goalSnapshotDateSpan = document.getElementById('goalSnapshotDate'); // Get reference here
+
+        if (goalLevelValue) {
+            // If a goal level is selected, use its XP value and the goal date
+            const selectedLevel = xpValues.find(level => level.total_exp === goalLevelValue); // Find the level object
+             goalLevelDisplaySpan.textContent = selectedLevel ? selectedLevel.level : '--'; // Display level number
+            goalXPDisplaySpan.textContent = parseInt(goalLevelValue).toLocaleString();
+            // Update Goal Snapshot Date directly from the goal date input value
+            if (goalSnapshotDateSpan && goalDateValue) {
+                 goalSnapshotDateSpan.textContent = new Date(goalDateValue).toLocaleDateString(); // Use goalDateValue and format it
+            } else if (goalSnapshotDateSpan) {
+                 goalSnapshotDateSpan.textContent = '--';
+            }
+        } else { // If no goal level is selected, display '--' for goal snapshot details
+            goalLevelDisplaySpan.textContent = '--';
+            goalXPDisplaySpan.textContent = '--';
+            if (goalSnapshotDateSpan) goalSnapshotDateSpan.textContent = '--';
+        }
+        console.log('updateSnapshotDisplays: Goal snapshot updated.');
+
+        // Calculate and display daily XP needed
+        calculateDailyXPNeeded(initialStat, goalDateValue, goalLevelValue);
+        console.log('updateSnapshotDisplays: calculateDailyXPNeeded called.');
+    }
+
+    // Function to calculate daily XP needed
+    function calculateDailyXPNeeded(initialStat, goalDateValue, goalLevelValue) {
+        console.log('calculateDailyXPNeeded: Function started.');
+        const dailyXPNeededSpan = document.getElementById('dailyXPNeeded');
+        if (!dailyXPNeededSpan) { console.error('calculateDailyXPNeeded: dailyXPNeededSpan not found.'); return; }
+
+        console.log('calculateDailyXPNeeded: initialStat =', initialStat);
+        console.log('calculateDailyXPNeeded: goalDateValue =', goalDateValue);
+        console.log('calculateDailyXPNeeded: goalLevelValue =', goalLevelValue);
+
+        // Check if we have all required data
+        if (!initialStat || !goalDateValue || !goalLevelValue) {
+            dailyXPNeededSpan.textContent = '--';
+            console.log('calculateDailyXPNeeded: Missing required data.');
+            return;
+        }
+
+        // Calculate total XP needed
+        const initialXP = initialStat.exp !== undefined ? parseInt(initialStat.exp) : 0;
+        const goalXP = parseInt(goalLevelValue);
+        const totalXPNeeded = goalXP - initialXP;
+        console.log('calculateDailyXPNeeded: initialXP =', initialXP, 'goalXP =', goalXP, 'totalXPNeeded =', totalXPNeeded);
+
+        // Calculate days between dates
+        const initialDate = new Date(initialStat.dateTime);
+        const goalDate = new Date(goalDateValue);
+
+        // Set both dates to midnight UTC to compare days accurately, ignoring time component.
+        initialDate.setUTCHours(0, 0, 0, 0);
+        goalDate.setUTCHours(0, 0, 0, 0);
+
+        const timeDiff = goalDate.getTime() - initialDate.getTime();
+        const daysDiff = timeDiff > 0 ? Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) : 0; // Ensure daysDiff is not negative
+        console.log('calculateDailyXPNeeded: initialDate =', initialDate, 'goalDate =', goalDate, 'daysDiff =', daysDiff);
+
+        // Calculate daily XP needed
+        if (daysDiff <= 0 || totalXPNeeded <= 0) { // Also handle case where no XP is needed or initial is >= goal
+             dailyXPNeededSpan.textContent = totalXPNeeded <= 0 ? 'Goal Reached!' : 'Invalid date range';
+            console.log('calculateDailyXPNeeded: Invalid date range or goal already reached.');
+            return;
+        }
+
+        const dailyXPNeeded = Math.ceil(totalXPNeeded / daysDiff);
+        dailyXPNeededSpan.textContent = dailyXPNeeded.toLocaleString();
+        console.log('calculateDailyXPNeeded: dailyXPNeeded =', dailyXPNeeded);
     }
 
     // Populate the snapshot player dropdown initially
     try {
+        console.log('setupPlayerSnapshot: Fetching players list...');
         const response = await fetch('/api/players');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         let players = await response.json();
+        console.log('setupPlayerSnapshot: Players list fetched.', players);
 
         // Sort players, with Hunt3r1206 first
         const hunt3rIndex = players.indexOf('Hunt3r1206');
@@ -1007,83 +1397,70 @@ async function setupPlayerSnapshot() {
             option.textContent = player;
             playerSelect.appendChild(option);
         });
+        console.log('setupPlayerSnapshot: Player dropdown populated.');
 
         // Initial load of player stats for the default selected player
         loadPlayerStatsAndPopulateTimeDropdown(playerSelect.value);
+        console.log('setupPlayerSnapshot: loadPlayerStatsAndPopulateTimeDropdown called for default player.');
 
         // Event listener for the snapshot player dropdown
         playerSelect.onchange = function() {
+            console.log('playerSelect.onchange: Player selected:', this.value);
             loadPlayerStatsAndPopulateTimeDropdown(this.value);
              // Clear goal date when player changes, as old date might not be relevant
             goalDateTimeInput.value = '';
+             updateSnapshotDisplays(); // Update display after clearing goal date
         };
 
         // Event listener for the initial date/time dropdown
         timeSelect.onchange = function() {
+            console.log('timeSelect.onchange: Initial time selected:', this.value);
             updateSnapshotDisplays();
         };
 
         // Event listener for the goal date/time input
         goalDateTimeInput.onchange = function() {
+            console.log('goalDateTimeInput.onchange: Goal date selected:', this.value);
             updateSnapshotDisplays();
         };
 
         // Add an event listener to set a default date on load if none is present
-        window.addEventListener('load', () => {
-            if (!goalDateTimeInput.value) {
-                const today = new Date();
-                // Format today's date as YYYY-MM-DD for the input field
-                const year = today.getFullYear();
-                const month = (today.getMonth() + 1).toString().padStart(2, '0');
-                const day = today.getDate().toString().padStart(2, '0');
-                goalDateTimeInput.value = `${year}-${month}-${day}`;
-                 // Trigger display update after setting the default date
-                 updateSnapshotDisplays();
-            }
-        });
+        // This might already be handled by the onload event, but adding it here ensures it runs after dropdowns are populated
+        // It's better to handle initial default selection within the data loading logic.
+        // Removing this separate listener to avoid potential conflicts.
+        // window.addEventListener('load', () => {
+        //     if (!goalDateTimeInput.value) {
+        //         const today = new Date();
+        //         const year = today.getFullYear();
+        //         const month = (today.getMonth() + 1).toString().padStart(2, '0');
+        //         const day = today.getDate().toString().padStart(2, '0');
+        //         goalDateTimeInput.value = `${year}-${month}-${day}`;
+        //          updateSnapshotDisplays();
+        //     }
+        // });
+
+        // Add event listener for goal level selection
+        goalLevelSelect.onchange = function() {
+            console.log('goalLevelSelect.onchange: Goal level selected:', this.value);
+             updateSnapshotDisplays(); // Update display based on new goal level
+        };
 
     } catch (error) {
-        console.error('Error setting up player snapshot:', error);
+        console.error('Error setting up player snapshot dropdowns:', error);
         playerSelect.innerHTML = '<option value="">Error loading players</option>';
-        timeSelect.innerHTML = '<option value="">Select a player</option>';
-        updateSnapshotData(null, null);
+         timeSelect.innerHTML = '<option value="">Select a player</option>'; // Also update time select
+         updateSnapshotDisplays(); // Attempt to update display with error state
     }
 }
 
-// Function to update the displayed snapshot data (Handles both initial and goal stats)
-function updateSnapshotData(initialStats, goalStats) {
-    const initialSnapshotExpSpan = document.getElementById('initialSnapshotExp');
-    const initialSnapshotDateSpan = document.getElementById('initialSnapshotDate');
-    const goalSnapshotExpSpan = document.getElementById('goalSnapshotExp');
-    const goalSnapshotDateSpan = document.getElementById('goalSnapshotDate');
+// Call setupPlayerSnapshot when the DOM is fully loaded
+// This call was moved inside the DOMContentLoaded listener for consistency.
 
-    if (!initialSnapshotExpSpan || !initialSnapshotDateSpan || !goalSnapshotExpSpan || !goalSnapshotDateSpan) return;
+// Function to update snapshot data (This seems redundant with updateSnapshotDisplays, removing or consolidating)
+// function updateSnapshotData(initialStats, goalStats) {
+//     // Functionality seems to be covered by updateSnapshotDisplays
+// }
 
-    // Update Initial Snapshot details
-    if (initialStats) {
-        initialSnapshotExpSpan.textContent = initialStats.exp.toLocaleString();
-        initialSnapshotDateSpan.textContent = new Date(initialStats.dateTime).toLocaleString();
-    } else {
-        initialSnapshotExpSpan.textContent = '--';
-        initialSnapshotDateSpan.textContent = '--';
-    }
-
-    // Update Goal Snapshot details
-    if (goalStats) {
-        goalSnapshotExpSpan.textContent = goalStats.exp.toLocaleString();
-        goalSnapshotDateSpan.textContent = new Date(goalStats.dateTime).toLocaleString();
-    } else {
-        goalSnapshotExpSpan.textContent = '--';
-        goalSnapshotDateSpan.textContent = '--';
-    }
-}
-
-// Call displayLatestPlayerStats and setupPlayerSnapshot when the Summary page loads
-document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('latest-player-stats')) {
-        displayLatestPlayerStats();
-    }
-    if (document.getElementById('player-snapshot')) {
-        setupPlayerSnapshot();
-    }
-});
+// Add setupPlayerSnapshot to be called on DOMContentLoaded
+// Check if the element exists before calling to avoid errors on other pages.
+// The check is already included in the DOMContentLoaded listener above.
