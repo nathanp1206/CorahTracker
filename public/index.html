@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corah Stats</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="hamburger-menu" onclick="toggleTabs()"><span class="hamburger-icon"><span></span><span></span><span></span></span></button>
+  <div class="tabs">
+    <a href="index.html" class="tab-button">Summary</a>
+    <a href="add-data.html" class="tab-button">Add Data</a>
+    <a href="graphs.html" class="tab-button">Graphs</a>
+  </div>
+
+  <div class="container">
+    <div class="content-box" id="latest-player-stats">
+      <div class="header-row">
+        <select id="summaryPlayerSelect" style="margin-bottom: 1em;"></select>
+        <h2>Latest Player Stats</h2>
+      </div>
+      <div id="player-stats-list">
+        <!-- Player stats will be loaded here by JavaScript -->
+        Loading stats...
+      </div>
+    </div>
+
+    <!-- New Player Snapshot Section -->
+    <div class="content-box" id="player-snapshot">
+        <h2>Player Snapshot</h2>
+        <div class="snapshot-controls">
+            <label for="snapshotPlayerSelect">Select Player:</label>
+            <select id="snapshotPlayerSelect"></select>
+            <label for="snapshotTimeSelect">Initial Date/Time:</label>
+            <select id="snapshotTimeSelect"></select>
+            <label for="goalDateTime">Goal Date:</label>
+            <input type="date" id="goalDateTime">
+            <label for="goalLevel">Goal Level:</label>
+            <input type="number" id="goalLevel" min="0">
+        </div>
+        <div class="snapshot-details">
+            <h3>Initial Snapshot</h3>
+            <p><strong>Total EXP:</strong> <span id="initialSnapshotExp">--</span></p>
+            <p><strong>Date/Time:</strong> <span id="initialSnapshotDate">--</span></p>
+            <h3>Goal Snapshot</h3>
+            <p><strong>Total EXP:</strong> <span id="goalSnapshotExp">--</span></p>
+            <p><strong>Date/Time:</strong> <span id="goalSnapshotDate">--</span></p>
+        </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    function toggleTabs() {
+      const tabs = document.querySelector('.tabs');
+      tabs.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

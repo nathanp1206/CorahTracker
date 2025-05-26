@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corah Stats - Add Data</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="hamburger-menu" onclick="toggleTabs()"><span class="hamburger-icon"><span></span><span></span><span></span></span></button>
+  <div class="tabs">
+    <a href="index.html" class="tab-button">Summary</a>
+    <a href="add-data.html" class="tab-button">Add Data</a>
+    <a href="graphs.html" class="tab-button">Graphs</a>
+    
+    <!-- Add Player Section - Moved to Header -->
+    <div class="add-player-header">
+      <input type="text" id="newPlayerName" placeholder="New Player Name" class="header-input">
+      <button onclick="addNewPlayer()" class="header-button">Add</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="left-section">
+      <div class="content-box">
+        <h2>Add Player Stats</h2>
+        <select id="player">
+          <option value="Hunt3r1206">Hunt3r1206</option>
+          <option value="Kahuku">Kahuku</option>
+          <option value="Gigalogic">Gigalogic</option>
+          <option value="Sinolos">Sinolos</option>
+        </select>
+        <input type="number" id="exp" placeholder="EXP">
+        <input type="number" id="mobsKilled" placeholder="Total Mobs Killed">
+        <input type="number" id="gold" placeholder="Total Gold">
+        <button onclick="submitStats()">Submit</button>
+      </div>
+
+      <div class="content-box">
+        <h2>Add Gold Price</h2>
+        <input type="number" id="goldPrice" placeholder="Gold Price">
+        <button onclick="submitGoldPrice()">Submit</button>
+      </div>
+
+      <div class="content-box future">
+        <h2>Future Entries</h2>
+        <p>Space reserved for additional entry types</p>
+      </div>
+    </div>
+
+    <div class="right-section">
+      <div class="content-box">
+        <h2>Add Scroll Prices</h2>
+        <div class="scroll-prices">
+          <div class="scroll-type">
+            <h3>Ancient Scroll</h3>
+            <input type="number" id="ancientGold" placeholder="Gold Price">
+            <input type="number" id="ancientDiamond" placeholder="Diamond Price">
+            <button onclick="submitScrollPrice('ancient')">Submit</button>
+          </div>
+
+          <div class="scroll-type">
+            <h3>Demoniac Scroll</h3>
+            <input type="number" id="demoniacGold" placeholder="Gold Price">
+            <input type="number" id="demoniacDiamond" placeholder="Diamond Price">
+            <button onclick="submitScrollPrice('demoniac')">Submit</button>
+          </div>
+
+          <div class="scroll-type">
+            <h3>Arcane Scroll</h3>
+            <input type="number" id="arcaneGold" placeholder="Gold Price">
+            <input type="number" id="arcaneDiamond" placeholder="Diamond Price">
+            <button onclick="submitScrollPrice('arcane')">Submit</button>
+          </div>
+
+          <div class="scroll-type">
+            <h3>Shadow Scroll</h3>
+            <input type="number" id="shadowGold" placeholder="Gold Price">
+            <input type="number" id="shadowDiamond" placeholder="Diamond Price">
+            <button onclick="submitScrollPrice('shadow')">Submit</button>
+          </div>
+
+          <div class="scroll-type">
+            <h3>Void Scroll</h3>
+            <input type="number" id="voidGold" placeholder="Gold Price">
+            <input type="number" id="voidDiamond" placeholder="Diamond Price">
+            <button onclick="submitScrollPrice('void')">Submit</button>
+          </div>
+
+          <div class="scroll-type">
+            <h3>Sunlight Scroll</h3>
+            <input type="number" id="sunlightGold" placeholder="Gold Price">
+            <input type="number" id="sunlightDiamond" placeholder="Diamond Price">
+            <button onclick="submitScrollPrice('sunlight')">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    function toggleTabs() {
+      const tabs = document.querySelector('.tabs');
+      tabs.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

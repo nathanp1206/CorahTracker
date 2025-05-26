@@ -1,0 +1,802 @@
+{
+  "stats": [
+    {
+      "player": "Hunt3r1206",
+      "exp": 1862049749291,
+      "mobsKilled": 100696,
+      "gold": 5810818427,
+      "dateTime": "2025-03-27T17:24:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 1864314071062,
+      "mobsKilled": 100755,
+      "gold": 5820330504,
+      "dateTime": "2025-03-27T18:20:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 1865843870165,
+      "mobsKilled": 100807,
+      "gold": 5825654537,
+      "dateTime": "2025-03-27T19:04:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 1869428550349,
+      "mobsKilled": 100889,
+      "gold": 5837353199,
+      "dateTime": "2025-03-27T20:12:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 1872050588309,
+      "mobsKilled": 100964,
+      "gold": 5846284355,
+      "dateTime": "2025-03-27T21:11:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 1874278598575,
+      "mobsKilled": 101027,
+      "gold": 5851721851,
+      "dateTime": "2025-03-27T21:47:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 1882254532771,
+      "mobsKilled": 101134,
+      "gold": 5866147722,
+      "dateTime": "2025-03-27T23:17:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 1897627215381,
+      "mobsKilled": 101576,
+      "gold": 5921015222,
+      "dateTime": "2025-03-28T12:22:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 1922949078035,
+      "mobsKilled": 101965,
+      "gold": 5985320970,
+      "dateTime": "2025-03-28T18:00:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 1976998092839,
+      "mobsKilled": 103006,
+      "gold": 6130034929,
+      "dateTime": "2025-03-29T15:45:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 1995252775573,
+      "mobsKilled": 103353,
+      "gold": 6168246166,
+      "dateTime": "2025-03-29T19:38:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2025711604998,
+      "mobsKilled": 104025,
+      "gold": 6258692204,
+      "dateTime": "2025-03-30T11:41:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2036864117773,
+      "mobsKilled": 104234,
+      "gold": 6287817729,
+      "dateTime": "2025-03-30T14:30:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2074485669124,
+      "mobsKilled": 104783,
+      "gold": 6365076754,
+      "dateTime": "2025-03-30T22:21:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2097378063991,
+      "mobsKilled": 105412,
+      "gold": 6449794583,
+      "dateTime": "2025-03-31T14:47:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2119614559593,
+      "mobsKilled": 105731,
+      "gold": 6492808985,
+      "dateTime": "2025-03-31T18:35:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2127743117744,
+      "mobsKilled": 105850,
+      "gold": 6509953244,
+      "dateTime": "2025-03-31T20:18:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2171572160199,
+      "mobsKilled": 106594,
+      "gold": 6609445399,
+      "dateTime": "2025-04-01T13:55:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2180544163162,
+      "mobsKilled": 106821,
+      "gold": 6637774999,
+      "dateTime": "2025-04-01T16:40:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2249810467472,
+      "mobsKilled": 108361,
+      "gold": 6841802595,
+      "dateTime": "2025-04-02T21:50:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2260244178819,
+      "mobsKilled": 108573,
+      "gold": 6873206780,
+      "dateTime": "2025-04-03T01:03:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2278409675331,
+      "mobsKilled": 109011,
+      "gold": 6928200943,
+      "dateTime": "2025-04-03T13:05:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2294826798441,
+      "mobsKilled": 109244,
+      "gold": 6955670739,
+      "dateTime": "2025-04-03T15:53:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2343634748146,
+      "mobsKilled": 109789,
+      "gold": 7025948066,
+      "dateTime": "2025-04-03T21:39:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2358766611728,
+      "mobsKilled": 110165,
+      "gold": 7060961214,
+      "dateTime": "2025-04-04T01:49:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2373616377516,
+      "mobsKilled": 110620,
+      "gold": 7110552976,
+      "dateTime": "2025-04-04T14:07:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2465695489307,
+      "mobsKilled": 111745,
+      "gold": 7218262716,
+      "dateTime": "2025-04-05T02:24:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2563972642460,
+      "mobsKilled": 113126,
+      "gold": 7365575929,
+      "dateTime": "2025-04-06T01:00:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2576515218415,
+      "mobsKilled": 113616,
+      "gold": 7415165367,
+      "dateTime": "2025-04-06T14:13:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2638046641849,
+      "mobsKilled": 113955,
+      "gold": 7445118276,
+      "dateTime": "2025-04-06T17:30:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2658724720807,
+      "mobsKilled": 114349,
+      "gold": 7478568026,
+      "dateTime": "2025-04-06T21:17:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2678656670490,
+      "mobsKilled": 114576,
+      "gold": 7501860440,
+      "dateTime": "2025-04-06T23:52:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2712777146558,
+      "mobsKilled": 115119,
+      "gold": 7568042678,
+      "dateTime": "2025-04-07T14:00:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2739736516904,
+      "mobsKilled": 115420,
+      "gold": 7598783725,
+      "dateTime": "2025-04-07T16:50:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2775927102295,
+      "mobsKilled": 116705,
+      "gold": 7739430414,
+      "dateTime": "2025-04-08T13:08:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2794555626771,
+      "mobsKilled": 117473,
+      "gold": 7826648994,
+      "dateTime": "2025-04-08T20:40:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2816898017345,
+      "mobsKilled": 118336,
+      "gold": 7930723068,
+      "dateTime": "2025-04-09T14:29:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2865621185544,
+      "mobsKilled": 120100,
+      "gold": 8127396128,
+      "dateTime": "2025-04-10T17:30:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2929615574210,
+      "mobsKilled": 121515,
+      "gold": 8283476477,
+      "dateTime": "2025-04-11T16:15:00.000Z"
+    },
+    {
+      "player": "Gigalogic",
+      "exp": 271785036800209,
+      "mobsKilled": 62970,
+      "gold": 3564403823,
+      "dateTime": "2025-04-11T18:20:00.000Z"
+    },
+    {
+      "player": "Gigalogic",
+      "exp": 272087016250097,
+      "mobsKilled": 63032,
+      "gold": 3568986650,
+      "dateTime": "2025-04-11T19:04:00.000Z"
+    },
+    {
+      "player": "Gigalogic",
+      "exp": 272324125236811,
+      "mobsKilled": 63081,
+      "gold": 3572672044,
+      "dateTime": "2025-04-11T19:41:00.000Z"
+    },
+    {
+      "player": "Gigalogic",
+      "exp": 272576315327670,
+      "mobsKilled": 63135,
+      "gold": 3576682800,
+      "dateTime": "2025-04-11T20:18:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 2959046395201,
+      "mobsKilled": 122329,
+      "gold": 8372393567,
+      "dateTime": "2025-04-12T00:17:00.000Z"
+    },
+    {
+      "player": "Gigalogic",
+      "exp": 290437397879395,
+      "mobsKilled": 66849,
+      "gold": 3870938510,
+      "dateTime": "2025-04-14T08:51:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3070805077901,
+      "mobsKilled": 125867,
+      "gold": 8764863491,
+      "dateTime": "2025-04-14T13:00:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3084178205087,
+      "mobsKilled": 126116,
+      "gold": 8796787660,
+      "dateTime": "2025-04-14T15:52:00.000Z"
+    },
+    {
+      "player": "Gigalogic",
+      "exp": 298821794360500,
+      "mobsKilled": 68495,
+      "gold": 4006778960,
+      "dateTime": "2025-04-15T10:07:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3134425566934,
+      "mobsKilled": 127536,
+      "gold": 8957789810,
+      "dateTime": "2025-04-15T14:04:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3144655848191,
+      "mobsKilled": 127731,
+      "gold": 8983917389,
+      "dateTime": "2025-04-15T16:20:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3156290418661,
+      "mobsKilled": 127886,
+      "gold": 9004191163,
+      "dateTime": "2025-04-15T18:25:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3170745506117,
+      "mobsKilled": 128111,
+      "gold": 9030614749,
+      "dateTime": "2025-04-15T21:06:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3173287072863,
+      "mobsKilled": 128156,
+      "gold": 9035496982,
+      "dateTime": "2025-04-15T21:39:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3195195561836,
+      "mobsKilled": 128805,
+      "gold": 9115430560,
+      "dateTime": "2025-04-16T13:44:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3214612156175,
+      "mobsKilled": 129085,
+      "gold": 9146120107,
+      "dateTime": "2025-04-16T17:03:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3281579113798,
+      "mobsKilled": 130653,
+      "gold": 9318191825,
+      "dateTime": "2025-04-17T19:22:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3331681947619,
+      "mobsKilled": 131601,
+      "gold": 9420290380,
+      "dateTime": "2025-04-18T13:18:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3385300984578,
+      "mobsKilled": 132925,
+      "gold": 9571623694,
+      "dateTime": "2025-04-19T14:48:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3471374575264,
+      "mobsKilled": 135502,
+      "gold": 9865416194,
+      "dateTime": "2025-04-21T13:03:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3590788738701,
+      "mobsKilled": 138500,
+      "gold": 10220641784,
+      "dateTime": "2025-04-23T12:58:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3661248094919,
+      "mobsKilled": 138876,
+      "gold": 10255900541,
+      "dateTime": "2025-04-23T16:37:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 3916714514161,
+      "mobsKilled": 139300,
+      "gold": 10283773696,
+      "dateTime": "2025-04-23T20:38:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 4083086103375,
+      "mobsKilled": 140420,
+      "gold": 10367225465,
+      "dateTime": "2025-04-24T16:16:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 4182162116799,
+      "mobsKilled": 141637,
+      "gold": 10457466281,
+      "dateTime": "2025-04-25T13:32:00.000Z"
+    },
+    {
+      "player": "Gigalogic",
+      "exp": 386480040536871,
+      "mobsKilled": 82383,
+      "gold": 4995877237,
+      "dateTime": "2025-04-25T15:48:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 4298282587396,
+      "mobsKilled": 142219,
+      "gold": 10498012527,
+      "dateTime": "2025-04-25T19:23:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 4308651282891,
+      "mobsKilled": 142308,
+      "gold": 10503146293,
+      "dateTime": "2025-04-25T20:18:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 4502366663127,
+      "mobsKilled": 146301,
+      "gold": 10785913553,
+      "dateTime": "2025-04-28T13:36:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 4524375585033,
+      "mobsKilled": 146885,
+      "gold": 10825979624,
+      "dateTime": "2025-04-28T19:30:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 4647015024484,
+      "mobsKilled": 147842,
+      "gold": 10907706328,
+      "dateTime": "2025-04-29T14:36:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 4735000690222,
+      "mobsKilled": 148194,
+      "gold": 10942950248,
+      "dateTime": "2025-04-29T18:00:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 4908477715004,
+      "mobsKilled": 149340,
+      "gold": 11036797678,
+      "dateTime": "2025-04-30T13:38:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 5100607294666,
+      "mobsKilled": 150837,
+      "gold": 11133379867,
+      "dateTime": "2025-05-01T13:19:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 5164138270520,
+      "mobsKilled": 152418,
+      "gold": 11250513895,
+      "dateTime": "2025-05-02T13:07:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 5253179858797,
+      "mobsKilled": 156184,
+      "gold": 11509337288,
+      "dateTime": "2025-05-05T12:59:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 5328146408768,
+      "mobsKilled": 158710,
+      "gold": 11683658964,
+      "dateTime": "2025-05-06T21:35:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 5347824576596,
+      "mobsKilled": 159494,
+      "gold": 11736950142,
+      "dateTime": "2025-05-07T14:54:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 5398501649490,
+      "mobsKilled": 161352,
+      "gold": 11854360594,
+      "dateTime": "2025-05-08T16:02:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 5574172774387,
+      "mobsKilled": 163091,
+      "gold": 11977589764,
+      "dateTime": "2025-05-09T17:04:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 6003102083386,
+      "mobsKilled": 168271,
+      "gold": 12284477385,
+      "dateTime": "2025-05-12T14:13:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 6199470625570,
+      "mobsKilled": 169320,
+      "gold": 12348863051,
+      "dateTime": "2025-05-12T23:31:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 6276394477298,
+      "mobsKilled": 170592,
+      "gold": 12429397202,
+      "dateTime": "2025-05-13T13:31:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 6508707545888,
+      "mobsKilled": 171511,
+      "gold": 12484895693,
+      "dateTime": "2025-05-13T21:20:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 6746671936131,
+      "mobsKilled": 173424,
+      "gold": 12606593140,
+      "dateTime": "2025-05-14T18:15:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 7032647777217,
+      "mobsKilled": 176277,
+      "gold": 12792907834,
+      "dateTime": "2025-05-16T01:08:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 7085440201507,
+      "mobsKilled": 177810,
+      "gold": 12895386610,
+      "dateTime": "2025-05-16T18:35:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 7210237054591,
+      "mobsKilled": 183099,
+      "gold": 13215715368,
+      "dateTime": "2025-05-18T22:09:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 7296710460503,
+      "mobsKilled": 183957,
+      "gold": 13296340023,
+      "dateTime": "2025-05-19T13:30:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 7325133876938,
+      "mobsKilled": 184548,
+      "gold": 13341192556,
+      "dateTime": "2025-05-19T19:41:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 7436400455870,
+      "mobsKilled": 186022,
+      "gold": 13451602197,
+      "dateTime": "2025-05-20T17:55:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 7532516009597,
+      "mobsKilled": 187206,
+      "gold": 13536808833,
+      "dateTime": "2025-05-21T12:40:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 7704348629955,
+      "mobsKilled": 187887,
+      "gold": 13583447824,
+      "dateTime": "2025-05-21T19:28:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 7958991271247,
+      "mobsKilled": 190586,
+      "gold": 13828614473,
+      "dateTime": "2025-05-23T20:50:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 8072374256867,
+      "mobsKilled": 191805,
+      "gold": 13951692081,
+      "dateTime": "2025-05-24T20:30:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 8163175149772,
+      "mobsKilled": 193518,
+      "gold": 14121399784,
+      "dateTime": "2025-05-25T22:00:03.896Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 8168066708650,
+      "mobsKilled": 193619,
+      "gold": 14131585195,
+      "dateTime": "2025-05-25T23:29:27.441Z"
+    },
+    {
+      "player": "Gigalogic",
+      "exp": 613251568292215,
+      "mobsKilled": 99757,
+      "gold": 6786629274,
+      "dateTime": "2025-05-26T00:31:06.264Z"
+    },
+    {
+      "player": "Panicgrim",
+      "exp": 11548783211999,
+      "mobsKilled": 40603,
+      "gold": 560373829,
+      "dateTime": "2025-05-26T00:49:44.817Z"
+    },
+    {
+      "player": "Sinolos",
+      "exp": 8951221324190,
+      "mobsKilled": 274450,
+      "gold": 11124553212,
+      "dateTime": "2025-05-26T00:50:18.153Z"
+    },
+    {
+      "player": "Kahuku",
+      "exp": 11565555711781,
+      "mobsKilled": 547270,
+      "gold": 17737873117,
+      "dateTime": "2025-05-26T00:51:14.493Z"
+    },
+    {
+      "player": "Vari",
+      "exp": 7651927564990,
+      "mobsKilled": 736725,
+      "gold": 25839610898,
+      "dateTime": "2025-05-26T00:51:56.528Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 8172934614022,
+      "mobsKilled": 193735,
+      "gold": 14142438654,
+      "dateTime": "2025-05-26T01:14:20.611Z"
+    },
+    {
+      "player": "zLucas",
+      "exp": 23273899997997,
+      "mobsKilled": 1029472,
+      "gold": 26707093061,
+      "dateTime": "2025-05-26T01:48:33.646Z"
+    },
+    {
+      "player": "Sinolos",
+      "exp": 5136831145926,
+      "mobsKilled": 249282,
+      "gold": 9187794769,
+      "dateTime": "2025-05-13T14:33:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 8329231448952,
+      "mobsKilled": 194271,
+      "gold": 14191355774,
+      "dateTime": "2025-05-26T13:34:31.902Z"
+    },
+    {
+      "player": "Kahuku",
+      "exp": 6173412610059,
+      "mobsKilled": 460958,
+      "gold": 11023005003,
+      "dateTime": "2025-04-11T17:09:00.000Z"
+    },
+    {
+      "player": "Kahuku", 
+      "exp": 6173741630116,
+      "mobsKilled": 460967,
+      "gold": 11023466997,
+      "dateTime": "2025-04-11T17:13:00.000Z"
+    },
+    {
+      "player": "Kahuku",
+      "exp": 6174195771087,
+      "mobsKilled": 460978,
+      "gold": 11024168109,
+      "dateTime": "2025-04-11T17:18:00.000Z"
+    },
+    {
+      "player": "Kahuku",
+      "exp": 6490421185851,
+      "mobsKilled": 466078,
+      "gold": 11582660780,
+      "dateTime": "2025-04-14T08:48:00.000Z"
+    },
+    {
+      "player": "Kahuku",
+      "exp": 6628986799455,
+      "mobsKilled": 468240,
+      "gold": 11824647099,
+      "dateTime": "2025-04-15T11:22:00.000Z"
+    },
+    {
+      "player": "Kahuku",
+      "exp": 7570557908659,
+      "mobsKilled": 482001,
+      "gold": 13531077341,
+      "dateTime": "2025-04-23T14:17:00.000Z"
+    },
+    {
+      "player": "Kahuku",
+      "exp": 7841266834584,
+      "mobsKilled": 485962,
+      "gold": 13833689962,
+      "dateTime": "2025-04-25T15:45:00.000Z"
+    },
+    {
+      "player": "Kahuku",
+      "exp": 10190610738304,
+      "mobsKilled": 520454,
+      "gold": 16498966159,
+      "dateTime": "2025-05-12T13:21:00.000Z"
+    },
+    {
+      "player": "Kahuku",
+      "exp": 10323819176846,
+      "mobsKilled": 522657,
+      "gold": 16642918562,
+      "dateTime": "2025-05-13T09:12:00.000Z"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "name": "nowdb",
+  "version": "0.0.7",
+  "description": "JSON DB that Broadcasts the changes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "coverage": "jest --coverage",
+    "coverage-watch": "jest --coverage --watchAll",
+    "report-coverage": "cat ./coverage/lcov.info | codecov"
+  },
+  "jest": {
+    "bail": true,
+    "verbose": true,
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "collectCoverageFrom": [
+      "**/src/**.{js}",
+      "!**/node_modules/**",
+      "!**/db/**"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StevenPerez/nowdb.git"
+  },
+  "keywords": [
+    "db",
+    "json",
+    "real",
+    "time"
+  ],
+  "author": "Steven Perez Alfaro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/StevenPerez/nowdb/issues"
+  },
+  "homepage": "https://github.com/StevenPerez/nowdb#readme",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.1",
+    "babel-preset-latest": "^6.24.1",
+    "codecov.io": "^0.1.6",
+    "eslint": "^3.19.0",
+    "jest": "^19.0.2",
+    "sinon": "^2.1.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "sparkles": "^1.0.0",
+    "uuid": "^3.0.1"
+  }
+}

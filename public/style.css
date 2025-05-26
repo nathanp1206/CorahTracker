@@ -1,0 +1,661 @@
+/* Base styles */
+body {
+  background: #f8f9fa;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Navigation */
+.tabs {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.tab-button {
+  background: transparent;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #666;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.tab-button:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+/* Add Player in Header */
+.add-player-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  padding: 0.2rem 0.4rem;
+  background: #e9ecef;
+  border-radius: 20px;
+  border: none;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+  max-width: 350px;
+  min-width: 180px;
+}
+
+.add-player-header .header-input {
+  flex-grow: 1;
+  flex-basis: 60%;
+  padding: 0.3rem 0.5rem;
+  border: none;
+  background: transparent;
+  font-size: 0.9rem;
+  margin: 0;
+  min-width: 80px;
+}
+
+.add-player-header .header-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.add-player-header .header-button {
+  flex-shrink: 0;
+  flex-basis: auto;
+  padding: 4px 8px;
+  margin: 0;
+  font-size: 0.65rem;
+  border-radius: 12px;
+  background: #007bff;
+  color: white;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  min-width: 0;
+  max-width: 60px;
+}
+
+.add-player-header .header-button:hover {
+  background: #0056b3;
+}
+
+/* Layout */
+.container {
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Adjust width for the sections */
+.content-box#latest-player-stats,
+.content-box#player-snapshot {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Content boxes */
+.content-box {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 0;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.content-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Form elements */
+input, select {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+  background: white;
+  box-sizing: border-box;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+button {
+  background: #4CAF50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button:hover {
+  background: #43A047;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Add Data page specific */
+.left-section, .right-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.scroll-prices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.scroll-type {
+  background: #f8f9fa;
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  transition: transform 0.2s ease;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.scroll-type:hover {
+  transform: translateY(-2px);
+}
+
+.scroll-type h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  word-wrap: break-word;
+}
+
+/* Graphs page grid layout */
+.graphs-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.graphs-layout .content-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  height: 100%;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.graphs-layout .content-box:last-child {
+  margin-bottom: 0;
+}
+
+.graphs-layout.grid-4 .content-box:nth-last-child(2) {
+  margin-bottom: 0;
+}
+
+.filter-options {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.filter-options input[type="checkbox"] {
+  margin-right: 0.5rem;
+  cursor: pointer;
+  width: auto;
+  margin: 0 0.5rem 0 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.filter-options label {
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.graph-container {
+  width: 100%;
+  height: 300px;
+  margin-top: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  flex: 1 1 auto;
+}
+
+.graph-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Future entries placeholder */
+.entry-box.future {
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  border: 2px dashed #e9ecef;
+}
+
+.entry-box.future h2 {
+  color: #6c757d;
+}
+
+.entry-box.future p {
+  color: #adb5bd;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .graphs-layout {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .graphs-layout .content-box {
+    margin-bottom: 1.5rem;
+  }
+  .container {
+    padding: 0 1.5rem;
+  }
+  .graph-container {
+    height: 250px;
+  }
+}
+
+@media (max-width: 992px) {
+  .graphs-layout {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .graphs-layout .content-box {
+    margin-bottom: 1rem;
+  }
+  .container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .left-section, .right-section {
+    width: 100%;
+  }
+
+  .scroll-prices {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .graph-container {
+    height: 200px;
+  }
+
+  .content-box#latest-player-stats,
+  .content-box#player-snapshot {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .graphs-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .graphs-layout .content-box {
+    margin-bottom: 1.5rem;
+  }
+
+  .tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tab-button {
+    text-align: center;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .graph-container {
+    height: 180px;
+  }
+
+  .scroll-prices {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile-first enhancements */
+@media (max-width: 600px) {
+  body {
+    font-size: 1rem;
+    padding: 0;
+  }
+  .hamburger-menu {
+    display: block !important;
+    font-size: 1.5rem;
+    padding: 0.3rem 0.5rem;
+    width: 44px;
+    height: 44px;
+    top: 0.5rem;
+    right: 0.5rem;
+    min-width: unset;
+    min-height: unset;
+  }
+  .hamburger-icon {
+    width: 24px;
+    height: 18px;
+  }
+  .tabs {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem 0.25rem;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    align-items: stretch;
+  }
+  .tabs.active {
+    display: flex;
+  }
+  .tab-button {
+    font-size: 1.1rem;
+    padding: 1rem 0.5rem;
+    border-radius: 12px;
+  }
+  .container,
+  .graphs-layout {
+    padding: 0.5rem;
+    margin: 0;
+    max-width: 100vw;
+    box-sizing: border-box;
+    gap: 1rem;
+  }
+  .content-box {
+    padding: 1rem;
+    margin-bottom: 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  }
+  .left-section, .right-section {
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+  }
+  .scroll-prices {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .scroll-type {
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  input, select {
+    font-size: 1rem;
+    padding: 0.6rem;
+    border-radius: 8px;
+  }
+  button {
+    font-size: 1.1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 0.5rem;
+  }
+  .graph-container {
+    height: 160px;
+    min-height: 140px;
+    margin-top: 0.25rem;
+    border-radius: 8px;
+    padding: 0;
+  }
+  .graph-container canvas {
+    min-height: 140px;
+    max-height: 160px;
+  }
+  h2, h3 {
+    font-size: 1.1rem;
+    margin: 0.5rem 0 0.5rem 0;
+  }
+  p {
+    font-size: 1rem;
+  }
+  .add-player-header {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 1rem;
+    box-sizing: border-box;
+    max-width: unset;
+    min-width: unset;
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .add-player-header .header-input,
+  .add-player-header .header-button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .add-player-header .header-input {
+    min-width: unset;
+    flex-basis: auto;
+  }
+
+  .add-player-header .header-button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    flex-basis: auto;
+    min-width: unset;
+    max-width: 80px;
+  }
+
+  .graphs-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .graphs-layout .content-box {
+    margin-bottom: 1rem;
+  }
+  .graph-container {
+    height: 160px;
+    min-height: 140px;
+  }
+  .graph-container canvas {
+    min-height: 140px;
+    max-height: 160px;
+  }
+  .content-box {
+    margin-bottom: 1rem;
+  }
+}
+
+.hamburger-menu {
+  display: none;
+  background: #fff;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+  width: 44px;
+  height: 44px;
+  top: 0.5rem;
+  right: 0.5rem;
+  min-width: unset;
+  min-height: unset;
+  position: fixed;
+  z-index: 99999;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.hamburger-menu:hover {
+  background: #f0f0f0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+}
+
+.hamburger-icon {
+  width: 24px;
+  height: 18px;
+  display: inline-block;
+  position: relative;
+}
+.hamburger-icon span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #111;
+  border-radius: 2px;
+  margin: 0 0 5px 0;
+  transition: all 0.3s ease;
+}
+.hamburger-icon span:last-child {
+  margin-bottom: 0;
+}
+
+.content-box#latest-player-stats {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-box#latest-player-stats h2 {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.content-box#latest-player-stats .header-row {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 0.5em;
+  justify-content: space-between;
+}
+
+#summaryPlayerSelect {
+  width: 120px;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+@media (min-width: 768px) {
+  .content-box#latest-player-stats {
+    width: 30%;
+    max-width: 600px;
+  }
+    .content-box#player-snapshot {
+        width: 30%;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+  #summaryPlayerSelect {
+    width: 100%;
+    margin-bottom: 0.1em;
+  }
+  .content-box#latest-player-stats .header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Styles for the new Player Snapshot section */
+#player-snapshot h2 {
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.snapshot-controls {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 1em;
+    flex-wrap: wrap;
+}
+
+.snapshot-controls label {
+    font-weight: bold;
+}
+
+.snapshot-controls select,
+.snapshot-controls input[type="date"],
+.snapshot-controls input[type="number"] {
+    flex-grow: 1;
+    min-width: 150px;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* Adjust specific element widths if needed */
+#snapshotPlayerSelect {
+    max-width: 200px;
+}
+
+#snapshotTimeSelect {
+     max-width: 250px;
+}
+
+.snapshot-controls input[type="date"] {
+     max-width: 250px;
+}
+
+#goalLevel {
+    max-width: 150px;
+}
+
+.snapshot-details p {
+    margin: 0.5em 0;
+}
+
+.snapshot-details h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    color: #2c3e50;
+}
+
+.snapshot-details h3:first-of-type {
+    margin-top: 0;
+}

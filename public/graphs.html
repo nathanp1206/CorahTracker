@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corah Stats - Graphs</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <button class="hamburger-menu" onclick="toggleTabs()"><span class="hamburger-icon"><span></span><span></span><span></span></span></button>
+  <div class="tabs">
+    <a href="index.html" class="tab-button">Summary</a>
+    <a href="add-data.html" class="tab-button">Add Data</a>
+    <a href="graphs.html" class="tab-button">Graphs</a>
+  </div>
+
+  <div class="container graphs-layout">
+    <div class="content-box">
+      <h2>Player Progress</h2>
+      <select id="playerSelect">
+        <option value="">All Players</option>
+      </select>
+      <div class="filter-options">
+        <input type="checkbox" id="filterGigalogic">
+        <label for="filterGigalogic">Hide Gigalogic (All Players)</label>
+      </div>
+      <div class="graph-container">
+        <canvas id="playerChart"></canvas>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>Gold Price Trends</h2>
+      <div class="graph-container">
+        <canvas id="goldChart"></canvas>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>Scroll Price Trends (Gold)</h2>
+      <div class="graph-container">
+        <canvas id="scrollChartGold"></canvas>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>Scroll Price Trends (Diamond)</h2>
+      <div class="graph-container">
+        <canvas id="scrollChartDiamond"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    function toggleTabs() {
+      const tabs = document.querySelector('.tabs');
+      tabs.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
