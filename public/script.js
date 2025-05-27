@@ -1092,14 +1092,14 @@ async function setupPlayerSnapshot() {
             const statTime = statDate.getTime();
 
             if (statTime <= targetTime) {
-                if (!closestBefore || (targetTime - statTime) < (targetTime - new Date(closestBefore.dateTime).getTime())) {
-                    closestBefore = stat;
-                }
+                 if (!closestBefore || (targetTime - statTime) < (targetTime - new Date(closestBefore.dateTime).getTime())) {
+                     closestBefore = stat;
+                 }
             }
-            const diff = Math.abs(statTime - targetTime);
-            if (closestStat === null || diff < Math.abs(new Date(closestStat.dateTime).getTime() - targetTime)) {
-                closestStat = stat;
-            }
+             const diff = Math.abs(statTime - targetTime);
+             if (closestStat === null || diff < Math.abs(new Date(closestStat.dateTime).getTime() - targetTime)) {
+                 closestStat = stat;
+             }
         }
         console.log('findClosestStat: closestBefore =', closestBefore);
         console.log('findClosestStat: closestStat =', closestStat);
@@ -1175,11 +1175,11 @@ async function setupPlayerSnapshot() {
             console.log('loadPlayerStatsAndPopulateTimeDropdown: Populating time dropdown...');
             allPlayerStatsData.forEach(stat => {
                 if (stat && stat.dateTime) { // Add check for stat and dateTime
-                    const option = document.createElement('option');
-                    option.value = stat.dateTime;
+                const option = document.createElement('option');
+                option.value = stat.dateTime;
                     const formattedDate = new Date(stat.dateTime).toLocaleString();
                     option.textContent = formattedDate;
-                    timeSelect.appendChild(option);
+                timeSelect.appendChild(option);
                     console.log('loadPlayerStatsAndPopulateTimeDropdown: Added option', option.value, option.textContent);
                 } else {
                     console.warn('loadPlayerStatsAndPopulateTimeDropdown: Skipping invalid stat entry:', stat);
