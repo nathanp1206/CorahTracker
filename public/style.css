@@ -137,7 +137,7 @@ button:hover {
 /* Player Snapshot grid */
 .snapshot-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)); /* Changed to minmax to prevent overflow */
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* Changed to 2 columns */
   gap: 1rem;
   padding: 0.5rem;
 }
@@ -185,27 +185,43 @@ button:hover {
 /* Summary Page Layout */
 .summary-layout {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr; /* Equal 50/50 columns */
+  grid-template-rows: auto auto; /* Two rows in the left column */
+  gap: 1.5rem;
   width: 100%;
-  overflow: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .summary-layout > .content-box {
-  width: 100%;
+  width: 100%; /* Containers take up full width of their grid cell */
   box-sizing: border-box;
   overflow: hidden;
   padding: 1.5rem;
 }
 
-/* Make the Average Daily XP section span full width */
-.summary-layout > .content-box#average-daily-xp {
-  grid-column: 1 / -1; /* Span all columns */
-  max-width: 100%; /* Ensure it doesn't exceed parent width */
-  padding: 1.5rem; /* Consistent padding */
+/* Position Latest Player Stats in the first row, first column */
+.summary-layout > .content-box#latest-player-stats {
+  grid-area: 1 / 1; /* Row 1, Column 1 */
+  max-width: none; /* Remove previous max-width */
+  width: auto; /* Allow grid to control width */
 }
 
-/* Average Daily XP grid */
+/* Position Average Daily XP in the second row, first column */
+.summary-layout > .content-box#average-daily-xp {
+    grid-area: 2 / 1; /* Row 2, Column 1 */
+    max-width: none; /* Remove previous max-width */
+    width: auto; /* Allow grid to control width */
+}
+
+/* Position Player Snapshot in the first column, second row and span two rows */
+.summary-layout > .content-box#player-snapshot {
+  grid-area: 1 / 2 / span 2 / 2; /* Start Row 1, Column 2; Span 2 rows */
+  max-width: none; /* Remove previous max-width */
+  width: auto; /* Allow grid to control width */
+}
+
+/* Average Daily XP grid - internal layout */
 .average-xp-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -214,6 +230,11 @@ button:hover {
   max-width: 100%; /* Ensure it doesn't exceed parent width */
   box-sizing: border-box; /* Include padding in width calculation */
   padding: 0; /* Remove padding to prevent overflow */
+}
+
+/* Make the Average Daily XP display box span all columns in its grid */
+.average-xp-grid > .grid-item.average-xp {
+  grid-column: 1 / -1; /* Span from the first to the last column */
 }
 
 /* Add Data Page Layout */
@@ -226,7 +247,7 @@ button:hover {
   flex: 1;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   .container {
     padding: 0.5rem;
   }
@@ -241,15 +262,21 @@ button:hover {
     flex-direction: column;
     gap: 1.5rem; /* Adjusted gap for stacking */
   }
-  .summary-layout > .content-box {
-    padding: 1.2rem; /* Slightly reduced padding for mobile */
+  .summary-layout {
+    grid-template-columns: 1fr; /* Single column layout */
+    grid-template-rows: auto; /* Reset rows */
+    gap: 1.5rem; /* Maintain gap */
   }
-  .graphs-grid {
-    grid-template-columns: 1fr; /* Single column */
-    gap: 1.5rem; /* Adjusted gap for stacking */
+  .summary-layout > .content-box,
+  .summary-layout > .content-box#latest-player-stats,
+  .summary-layout > .content-box#average-daily-xp,
+  .summary-layout > .content-box#player-snapshot {
+    grid-area: auto; /* Reset grid area */
+    width: 100%; /* Full width */
+    max-width: 100%;
   }
   .average-xp-grid {
-    grid-template-columns: 1fr; /* Single column on mobile */
+    grid-template-columns: 1fr; /* Single column for average xp items */
   }
 }
 @media (max-width: 600px) {
@@ -266,8 +293,10 @@ button:hover {
     right: 0;
     z-index: 99;
     padding: 4rem 1rem 1rem 1rem;
-    background: #23272a;
+    background: #2c2f33;
     box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    border-radius: 0 0 12px 12px;
+    gap: 0.8rem;
   }
 
   .tabs.active {
@@ -276,32 +305,43 @@ button:hover {
 
   .container {
     margin-top: 4rem;
-    padding: 0.25rem;
+    padding: 0.5rem;
   }
   .content-box {
-    padding: 1rem;
+    padding: 1.5rem;
   }
   .snapshot-grid {
     grid-template-columns: minmax(0, 1fr);
   }
   .graph-container {
-    min-height: 300px;
-    height: 350px;
+    min-height: 350px;
+    height: 400px;
+  }
+  .grid-item {
+    padding: 1rem;
+  }
+  .scroll-type {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  select, input, textarea, button {
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+  }
+  label {
+    margin-bottom: 0.3rem;
+  }
+  #summaryPlayerSelect, #snapshotPlayerSelect, #snapshotTimeSelect, #goalLevel {
+    padding: 0.6rem 0.8rem;
+  }
+  .tab-button {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
   }
   .average-xp-grid {
     grid-template-columns: 1fr; /* Single column on smaller mobile */
     gap: 1rem; /* Reduced gap for mobile */
-  }
-  .summary-layout > .content-box {
-    padding: 1rem; /* Further reduced padding for smaller screens */
-  }
-  .grid-item {
-    padding: 0.8rem;
-  }
-  .grid-item select,
-  .grid-item input {
-    font-size: 0.9rem;
-    padding: 0.5rem;
   }
 }
 
@@ -415,6 +455,18 @@ button:hover {
     grid-template-columns: 1fr; /* Single column on smaller mobile */
     gap: 1rem; /* Reduced gap for mobile */
   }
+  .summary-layout {
+    grid-template-columns: 1fr; /* Single column layout on mobile */
+    grid-template-rows: auto; /* Reset rows for single column */
+    gap: 1.5rem; /* Maintain gap between stacked items */
+  }
+  .summary-layout > .content-box#latest-player-stats,
+  .summary-layout > .content-box#average-daily-xp,
+  .summary-layout > .content-box#player-snapshot {
+    grid-area: auto; /* Reset grid area to stack items normally */
+    width: 100%; /* Ensure full width in single column */
+    max-width: 100%;
+  }
 }
 
 /* Graphs Page - Player Progress Header Layout */
@@ -444,6 +496,28 @@ button:hover {
   overflow: hidden;
 }
 
+#latest-player-stats .header-row {
+    margin-bottom: 1em; /* Keep some space below the header row */
+    overflow: auto; /* Clear floats */
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse; /* Reverse the order to put select on right */
+    gap: 1rem;
+}
+
+#latest-player-stats .header-row h2 {
+    margin: 0; /* Remove default margin */
+    text-align: left; /* Ensure title is left-aligned */
+    flex: 1; /* Allow title to take remaining space */
+}
+
+#latest-player-stats .header-row select {
+    margin: 0; /* Remove margin */
+    width: 50%; /* Make select input smaller */
+    min-width: 150px; /* Ensure it doesn't get too small */
+    max-width: 200px; /* Cap the maximum width */
+}
+
 #player-stats-list {
   padding: 0.5rem;
   overflow: hidden;
@@ -463,4 +537,154 @@ button:hover {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Player Stats Input Container Styles */
+.player-stats-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.player-stats-inputs .input-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0; /* Prevent flex items from overflowing */
+}
+
+.player-stats-inputs label {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-stats-inputs input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  background: #181a1b;
+  color: #f1f1f1;
+  border: 1px solid #42464c;
+  border-radius: 8px;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  min-width: 0; /* Prevent input from overflowing */
+}
+
+.player-stats-inputs input:focus {
+  outline: none;
+  border-color: #7289da;
+  box-shadow: 0 0 0 3px rgba(114, 137, 218, 0.3);
+  background: #23272a;
+}
+
+@media (max-width: 600px) {
+  .player-stats-inputs {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Add Data Page Input Styles */
+.content-box input,
+.content-box select {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  font-size: 1rem;
+  background: #181a1b;
+  color: #f1f1f1;
+  border: 1px solid #42464c;
+  border-radius: 8px;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.content-box input:focus,
+.content-box select:focus {
+  outline: none;
+  border-color: #7289da;
+  box-shadow: 0 0 0 3px rgba(114, 137, 218, 0.3);
+  background: #23272a;
+}
+
+.content-box button {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Scroll Prices Section Styles */
+.scroll-type {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.scroll-type h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.scroll-type input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.scroll-type button {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Summary Page Input Styles */
+#latest-player-stats select,
+#average-daily-xp select,
+#player-snapshot select,
+#player-snapshot input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  background: #2c2f33;
+  color: #f1f1f1;
+  border: 1px solid #42464c;
+  border-radius: 8px;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+#latest-player-stats select:focus,
+#average-daily-xp select:focus,
+#player-snapshot select:focus,
+#player-snapshot input:focus {
+  outline: none;
+  border-color: #7289da;
+  box-shadow: 0 0 0 3px rgba(114, 137, 218, 0.3);
+  background: #23272a;
+}
+
+/* Override the general input styles for add-data page */
+.add-data-sections .content-box input,
+.add-data-sections .content-box select {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  font-size: 1rem;
+  background: #181a1b;
+  color: #f1f1f1;
+  border: 1px solid #42464c;
+  border-radius: 8px;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.add-data-sections .content-box input:focus,
+.add-data-sections .content-box select:focus {
+  outline: none;
+  border-color: #7289da;
+  box-shadow: 0 0 0 3px rgba(114, 137, 218, 0.3);
+  background: #23272a;
 }

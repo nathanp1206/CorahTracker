@@ -1194,11 +1194,16 @@ async function setupPlayerSnapshot() {
             });
             console.log('loadPlayerStatsAndPopulateTimeDropdown: Initial time dropdown populated.');
 
-            // Set initial values
+            // Set initial values to the latest data point
             if (allPlayerStatsData.length > 0) {
                 const latestDateTime = allPlayerStatsData[allPlayerStatsData.length - 1].dateTime;
-                timeSelect.value = latestDateTime;
-                console.log('loadPlayerStatsAndPopulateTimeDropdown: Default initial time selected.', timeSelect.value);
+                const secondLatestDateTime = allPlayerStatsData[allPlayerStatsData.length - 2].dateTime;
+                initialSnapshotLevelSpan.textContent = '--';
+                initialSnapshotExpSpan.textContent = '--';
+                goalLevelDisplaySpan.textContent = '--';
+                goalXPDisplaySpan.textContent = '--';
+                dailyXPNeededSpan.textContent = '--';
+                timeSelect.value = secondLatestDateTime;
             }
 
             // Trigger initial display based on the default selected time and any pre-selected goal time
@@ -1551,7 +1556,8 @@ async function setupAverageDailyXP() {
             // Set initial values to the latest data point
             if (allPlayerStatsData.length > 0) {
                 const latestDateTime = allPlayerStatsData[allPlayerStatsData.length - 1].dateTime;
-                initialTimeSelect.value = latestDateTime;
+                const secondLatestDateTime = allPlayerStatsData[allPlayerStatsData.length - 2].dateTime;
+                initialTimeSelect.value = secondLatestDateTime;
                 latestTimeSelect.value = latestDateTime;
                 updateAverageDailyXP();
             }
@@ -1590,16 +1596,24 @@ async function setupAverageDailyXP() {
         const totalXpGained = latestStat.exp - initialStat.exp;
         totalXpGainedSpan.textContent = totalXpGained.toLocaleString();
 
-        // Calculate time difference in hours
+        // Calculate time difference
         const initialDate = new Date(initialTime);
         const latestDate = new Date(latestTime);
         const timeDiffMs = latestDate.getTime() - initialDate.getTime();
+        
+        // Calculate days, hours, and minutes
+        const totalMinutes = Math.floor(timeDiffMs / (1000 * 60));
+        const days = Math.floor(totalMinutes / (24 * 60));
+        const hours = Math.floor((totalMinutes % (24 * 60)) / 60);
+        const minutes = totalMinutes % 60;
+        
+        // Format time difference as "d:hh:mm"
+        const timeBetween = `${days}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        daysBetweenSpan.textContent = timeBetween;
+
+        // Calculate hours between for XP calculations
         const hoursBetween = timeDiffMs / (1000 * 60 * 60);
         
-        // Calculate days between (for display purposes)
-        const daysBetween = Math.max(1, Math.ceil(hoursBetween / 24)); // At least 1 day
-        daysBetweenSpan.textContent = daysBetween;
-
         // Calculate average XP per hour and extrapolate to 24 hours
         const averageXpPerHour = totalXpGained / hoursBetween;
         const averageDailyXp = Math.floor(averageXpPerHour * 24);
