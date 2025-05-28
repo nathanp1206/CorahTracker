@@ -137,25 +137,83 @@ button:hover {
 /* Player Snapshot grid */
 .snapshot-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto;
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* Changed to minmax to prevent overflow */
+  gap: 1rem;
+  padding: 0.5rem;
 }
+
 .grid-item {
-  background: #2c2f33; /* Slightly lighter dark background */
-  border-radius: 10px; /* Rounded corners */
-  padding: 1.2rem; /* Adjusted padding */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.6); /* Refined shadow */
+  background: #2c2f33;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  overflow: hidden;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%; /* Ensure full width */
+}
+
+/* Input and select styles within grid items */
+.grid-item select,
+.grid-item input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.grid-item label {
+  display: block;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Adjust grid item sizes for specific elements */
+.grid-item.player-select,
+.grid-item.goal-datetime,
+.grid-item.initial-datetime,
+.grid-item.goal-level {
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* Summary Page Layout */
 .summary-layout {
-  display: flex;
-  gap: 2rem; /* Space between columns */
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  width: 100%;
+  overflow: hidden;
 }
 
 .summary-layout > .content-box {
-  flex: 1; /* Make sections take equal width */
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+/* Make the Average Daily XP section span full width */
+.summary-layout > .content-box#average-daily-xp {
+  grid-column: 1 / -1; /* Span all columns */
+  max-width: 100%; /* Ensure it doesn't exceed parent width */
+  padding: 1.5rem; /* Consistent padding */
+}
+
+/* Average Daily XP grid */
+.average-xp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%; /* Ensure it doesn't exceed parent width */
+  box-sizing: border-box; /* Include padding in width calculation */
+  padding: 0; /* Remove padding to prevent overflow */
 }
 
 /* Add Data Page Layout */
@@ -173,8 +231,7 @@ button:hover {
     padding: 0.5rem;
   }
   .snapshot-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .graph-container {
     min-height: 400px;
@@ -184,9 +241,15 @@ button:hover {
     flex-direction: column;
     gap: 1.5rem; /* Adjusted gap for stacking */
   }
-  .summary-layout {
-    flex-direction: column;
+  .summary-layout > .content-box {
+    padding: 1.2rem; /* Slightly reduced padding for mobile */
+  }
+  .graphs-grid {
+    grid-template-columns: 1fr; /* Single column */
     gap: 1.5rem; /* Adjusted gap for stacking */
+  }
+  .average-xp-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
   }
 }
 @media (max-width: 600px) {
@@ -219,13 +282,26 @@ button:hover {
     padding: 1rem;
   }
   .snapshot-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(7, auto);
-    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr);
   }
   .graph-container {
     min-height: 300px;
     height: 350px;
+  }
+  .average-xp-grid {
+    grid-template-columns: 1fr; /* Single column on smaller mobile */
+    gap: 1rem; /* Reduced gap for mobile */
+  }
+  .summary-layout > .content-box {
+    padding: 1rem; /* Further reduced padding for smaller screens */
+  }
+  .grid-item {
+    padding: 0.8rem;
+  }
+  .grid-item select,
+  .grid-item input {
+    font-size: 0.9rem;
+    padding: 0.5rem;
   }
 }
 
@@ -255,8 +331,7 @@ button:hover {
     padding: 0.5rem;
   }
   .snapshot-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .graph-container {
     min-height: 400px;
@@ -308,9 +383,7 @@ button:hover {
     padding: 1.5rem;
   }
   .snapshot-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(7, auto);
-    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr);
   }
   .graph-container {
     min-height: 350px;
@@ -338,6 +411,10 @@ button:hover {
     padding: 1rem 1.5rem;
     font-size: 1.1rem;
   }
+  .average-xp-grid {
+    grid-template-columns: 1fr; /* Single column on smaller mobile */
+    gap: 1rem; /* Reduced gap for mobile */
+  }
 }
 
 /* Graphs Page - Player Progress Header Layout */
@@ -359,4 +436,31 @@ button:hover {
     display: flex; /* Use flex to align checkbox and label */
     align-items: center;
     gap: 0.5rem; /* Space between checkbox and label */
+}
+
+/* Latest Player Stats specific styles */
+#latest-player-stats {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+#player-stats-list {
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+#player-stats-list h3 {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#player-stats-list p {
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
