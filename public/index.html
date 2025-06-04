@@ -51,6 +51,11 @@
                   <p><strong>Total XP Gained:</strong> <span id="totalXpGained">--</span></p>
                   <p><strong>Days Between:</strong> <span id="daysBetween">--</span></p>
                   <p><strong>Average Daily XP:</strong> <span id="averageDailyXp">--</span></p>
+                  <div class="goal-level-section">
+                      <label for="avgXpGoalLevel">Goal Level:</label>
+                      <select id="avgXpGoalLevel"></select>
+                      <p><strong>Expected Date to Hit Goal:</strong> <span id="avgXpExpectedDate">--</span></p>
+                  </div>
               </div>
           </div>
       </div>
@@ -95,6 +100,7 @@
   </div>
 
   <script src="script.js"></script>
+  <script type="module" src="header.js"></script>
   <script>
     function toggleTabs() {
       const tabs = document.querySelector('.tabs');

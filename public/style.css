@@ -29,7 +29,7 @@ body {
   background: #2c2f33;
   box-shadow: 0 2px 10px rgba(0,0,0,0.8);
   border-radius: 0 0 15px 15px;
-  padding: 0.75rem 0;
+  padding: 0.75rem 4rem;
   gap: 1.5rem;
 }
 
@@ -46,8 +46,7 @@ body {
   text-decoration: none;
 }
 .tab-button:hover, .tab-button.active {
-  background: #42464c;
-  background: #36393f;
+  background: #26282c;
   color: #fff;
 }
 
@@ -57,7 +56,7 @@ body {
   border: none;
   position: absolute;
   top: 1rem;
-  left: 1rem;
+  right: 1rem;
   z-index: 100;
   cursor: pointer;
 }
@@ -94,7 +93,7 @@ label {
 }
 
 button {
-  background: #7289da;
+  background: #2252ff;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -106,7 +105,7 @@ button {
   text-decoration: none;
 }
 button:hover {
-  background: #5b6eae;
+  background: #152148;
 }
 
 /* Scroll section */
@@ -235,6 +234,22 @@ button:hover {
 /* Make the Average Daily XP display box span all columns in its grid */
 .average-xp-grid > .grid-item.average-xp {
   grid-column: 1 / -1; /* Span from the first to the last column */
+}
+
+.goal-level-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.goal-level-section label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.goal-level-section select {
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 /* Add Data Page Layout */
@@ -687,4 +702,44 @@ button:hover {
   border-color: #7289da;
   box-shadow: 0 0 0 3px rgba(114, 137, 218, 0.3);
   background: #23272a;
+}
+
+.player-input-form {
+  display: flex;
+  gap: 10px;
+  margin-left: auto; /* Push to the right */
+  padding: 0.5rem;
+  align-items: center;
+}
+
+.player-input-form input {
+  width: 150px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #42464c;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: #36393f;
+  color: #f1f1f1;
+}
+
+.player-input-form button {
+  padding: 0.6rem 1rem;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .player-input-form {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+  
+  .player-input-form input {
+    width: 100%;
+  }
 }

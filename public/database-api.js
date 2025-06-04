@@ -81,4 +81,27 @@ export async function fetchGoldPrices() {
     console.error('Error fetching gold prices:', error);
     return null;
   }
+}
+
+export async function addPlayer(player) {
+  try {
+    const response = await fetch('/api/addPlayer', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ player })
+    });
+    
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to add player');
+    }
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error adding player:', error);
+    throw error;
+  }
 } 

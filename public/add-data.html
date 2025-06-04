@@ -36,7 +36,7 @@
 
         <div class="content-box">
           <h2>Add Gold Price</h2>
-          <input type="tel" inputmode="numeric" id="goldPrice" placeholder="Gold Price">
+          <input type="number" id="goldPrice" placeholder="Gold Price">
           <button onclick="submitGoldPrice()">Submit</button>
         </div>
 
@@ -52,43 +52,43 @@
           <div class="scroll-prices">
             <div class="scroll-type">
               <h3>Ancient Scroll</h3>
-              <input type="number" id="ancientGold" placeholder="Gold Price">
-              <input type="number" id="ancientDiamond" placeholder="Diamond Price">
+              <input type="tel" inputmode="numeric" id="ancientGold" placeholder="Gold Price">
+              <input type="tel" inputmode="numeric" id="ancientDiamond" placeholder="Diamond Price">
               <button onclick="submitScrollPrice('ancient')">Submit</button>
             </div>
 
             <div class="scroll-type">
               <h3>Demoniac Scroll</h3>
-              <input type="number" id="demoniacGold" placeholder="Gold Price">
-              <input type="number" id="demoniacDiamond" placeholder="Diamond Price">
+              <input type="tel" inputmode="numeric" id="demoniacGold" placeholder="Gold Price">
+              <input type="tel" inputmode="numeric" id="demoniacDiamond" placeholder="Diamond Price">
               <button onclick="submitScrollPrice('demoniac')">Submit</button>
             </div>
 
             <div class="scroll-type">
               <h3>Arcane Scroll</h3>
-              <input type="number" id="arcaneGold" placeholder="Gold Price">
-              <input type="number" id="arcaneDiamond" placeholder="Diamond Price">
+              <input type="tel" inputmode="numeric" id="arcaneGold" placeholder="Gold Price">
+              <input type="tel" inputmode="numeric" id="arcaneDiamond" placeholder="Diamond Price">
               <button onclick="submitScrollPrice('arcane')">Submit</button>
             </div>
 
             <div class="scroll-type">
               <h3>Shadow Scroll</h3>
-              <input type="number" id="shadowGold" placeholder="Gold Price">
-              <input type="number" id="shadowDiamond" placeholder="Diamond Price">
+              <input type="tel" inputmode="numeric" id="shadowGold" placeholder="Gold Price">
+              <input type="tel" inputmode="numeric" id="shadowDiamond" placeholder="Diamond Price">
               <button onclick="submitScrollPrice('shadow')">Submit</button>
             </div>
 
             <div class="scroll-type">
               <h3>Void Scroll</h3>
-              <input type="number" id="voidGold" placeholder="Gold Price">
-              <input type="number" id="voidDiamond" placeholder="Diamond Price">
+              <input type="tel" inputmode="numeric" id="voidGold" placeholder="Gold Price">
+              <input type="tel" inputmode="numeric" id="voidDiamond" placeholder="Diamond Price">
               <button onclick="submitScrollPrice('void')">Submit</button>
             </div>
 
             <div class="scroll-type">
               <h3>Sunlight Scroll</h3>
-              <input type="number" id="sunlightGold" placeholder="Gold Price">
-              <input type="number" id="sunlightDiamond" placeholder="Diamond Price">
+              <input type="tel" inputmode="numeric" id="sunlightGold" placeholder="Gold Price">
+              <input type="tel" inputmode="numeric" id="sunlightDiamond" placeholder="Diamond Price">
               <button onclick="submitScrollPrice('sunlight')">Submit</button>
             </div>
           </div>
@@ -98,6 +98,7 @@
   </div>
 
   <script src="script.js"></script>
+  <script type="module" src="header.js"></script>
   <script>
     function toggleTabs() {
       const tabs = document.querySelector('.tabs');

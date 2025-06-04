@@ -640,7 +640,10 @@ function submitStats() {
         }
         // Also refresh the add data player dropdown
         fetchPlayers();
-
+        // Refresh the Latest Player Stats dropdown if on the index page
+        if (document.getElementById('latest-player-stats')) {
+          displayLatestPlayerStats();
+        }
       } else {
         alert('Error: ' + (data.error || 'Unknown error'));
       }
@@ -952,8 +955,14 @@ async function displayLatestPlayerStats() {
             }
         });
 
-        // Get sorted player names, with Hunt3r1206 first if present
-        let players = Object.keys(latestStats);
+        // Fetch players list
+        const playersResponse = await fetch('/api/players');
+        if (!playersResponse.ok) {
+            throw new Error(`HTTP error! status: ${playersResponse.status}`);
+        }
+        let players = await playersResponse.json();
+
+        // Sort players, with Hunt3r1206 first
         const hunt3rIndex = players.indexOf('Hunt3r1206');
         let hunt3r = null;
         if (hunt3rIndex > -1) {
@@ -962,7 +971,7 @@ async function displayLatestPlayerStats() {
         players.sort();
 
         // Populate the latest stats dropdown
-        playerSelect.innerHTML = '';
+        playerSelect.innerHTML = ''; // Clear existing options
         if (hunt3r) {
             const option = document.createElement('option');
             option.value = hunt3r;
@@ -1477,6 +1486,8 @@ async function setupAverageDailyXP() {
     const totalXpGainedSpan = document.getElementById('totalXpGained');
     const daysBetweenSpan = document.getElementById('daysBetween');
     const averageDailyXpSpan = document.getElementById('averageDailyXp');
+    const goalLevelSelect = document.getElementById('avgXpGoalLevel');
+    const expectedDateSpan = document.getElementById('avgXpExpectedDate');
 
     // Added checks for each element
     if (!playerSelect) { console.error('setupAverageDailyXP: playerSelect not found.'); return; }
@@ -1485,10 +1496,84 @@ async function setupAverageDailyXP() {
     if (!totalXpGainedSpan) { console.error('setupAverageDailyXP: totalXpGainedSpan not found.'); return; }
     if (!daysBetweenSpan) { console.error('setupAverageDailyXP: daysBetweenSpan not found.'); return; }
     if (!averageDailyXpSpan) { console.error('setupAverageDailyXP: averageDailyXpSpan not found.'); return; }
+    if (!goalLevelSelect) { console.error('setupAverageDailyXP: goalLevelSelect not found.'); return; }
+    if (!expectedDateSpan) { console.error('setupAverageDailyXP: expectedDateSpan not found.'); return; }
 
     console.log('setupAverageDailyXP: All elements found.');
 
     let allPlayerStatsData = [];
+    let xpValues = []; // Store XP values for levels
+
+    // Load XP values for goal level dropdown
+    try {
+        console.log('setupAverageDailyXP: Fetching XP values...');
+        const response = await fetch('/api/xp-values');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('setupAverageDailyXP: XP values fetched.', data);
+        
+        if (data && Array.isArray(data.levels)) {
+            xpValues = data.levels.filter(level => level.total_exp !== "" && level.level !== undefined);
+            
+            // Populate goal level dropdown
+            goalLevelSelect.innerHTML = '<option value="">Select a level</option>';
+            xpValues.forEach(level => {
+                const option = document.createElement('option');
+                option.value = level.total_exp;
+                option.textContent = level.level;
+                goalLevelSelect.appendChild(option);
+            });
+            console.log('setupAverageDailyXP: Goal level dropdown populated.');
+        } else {
+            console.error('setupAverageDailyXP: Invalid XP values data format.', data);
+            goalLevelSelect.innerHTML = '<option value="">Error loading levels</option>';
+        }
+    } catch (error) {
+        console.error('Error loading XP values:', error);
+        goalLevelSelect.innerHTML = '<option value="">Error loading levels</option>';
+    }
+
+    // Function to calculate and display expected date to hit goal level
+    function calculateExpectedDate() {
+        const goalLevelValue = goalLevelSelect.value;
+        const latestTime = latestTimeSelect.value;
+        const averageDailyXp = parseInt(averageDailyXpSpan.textContent.replace(/,/g, ''));
+
+        if (!goalLevelValue || !latestTime || !averageDailyXp) {
+            expectedDateSpan.textContent = '--';
+            return;
+        }
+
+        // Find the latest stat
+        const latestStat = allPlayerStatsData.find(stat => stat.dateTime === latestTime);
+        if (!latestStat) {
+            expectedDateSpan.textContent = '--';
+            return;
+        }
+
+        // Calculate total XP needed
+        const currentXP = latestStat.exp;
+        const goalXP = parseInt(goalLevelValue);
+        const totalXPNeeded = goalXP - currentXP;
+
+        if (totalXPNeeded <= 0) {
+            expectedDateSpan.textContent = 'Already achieved!';
+            return;
+        }
+
+        // Calculate days needed
+        const daysNeeded = Math.ceil(totalXPNeeded / averageDailyXp);
+        
+        // Calculate expected date
+        const latestDate = new Date(latestTime);
+        const expectedDate = new Date(latestDate);
+        expectedDate.setDate(latestDate.getDate() + daysNeeded);
+        
+        // Format the expected date
+        expectedDateSpan.textContent = expectedDate.toLocaleDateString();
+    }
 
     // Function to load stats for the selected player and populate the time dropdowns
     async function loadPlayerStatsAndPopulateTimeDropdowns(selectedPlayer) {
@@ -1578,6 +1663,7 @@ async function setupAverageDailyXP() {
             totalXpGainedSpan.textContent = '--';
             daysBetweenSpan.textContent = '--';
             averageDailyXpSpan.textContent = '--';
+            expectedDateSpan.textContent = '--';
             return;
         }
 
@@ -1589,6 +1675,7 @@ async function setupAverageDailyXP() {
             totalXpGainedSpan.textContent = '--';
             daysBetweenSpan.textContent = '--';
             averageDailyXpSpan.textContent = '--';
+            expectedDateSpan.textContent = '--';
             return;
         }
 
@@ -1618,9 +1705,12 @@ async function setupAverageDailyXP() {
         const averageXpPerHour = totalXpGained / hoursBetween;
         const averageDailyXp = Math.floor(averageXpPerHour * 24);
         averageDailyXpSpan.textContent = averageDailyXp.toLocaleString();
+
+        // Calculate expected date to hit goal level
+        calculateExpectedDate();
     }
 
-    // Populate player dropdown
+    // Populate player dropdown and set up event listeners
     try {
         const response = await fetch('/api/players');
         if (!response.ok) {
@@ -1665,6 +1755,7 @@ async function setupAverageDailyXP() {
 
         initialTimeSelect.addEventListener('change', updateAverageDailyXP);
         latestTimeSelect.addEventListener('change', updateAverageDailyXP);
+        goalLevelSelect.addEventListener('change', calculateExpectedDate);
 
     } catch (error) {
         console.error('Error loading players:', error);

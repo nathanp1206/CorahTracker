@@ -304,35 +304,34 @@ app.post('/api/addScrollPrice', async (req, res) => {
   }
 });
 
-// POST route: Add new player
+// POST route: Add player
 app.post('/api/addPlayer', async (req, res) => {
   try {
-    const { playerName } = req.body;
+    const { player } = req.body;
 
-    if (!playerName) {
+    if (!player) {
       return res.status(400).json({
         success: false,
         error: 'Player name is required'
       });
     }
 
-    await playersDb.read(); // Ensure latest data is read before checking
+    await playersDb.read(); // Ensure latest data is read before push
 
-    // Check if player already exists (case-insensitive)
-    const playerExists = playersDb.data.players.some(player => player.toLowerCase() === playerName.toLowerCase());
-
-    if (playerExists) {
-      return res.status(409).json({
+    // Check if player already exists
+    if (playersDb.data.players.includes(player)) {
+      return res.status(400).json({
         success: false,
-        error: `Player '${playerName}' already exists.`
+        error: 'Player already exists'
       });
     }
 
-    playersDb.data.players.push(playerName);
+    // Add new player
+    playersDb.data.players.push(player);
     await playersDb.write();
 
-    console.log('Added new player:', playerName);
-    res.json({ success: true, playerName });
+    console.log('✅ Player added successfully');
+    res.json({ success: true, player });
 
   } catch (error) {
     console.error('❌ Error in /api/addPlayer:', error);
