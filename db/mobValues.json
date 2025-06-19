@@ -2,136 +2,81 @@
   "monsters": [
     {
       "name": "Bear",
-      "exp": 11,
+      "region":"Ranhain",
+      "level":"",
+      "exp": 22,
       "hp": 400,
-      "gold": 52,
+      "gold": 104,
       "bossDamage": 58,
       "questExp": {
-        "ancient": 55,
-        "demonic": 110,
-        "arcane": 198,
-        "shadow": 440,
-        "void": 880
+        "ancient": 110,
+        "demonic": 220,
+        "arcane": 396,
+        "shadow": 880,
+        "void": 1760
       },
-      "goldExp": {
-        "ancient": 312,
-        "demonic": 624,
-        "arcane": 1040,
-        "shadow": 2340,
-        "void": 4680
+      "questGold": {
+        "ancient": 624,
+        "demonic": 1248,
+        "arcane": 2080,
+        "shadow": 4680,
+        "void": 9360
       }
     },
     {
       "name": "Giant Ant",
-      "exp": 20,
+      "region":"Ranhain",
+      "level":"",
+      "exp": 40,
       "hp": 690,
-      "gold": 79,
+      "gold": 158,
       "bossDamage": 92,
       "questExp": {
-        "ancient": 100,
-        "demonic": 200,
-        "arcane": 360,
-        "shadow": 800,
-        "void": 1600
+        "ancient": 200,
+        "demonic": 400,
+        "arcane": 720,
+        "shadow": 1600,
+        "void": 3200
       },
-      "goldExp": {
-        "ancient": 474,
-        "demonic": 948,
-        "arcane": 1580,
-        "shadow": 3555,
-        "void": 7110
+      "questGold": {
+        "ancient": 948,
+        "demonic": 1896,
+        "arcane": 3160,
+        "shadow": 7110,
+        "void": 14220
       }
     },
     {
       "name": "Chinavia",
-      "exp": 36,
+      "region":"Ranhain",
+      "level":"",
+      "exp": 72,
       "hp": 1200,
-      "gold": 115,
+      "gold": 230,
       "bossDamage": 173,
       "questExp": {
-        "ancient": 180,
-        "demonic": 360,
-        "arcane": 648,
-        "shadow": 1440,
-        "void": 2880
+        "ancient": 360,
+        "demonic": 720,
+        "arcane": 1296,
+        "shadow": 2880,
+        "void": 5760
       },
-      "goldExp": {
-        "ancient": 690,
-        "demonic": 1380,
-        "arcane": 2300,
-        "shadow": 5175,
-        "void": 10350
+      "questGold": {
+        "ancient": 1380,
+        "demonic": 2760,
+        "arcane": 4600,
+        "shadow": 10350,
+        "void": 20700
       }
     },
     {
       "name": "Enraged Turtle",
-      "exp": 65,
-      "hp": 2100,
-      "gold": 169,
-      "bossDamage": 173,
-      "questExp": {
-        "ancient": 325,
-        "demonic": 650,
-        "arcane": 1170,
-        "shadow": 2600,
-        "void": 5200
-      },
-      "goldExp": {
-        "ancient": 1014,
-        "demonic": 2028,
-        "arcane": 3380,
-        "shadow": 7605,
-        "void": 15210
-      }
-    },
-    {
-      "name": "Goblin Thief",
-      "exp": 28,
-      "hp": 2500,
-      "gold": 21,
-      "bossDamage": 310,
-      "questExp": {
-        "ancient": 140,
-        "demonic": 280,
-        "arcane": 504,
-        "shadow": 1120,
-        "void": 2240
-      },
-      "goldExp": {
-        "ancient": 126,
-        "demonic": 252,
-        "arcane": 420,
-        "shadow": 945,
-        "void": 1890
-      }
-    },
-    {
-      "name": "Scavenger",
-      "exp": 102,
-      "hp": 3200,
-      "gold": 228,
-      "bossDamage": 288,
-      "questExp": {
-        "ancient": 510,
-        "demonic": 1020,
-        "arcane": 1836,
-        "shadow": 4080,
-        "void": 8160
-      },
-      "goldExp": {
-        "ancient": 1368,
-        "demonic": 2736,
-        "arcane": 4560,
-        "shadow": 10260,
-        "void": 20520
-      }
-    },
-    {
-      "name": "Amphnaly",
+      "region":"Ranhain",
+      "level":"",
       "exp": 130,
-      "hp": 4000,
-      "gold": 250,
-      "bossDamage": 506,
+      "hp": 2100,
+      "gold": 338,
+      "bossDamage": 173,
       "questExp": {
         "ancient": 650,
         "demonic": 1300,
@@ -139,880 +84,1033 @@
         "shadow": 5200,
         "void": 10400
       },
-      "goldExp": {
-        "ancient": 1500,
-        "demonic": 3000,
-        "arcane": 5000,
-        "shadow": 11250,
-        "void": 22500
+      "questGold": {
+        "ancient": 2028,
+        "demonic": 4056,
+        "arcane": 6760,
+        "shadow": 15210,
+        "void": 30420
+      }
+    },
+    {
+      "name": "Goblin Thief",
+      "region":"Ranhain",
+      "level":"",
+      "exp": 56,
+      "hp": 2500,
+      "gold": 42,
+      "bossDamage": 310,
+      "questExp": {
+        "ancient": 280,
+        "demonic": 560,
+        "arcane": 1008,
+        "shadow": 2240,
+        "void": 4480
+      },
+      "questGold": {
+        "ancient": 252,
+        "demonic": 504,
+        "arcane": 840,
+        "shadow": 1890,
+        "void": 3780
+      }
+    },
+    {
+      "name": "Scavenger",
+      "region":"Ranhain",
+      "level":"",
+      "exp": 204,
+      "hp": 3200,
+      "gold": 456,
+      "bossDamage": 288,
+      "questExp": {
+        "ancient": 1020,
+        "demonic": 2040,
+        "arcane": 3672,
+        "shadow": 8160,
+        "void": 16320
+      },
+      "questGold": {
+        "ancient": 2736,
+        "demonic": 5472,
+        "arcane": 9120,
+        "shadow": 20520,
+        "void": 41040
+      }
+    },
+    {
+      "name": "Amphnaly",
+      "region":"Ranhain",
+      "level":"",
+      "exp": 260,
+      "hp": 4000,
+      "gold": 500,
+      "bossDamage": 506,
+      "questExp": {
+        "ancient": 1300,
+        "demonic": 2600,
+        "arcane": 4680,
+        "shadow": 10400,
+        "void": 20800
+      },
+      "questGold": {
+        "ancient": 3000,
+        "demonic": 6000,
+        "arcane": 10000,
+        "shadow": 22500,
+        "void": 45000
       }
     },
     {
       "name": "Goblin Chief",
-      "exp": 108,
+      "region":"Ranhain",
+      "level":"",
+      "exp": 216,
       "hp": 8000,
-      "gold": 96,
+      "gold": 192,
       "bossDamage": 720,
       "questExp": {
-        "ancient": 540,
-        "demonic": 1080,
-        "arcane": 1944,
-        "shadow": 4320,
-        "void": 8640
+        "ancient": 1080,
+        "demonic": 2160,
+        "arcane": 3888,
+        "shadow": 8640,
+        "void": 17280
       },
-      "goldExp": {
-        "ancient": 576,
-        "demonic": 1152,
-        "arcane": 1920,
-        "shadow": 4320,
-        "void": 8640
+      "questGold": {
+        "ancient": 1152,
+        "demonic": 2304,
+        "arcane": 3840,
+        "shadow": 8640,
+        "void": 17280
       }
     },
     {
       "name": "Skeleton Worker",
-      "exp": 544,
+      "region":"Dekdun",
+      "level":"",
+      "exp": 1088,
       "hp": 13200,
-      "gold": 286,
+      "gold": 572,
       "bossDamage": 633,
       "questExp": {
-        "ancient": 2720,
-        "demonic": 5440,
-        "arcane": 9792,
-        "shadow": 21760,
-        "void": 43520
+        "ancient": 5440,
+        "demonic": 10880,
+        "arcane": 19584,
+        "shadow": 43520,
+        "void": 87040
       },
-      "goldExp": {
-        "ancient": 1716,
-        "demonic": 3432,
-        "arcane": 5720,
-        "shadow": 12870,
-        "void": 25740
+      "questGold": {
+        "ancient": 3432,
+        "demonic": 6864,
+        "arcane": 11440,
+        "shadow": 25740,
+        "void": 51480
       }
     },
     {
       "name": "Lost Amummy",
-      "exp": 660,
+      "region":"Dekdun",
+      "level":"",
+      "exp": 1320,
       "hp": 15400,
-      "gold": 341,
+      "gold": 682,
       "bossDamage": 863,
       "questExp": {
-        "ancient": 3300,
-        "demonic": 6600,
-        "arcane": 11880,
-        "shadow": 26400,
-        "void": 52800
+        "ancient": 6600,
+        "demonic": 13200,
+        "arcane": 23760,
+        "shadow": 52800,
+        "void": 105600
       },
-      "goldExp": {
-        "ancient": 2046,
-        "demonic": 4092,
-        "arcane": 6820,
-        "shadow": 15345,
-        "void": 30690
+      "questGold": {
+        "ancient": 4092,
+        "demonic": 8184,
+        "arcane": 13640,
+        "shadow": 30690,
+        "void": 61380
       }
     },
     {
       "name": "Skeleton Captain",
-      "exp": 870,
+      "region":"Dekdun",
+      "level":"",
+      "exp": 1740,
       "hp": 19000,
-      "gold": 432,
+      "gold": 864,
       "bossDamage": 1150,
       "questExp": {
-        "ancient": 4350,
-        "demonic": 8700,
-        "arcane": 15660,
-        "shadow": 34800,
-        "void": 69600
+        "ancient": 8700,
+        "demonic": 17400,
+        "arcane": 31320,
+        "shadow": 69600,
+        "void": 139200
       },
-      "goldExp": {
-        "ancient": 2592,
-        "demonic": 5184,
-        "arcane": 8640,
-        "shadow": 19440,
-        "void": 38880
+      "questGold": {
+        "ancient": 5184,
+        "demonic": 10368,
+        "arcane": 17280,
+        "shadow": 38880,
+        "void": 77760
       }
     },
     {
       "name": "Skeleton Wizard",
-      "exp": 460,
+      "region":"Dekdun",
+      "level":"",
+      "exp": 920,
       "hp": 27000,
-      "gold": 250,
+      "gold": 500,
       "bossDamage": 1725,
       "questExp": {
-        "ancient": 2300,
-        "demonic": 4600,
-        "arcane": 8280,
-        "shadow": 18400,
-        "void": 36800
+        "ancient": 4600,
+        "demonic": 9200,
+        "arcane": 16560,
+        "shadow": 36800,
+        "void": 73600
       },
-      "goldExp": {
-        "ancient": 1500,
-        "demonic": 3000,
-        "arcane": 5000,
-        "shadow": 11250,
-        "void": 22500
+      "questGold": {
+        "ancient": 3000,
+        "demonic": 6000,
+        "arcane": 10000,
+        "shadow": 22500,
+        "void": 45000
       }
     },
     {
       "name": "Skeleton Thief",
-      "exp": 1130,
+      "region":"Dekdun",
+      "level":"",
+      "exp": 2260,
       "hp": 22800,
-      "gold": 511,
+      "gold": 1022,
       "bossDamage": 1725,
       "questExp": {
-        "ancient": 5650,
-        "demonic": 11300,
-        "arcane": 20340,
-        "shadow": 45200,
-        "void": 90400
+        "ancient": 11300,
+        "demonic": 22600,
+        "arcane": 40680,
+        "shadow": 90400,
+        "void": 180800
       },
-      "goldExp": {
-        "ancient": 3066,
-        "demonic": 6132,
-        "arcane": 10220,
-        "shadow": 22995,
-        "void": 45990
+      "questGold": {
+        "ancient": 6132,
+        "demonic": 12264,
+        "arcane": 20440,
+        "shadow": 45990,
+        "void": 91980
       }
     },
     {
       "name": "Thia",
-      "exp": 1658,
+      "region":"Dekdun",
+      "level":"",
+      "exp": 3316,
       "hp": 30000,
-      "gold": 722,
+      "gold": 1444,
       "bossDamage": 2300,
       "questExp": {
-        "ancient": 8290,
-        "demonic": 16580,
-        "arcane": 29844,
-        "shadow": 66320,
-        "void": 132640
+        "ancient": 16580,
+        "demonic": 33160,
+        "arcane": 59688,
+        "shadow": 132640,
+        "void": 265280
       },
-      "goldExp": {
-        "ancient": 4332,
-        "demonic": 8664,
-        "arcane": 14440,
-        "shadow": 32490,
-        "void": 64980
+      "questGold": {
+        "ancient": 8664,
+        "demonic": 17328,
+        "arcane": 28880,
+        "shadow": 64980,
+        "void": 129960
       }
     },
     {
       "name": "Skeleton King",
-      "exp": 954,
+      "region":"Dekdun",
+      "level":"",
+      "exp": 1908,
       "hp": 45000,
-      "gold": 509,
+      "gold": 1018,
       "bossDamage": 4025,
       "questExp": {
-        "ancient": 4770,
-        "demonic": 9540,
-        "arcane": 17172,
-        "shadow": 38160,
-        "void": 76320
+        "ancient": 9540,
+        "demonic": 19080,
+        "arcane": 34344,
+        "shadow": 76320,
+        "void": 152640
       },
-      "goldExp": {
-        "ancient": 3054,
-        "demonic": 6108,
-        "arcane": 10180,
-        "shadow": 22905,
-        "void": 45810
+      "questGold": {
+        "ancient": 6108,
+        "demonic": 12216,
+        "arcane": 20360,
+        "shadow": 45810,
+        "void": 91620
       }
     },
     {
       "name": "Balor",
-      "exp": 5178,
+      "region":"Vulcardi",
+      "level":"",
+      "exp": 10356,
       "hp": 72000,
-      "gold": 690,
+      "gold": 1380,
       "bossDamage": 4140,
       "questExp": {
-        "ancient": 25890,
-        "demonic": 51780,
-        "arcane": 93204,
-        "shadow": 207120,
-        "void": 414240
+        "ancient": 51780,
+        "demonic": 103560,
+        "arcane": 186408,
+        "shadow": 414240,
+        "void": 828480
       },
-      "goldExp": {
-        "ancient": 4140,
-        "demonic": 8280,
-        "arcane": 13800,
-        "shadow": 31050,
-        "void": 62100
+      "questGold": {
+        "ancient": 8280,
+        "demonic": 16560,
+        "arcane": 27600,
+        "shadow": 62100,
+        "void": 124200
       }
     },
     {
       "name": "Rinch",
-      "exp": 1036,
+      "region":"Iceroost",
+      "level":"",
+      "exp": 2072,
       "hp": 27200,
-      "gold": 106,
+      "gold": 212,
       "bossDamage": 5980,
       "questExp": {
-        "ancient": 5180,
-        "demonic": 10360,
-        "arcane": 18648,
-        "shadow": 41440,
-        "void": 82880
+        "ancient": 10360,
+        "demonic": 20720,
+        "arcane": 37296,
+        "shadow": 82880,
+        "void": 165760
       },
-      "goldExp": {
-        "ancient": 636,
-        "demonic": 1272,
-        "arcane": 2120,
-        "shadow": 4770,
-        "void": 9540
+      "questGold": {
+        "ancient": 1272,
+        "demonic": 2544,
+        "arcane": 4240,
+        "shadow": 9540,
+        "void": 19080
       }
     },
     {
       "name": "Garzon",
-      "exp": 6282,
+      "region":"Vulcardi",
+      "level":"",
+      "exp": 12564,
       "hp": 84000,
-      "gold": 773,
+      "gold": 1546,
       "bossDamage": 5520,
       "questExp": {
-        "ancient": 31410,
-        "demonic": 62820,
-        "arcane": 113076,
-        "shadow": 251280,
-        "void": 502560
+        "ancient": 62820,
+        "demonic": 125640,
+        "arcane": 226152,
+        "shadow": 502560,
+        "void": 1005120
       },
-      "goldExp": {
-        "ancient": 4638,
-        "demonic": 9276,
-        "arcane": 15460,
-        "shadow": 34785,
-        "void": 69570
+      "questGold": {
+        "ancient": 9276,
+        "demonic": 18552,
+        "arcane": 30920,
+        "shadow": 69570,
+        "void": 139140
       }
     },
     {
       "name": "Punch",
-      "exp": 1466,
+      "region":"Iceroost",
+      "level":"",
+      "exp": 2932,
       "hp": 38400,
-      "gold": 150,
+      "gold": 300,
       "bossDamage": 7820,
       "questExp": {
-        "ancient": 7330,
-        "demonic": 14660,
-        "arcane": 26388,
-        "shadow": 58640,
-        "void": 117280
+        "ancient": 14660,
+        "demonic": 29320,
+        "arcane": 52776,
+        "shadow": 117280,
+        "void": 234560
       },
-      "goldExp": {
-        "ancient": 900,
-        "demonic": 1800,
-        "arcane": 3000,
-        "shadow": 6750,
-        "void": 13500
+      "questGold": {
+        "ancient": 1800,
+        "demonic": 3600,
+        "arcane": 6000,
+        "shadow": 13500,
+        "void": 27000
       }
     },
     {
       "name": "Pro Giant",
-      "exp": 12152,
+      "region":"Vulcardi",
+      "level":"",
+      "exp": 24304,
       "hp": 120000,
-      "gold": 1026,
+      "gold": 2052,
       "bossDamage": 6900,
       "questExp": {
-        "ancient": 60760,
-        "demonic": 121520,
-        "arcane": 218736,
-        "shadow": 486080,
-        "void": 972160
+        "ancient": 121520,
+        "demonic": 243040,
+        "arcane": 437472,
+        "shadow": 972160,
+        "void": 1944320
       },
-      "goldExp": {
-        "ancient": 6156,
-        "demonic": 12312,
-        "arcane": 20520,
-        "shadow": 46170,
-        "void": 92340
+      "questGold": {
+        "ancient": 12312,
+        "demonic": 24624,
+        "arcane": 41040,
+        "shadow": 92340,
+        "void": 184680
       }
     },
     {
       "name": "Frost Serpent",
-      "exp": 2014,
+      "region":"Iceroost",
+      "level":"",
+      "exp": 4028,
       "hp": 52800,
-      "gold": 208,
+      "gold": 416,
       "bossDamage": 8338,
       "questExp": {
-        "ancient": 10070,
-        "demonic": 20140,
-        "arcane": 36252,
-        "shadow": 80560,
-        "void": 161120
+        "ancient": 20140,
+        "demonic": 40280,
+        "arcane": 72504,
+        "shadow": 161120,
+        "void": 322240
       },
-      "goldExp": {
-        "ancient": 1248,
-        "demonic": 2496,
-        "arcane": 4160,
-        "shadow": 9360,
-        "void": 18720
+      "questGold": {
+        "ancient": 2496,
+        "demonic": 4992,
+        "arcane": 8320,
+        "shadow": 18720,
+        "void": 37440
       }
     },
     {
       "name": "Grem",
-      "exp": 20533,
+      "region":"Vulcardi",
+      "level":"",
+      "exp": 41066,
       "hp": 200000,
-      "gold": 166,
+      "gold": 332,
       "bossDamage": 9775,
       "questExp": {
-        "ancient": 102665,
-        "demonic": 205330,
-        "arcane": 369594,
-        "shadow": 821320,
-        "void": 1642640
+        "ancient": 205330,
+        "demonic": 410660,
+        "arcane": 739188,
+        "shadow": 1642640,
+        "void": 3285280
       },
-      "goldExp": {
-        "ancient": 996,
-        "demonic": 1992,
-        "arcane": 3320,
-        "shadow": 7470,
-        "void": 14940
+      "questGold": {
+        "ancient": 1992,
+        "demonic": 3984,
+        "arcane": 6640,
+        "shadow": 14940,
+        "void": 29880
       }
     },
     {
       "name": "Pitcher",
-      "exp": 1676,
+      "region":"Iceroost",
+      "level":"",
+      "exp": 3352,
       "hp": 128000,
-      "gold": 174,
+      "gold": 348,
       "bossDamage": 16675,
       "questExp": {
-        "ancient": 8380,
-        "demonic": 16760,
-        "arcane": 30168,
-        "shadow": 67040,
-        "void": 134080
+        "ancient": 16760,
+        "demonic": 33520,
+        "arcane": 60336,
+        "shadow": 134080,
+        "void": 268160
       },
-      "goldExp": {
-        "ancient": 1044,
-        "demonic": 2088,
-        "arcane": 3480,
-        "shadow": 7830,
-        "void": 15660
+      "questGold": {
+        "ancient": 2088,
+        "demonic": 4176,
+        "arcane": 6960,
+        "shadow": 15660,
+        "void": 31320
       }
     },
     {
       "name": "Jargol",
-      "exp": 14388,
+      "region":"Vulcardi",
+      "level":"",
+      "exp": 28776,
       "hp": 140000,
-      "gold": 1357,
+      "gold": 2714,
       "bossDamage": 11500,
       "questExp": {
-        "ancient": 71940,
-        "demonic": 143880,
-        "arcane": 258984,
-        "shadow": 575520,
-        "void": 1151040
+        "ancient": 143880,
+        "demonic": 287760,
+        "arcane": 517968,
+        "shadow": 1151040,
+        "void": 2302080
       },
-      "goldExp": {
-        "ancient": 8142,
-        "demonic": 16284,
-        "arcane": 27140,
-        "shadow": 61065,
-        "void": 122130
+      "questGold": {
+        "ancient": 16284,
+        "demonic": 32568,
+        "arcane": 54280,
+        "shadow": 122130,
+        "void": 244260
       }
     },
     {
       "name": "Shock Punch",
-      "exp": 5676,
+      "region":"Iceroost",
+      "level":"",
+      "exp": 11352,
       "hp": 140800,
-      "gold": 550,
+      "gold": 1100,
       "bossDamage": 14950,
       "questExp": {
-        "ancient": 28380,
-        "demonic": 56760,
-        "arcane": 102168,
-        "shadow": 227040,
-        "void": 454080
+        "ancient": 56760,
+        "demonic": 113520,
+        "arcane": 204336,
+        "shadow": 454080,
+        "void": 908160
       },
-      "goldExp": {
-        "ancient": 3300,
-        "demonic": 6600,
-        "arcane": 11000,
-        "shadow": 24750,
-        "void": 49500
+      "questGold": {
+        "ancient": 6600,
+        "demonic": 13200,
+        "arcane": 22000,
+        "shadow": 49500,
+        "void": 99000
       }
     },
     {
       "name": "Devil Giant",
-      "exp": 20346,
+      "region":"Vulcardi",
+      "level":"",
+      "exp": 40692,
       "hp": 195000,
-      "gold": 1579,
+      "gold": 3158,
       "bossDamage": 13800,
       "questExp": {
-        "ancient": 101730,
-        "demonic": 203460,
-        "arcane": 366228,
-        "shadow": 813840,
-        "void": 1627680
+        "ancient": 203460,
+        "demonic": 406920,
+        "arcane": 732456,
+        "shadow": 1627680,
+        "void": 3255360
       },
-      "goldExp": {
-        "ancient": 9474,
-        "demonic": 18948,
-        "arcane": 31580,
-        "shadow": 71055,
-        "void": 142110
+      "questGold": {
+        "ancient": 18948,
+        "demonic": 37896,
+        "arcane": 63160,
+        "shadow": 142110,
+        "void": 284220
       }
     },
     {
       "name": "Descon Pitcher",
-      "exp": 7076,
+      "region":"Iceroost",
+      "level":"",
+      "exp": 14152,
       "hp": 169600,
-      "gold": 656,
+      "gold": 1312,
       "bossDamage": 19550,
       "questExp": {
-        "ancient": 35380,
-        "demonic": 70760,
-        "arcane": 127368,
-        "shadow": 283040,
-        "void": 566080
+        "ancient": 70760,
+        "demonic": 141520,
+        "arcane": 254736,
+        "shadow": 566080,
+        "void": 1132160
       },
-      "goldExp": {
-        "ancient": 3936,
-        "demonic": 7872,
-        "arcane": 13120,
-        "shadow": 29520,
-        "void": 59040
+      "questGold": {
+        "ancient": 7872,
+        "demonic": 15744,
+        "arcane": 26240,
+        "shadow": 59040,
+        "void": 118080
       }
     },
     {
       "name": "Dread Knight",
-      "exp": 9464,
+      "region":"Iceroost",
+      "level":"",
+      "exp": 18928,
       "hp": 224000,
-      "gold": 883,
+      "gold": 1766,
       "bossDamage": 24150,
       "questExp": {
-        "ancient": 47320,
-        "demonic": 94640,
-        "arcane": 170352,
-        "shadow": 378560,
-        "void": 757120
+        "ancient": 94640,
+        "demonic": 189280,
+        "arcane": 340704,
+        "shadow": 757120,
+        "void": 1514240
       },
-      "goldExp": {
-        "ancient": 5298,
-        "demonic": 10596,
-        "arcane": 17660,
-        "shadow": 39735,
-        "void": 79470
+      "questGold": {
+        "ancient": 10596,
+        "demonic": 21192,
+        "arcane": 35320,
+        "shadow": 79470,
+        "void": 158940
       }
     },
     {
       "name": "Razath",
-      "exp": 52455,
+      "region":"Vulcardi",
+      "level":"",
+      "exp": 104910,
       "hp": 500000,
-      "gold": 388,
+      "gold": 776,
       "bossDamage": 20700,
       "questExp": {
-        "ancient": 262275,
-        "demonic": 524550,
-        "arcane": 944190,
-        "shadow": 2098200,
-        "void": 4196400
+        "ancient": 524550,
+        "demonic": 1049100,
+        "arcane": 1888380,
+        "shadow": 4196400,
+        "void": 8392800
       },
-      "goldExp": {
-        "ancient": 2328,
-        "demonic": 4656,
-        "arcane": 7760,
-        "shadow": 17460,
-        "void": 34920
+      "questGold": {
+        "ancient": 4656,
+        "demonic": 9312,
+        "arcane": 15520,
+        "shadow": 34920,
+        "void": 69840
       }
     },
     {
       "name": "Sinister Shadow",
-      "exp": 51076,
+      "region":"Forilon",
+      "level":"",
+      "exp": 102152,
       "hp": 480000,
-      "gold": 1674,
+      "gold": 3348,
       "bossDamage": 28750,
       "questExp": {
-        "ancient": 255380,
-        "demonic": 510760,
-        "arcane": 919368,
-        "shadow": 2043040,
-        "void": 4086080
+        "ancient": 510760,
+        "demonic": 1021520,
+        "arcane": 1838736,
+        "shadow": 4086080,
+        "void": 8172160
       },
-      "goldExp": {
-        "ancient": 10044,
-        "demonic": 20088,
-        "arcane": 33480,
-        "shadow": 75330,
-        "void": 150660
+      "questGold": {
+        "ancient": 20088,
+        "demonic": 40176,
+        "arcane": 66960,
+        "shadow": 150660,
+        "void": 301320
       }
     },
     {
       "name": "Ark Jakal",
-      "exp": 3204,
+      "region":"Iceroost",
+      "level":"",
+      "exp": 6408,
       "hp": 240000,
-      "gold": 331,
+      "gold": 662,
       "bossDamage": 34500,
       "questExp": {
-        "ancient": 16020,
-        "demonic": 32040,
-        "arcane": 57672,
-        "shadow": 128160,
-        "void": 256320
+        "ancient": 32040,
+        "demonic": 64080,
+        "arcane": 115344,
+        "shadow": 256320,
+        "void": 512640
       },
-      "goldExp": {
-        "ancient": 1986,
-        "demonic": 3972,
-        "arcane": 6620,
-        "shadow": 14895,
-        "void": 29790
+      "questGold": {
+        "ancient": 3972,
+        "demonic": 7944,
+        "arcane": 13240,
+        "shadow": 29790,
+        "void": 59580
       }
     },
     {
       "name": "Ontoryxx",
-      "exp": 77824,
+      "region":"Forilon",
+      "level":"",
+      "exp": 155648,
       "hp": 720000,
-      "gold": 2370,
+      "gold": 4740,
       "bossDamage": 34500,
       "questExp": {
-        "ancient": 389120,
-        "demonic": 778240,
-        "arcane": 1400832,
-        "shadow": 3112960,
-        "void": 6225920
+        "ancient": 778240,
+        "demonic": 1556480,
+        "arcane": 2801664,
+        "shadow": 6225920,
+        "void": 12451840
       },
-      "goldExp": {
-        "ancient": 14220,
-        "demonic": 28440,
-        "arcane": 47400,
-        "shadow": 106650,
-        "void": 213300
+      "questGold": {
+        "ancient": 28440,
+        "demonic": 56880,
+        "arcane": 94800,
+        "shadow": 213300,
+        "void": 426600
       }
     },
     {
       "name": "Sky Dragon",
-      "exp": 21390,
+      "region":"Airos",
+      "level":"",
+      "exp": 42780,
       "hp": 648000,
-      "gold": 1620,
+      "gold": 3240,
       "bossDamage": 40250,
       "questExp": {
-        "ancient": 106950,
-        "demonic": 213900,
-        "arcane": 385020,
-        "shadow": 855600,
-        "void": 1711200
+        "ancient": 213900,
+        "demonic": 427800,
+        "arcane": 770040,
+        "shadow": 1711200,
+        "void": 3422400
       },
-      "goldExp": {
-        "ancient": 9720,
-        "demonic": 19440,
-        "arcane": 32400,
-        "shadow": 72900,
-        "void": 145800
+      "questGold": {
+        "ancient": 19440,
+        "demonic": 38880,
+        "arcane": 64800,
+        "shadow": 145800,
+        "void": 291600
       }
     },
     {
       "name": "Fire Dragon",
-      "exp": 32570,
+      "region":"Airos",
+      "level":"",
+      "exp": 65140,
       "hp": 972000,
-      "gold": 2403,
+      "gold": 4806,
       "bossDamage": 46000,
       "questExp": {
-        "ancient": 162850,
-        "demonic": 325700,
-        "arcane": 586260,
-        "shadow": 1302800,
-        "void": 2605600
+        "ancient": 325700,
+        "demonic": 651400,
+        "arcane": 1172520,
+        "shadow": 2605600,
+        "void": 5211200
       },
-      "goldExp": {
-        "ancient": 14418,
-        "demonic": 28836,
-        "arcane": 48060,
-        "shadow": 108135,
-        "void": 216270
+      "questGold": {
+        "ancient": 28836,
+        "demonic": 57672,
+        "arcane": 96120,
+        "shadow": 216270,
+        "void": 432540
       }
     },
     {
       "name": "Soil Serpent",
-      "exp": 166588,
+      "region":"Forilon",
+      "level":"",
+      "exp": 333176,
       "hp": 1200000,
-      "gold": 4497,
+      "gold": 8994,
       "bossDamage": 40250,
       "questExp": {
-        "ancient": 832940,
-        "demonic": 1665880,
-        "arcane": 2998584,
-        "shadow": 6663520,
-        "void": 13327040
+        "ancient": 1665880,
+        "demonic": 3331760,
+        "arcane": 5997168,
+        "shadow": 13327040,
+        "void": 26654080
       },
-      "goldExp": {
-        "ancient": 26982,
-        "demonic": 53964,
-        "arcane": 89940,
-        "shadow": 202365,
-        "void": 404730
+      "questGold": {
+        "ancient": 53964,
+        "demonic": 107928,
+        "arcane": 179880,
+        "shadow": 404730,
+        "void": 809460
       }
     },
     {
       "name": "Flying Devil",
-      "exp": 44270,
+      "region":"Airos",
+      "level":"",
+      "exp": 88540,
       "hp": 3200000,
-      "gold": 2424,
+      "gold": 4848,
       "bossDamage": 51750,
       "questExp": {
-        "ancient": 221350,
-        "demonic": 442700,
-        "arcane": 796860,
-        "shadow": 1770800,
-        "void": 3541600
+        "ancient": 442700,
+        "demonic": 885400,
+        "arcane": 1593720,
+        "shadow": 3541600,
+        "void": 7083200
       },
-      "goldExp": {
-        "ancient": 14544,
-        "demonic": 29088,
-        "arcane": 48480,
-        "shadow": 109080,
-        "void": 218160
+      "questGold": {
+        "ancient": 29088,
+        "demonic": 58176,
+        "arcane": 96960,
+        "shadow": 218160,
+        "void": 436320
       }
     },
     {
       "name": "Earth Dragon",
-      "exp": 72102,
+      "region":"Airos",
+      "level":"",
+      "exp": 144204,
       "hp": 1260000,
-      "gold": 5532,
+      "gold": 11064,
       "bossDamage": 46000,
       "questExp": {
-        "ancient": 360510,
-        "demonic": 721020,
-        "arcane": 1297836,
-        "shadow": 2884080,
-        "void": 5768160
+        "ancient": 721020,
+        "demonic": 1442040,
+        "arcane": 2595672,
+        "shadow": 5768160,
+        "void": 11536320
       },
-      "goldExp": {
-        "ancient": 33192,
-        "demonic": 66384,
-        "arcane": 110640,
-        "shadow": 248940,
-        "void": 497880
+      "questGold": {
+        "ancient": 66384,
+        "demonic": 132768,
+        "arcane": 221280,
+        "shadow": 497880,
+        "void": 995760
       }
     },
     {
       "name": "Aeropaloid",
-      "exp": 1013188,
+      "region":"Forilon",
+      "level":"180",
+      "exp": 2026376,
       "hp": 7200000,
-      "gold": 3795,
+      "gold": 7590,
       "bossDamage": 69000,
       "questExp": {
-        "ancient": 5065940,
-        "demonic": 10131880,
-        "arcane": 18237384,
-        "shadow": 40527520,
-        "void": 81055040
+        "ancient": 10131880,
+        "demonic": 20263760,
+        "arcane": 36474768,
+        "shadow": 81055040,
+        "void": 162110080
       },
-      "goldExp": {
-        "ancient": 22770,
-        "demonic": 45540,
-        "arcane": 75900,
-        "shadow": 170775,
-        "void": 341550
+      "questGold": {
+        "ancient": 45540,
+        "demonic": 91080,
+        "arcane": 151800,
+        "shadow": 341550,
+        "void": 683100
       }
     },
     {
       "name": "Vhagan",
-      "exp": 109148,
+      "region":"Airos",
+      "level":"180",
+      "exp": 218296,
       "hp": 11000000,
-      "gold": 5937,
+      "gold": 11874,
       "bossDamage": 80500,
       "questExp": {
-        "ancient": 545740,
-        "demonic": 1091480,
-        "arcane": 1964664,
-        "shadow": 4365920,
-        "void": 8731840
+        "ancient": 1091480,
+        "demonic": 2182960,
+        "arcane": 3929328,
+        "shadow": 8731840,
+        "void": 17463680
       },
-      "goldExp": {
-        "ancient": 35622,
-        "demonic": 71244,
-        "arcane": 118740,
-        "shadow": 267165,
-        "void": 534330
+      "questGold": {
+        "ancient": 71244,
+        "demonic": 142488,
+        "arcane": 237480,
+        "shadow": 534330,
+        "void": 1068660
       }
     },
     {
       "name": "Minod",
-      "exp": 429848,
+      "region":"Forilon",
+      "level":"190",
+      "exp": 859696,
       "hp": 3040000,
-      "gold": 9804,
+      "gold": 19608,
       "bossDamage": 57500,
       "questExp": {
-        "ancient": 2149240,
-        "demonic": 4298480,
-        "arcane": 7737264,
-        "shadow": 17193920,
-        "void": 34387840
+        "ancient": 4298480,
+        "demonic": 8596960,
+        "arcane": 15474528,
+        "shadow": 34387840,
+        "void": 68775680
       },
-      "goldExp": {
-        "ancient": 58824,
-        "demonic": 117648,
-        "arcane": 196080,
-        "shadow": 441180,
-        "void": 882360
+      "questGold": {
+        "ancient": 117648,
+        "demonic": 235296,
+        "arcane": 392160,
+        "shadow": 882360,
+        "void": 1764720
       }
     },
     {
       "name": "Styro",
-      "exp": 768844,
+      "region":"Forilon",
+      "level":"195",
+      "exp": 1537688,
       "hp": 4600000,
-      "gold": 16707,
+      "gold": 33414,
       "bossDamage": 63250,
       "questExp": {
-        "ancient": 3844220,
-        "demonic": 7688440,
-        "arcane": 13839192,
-        "shadow": 30753760,
-        "void": 61507520
+        "ancient": 7688440,
+        "demonic": 15376880,
+        "arcane": 27678384,
+        "shadow": 61507520,
+        "void": 123015040
       },
-      "goldExp": {
-        "ancient": 100242,
-        "demonic": 200484,
-        "arcane": 334140,
-        "shadow": 751815,
-        "void": 1503630
+      "questGold": {
+        "ancient": 200484,
+        "demonic": 400968,
+        "arcane": 668280,
+        "shadow": 1503630,
+        "void": 3007260
       }
     },
     {
       "name": "Iron Drake",
-      "exp": 149628,
+      "region":"Airos",
+      "level":"200",
+      "exp": 299256,
       "hp": 2160000,
-      "gold": 10923,
+      "gold": 21846,
       "bossDamage": 63250,
       "questExp": {
-        "ancient": 748140,
-        "demonic": 1496280,
-        "arcane": 2693304,
-        "shadow": 5985120,
-        "void": 11970240
+        "ancient": 1496280,
+        "demonic": 2992560,
+        "arcane": 5386608,
+        "shadow": 11970240,
+        "void": 23940480
       },
-      "goldExp": {
-        "ancient": 65538,
-        "demonic": 131076,
-        "arcane": 218460,
-        "shadow": 491535,
-        "void": 983070
+      "questGold": {
+        "ancient": 131076,
+        "demonic": 262152,
+        "arcane": 436920,
+        "shadow": 983070,
+        "void": 1966140
       }
     },
     {
       "name": "Sauron",
-      "exp": 2411748,
+      "region":"Forilon",
+      "level":"215",
+      "exp": 4823496,
       "hp": 16000000,
-      "gold": 16104,
+      "gold": 32208,
       "bossDamage": 102350,
       "questExp": {
-        "ancient": 12058740,
-        "demonic": 24117480,
-        "arcane": 43411464,
-        "shadow": 96469920,
-        "void": 192939840
+        "ancient": 24117480,
+        "demonic": 48234960,
+        "arcane": 86822928,
+        "shadow": 192939840,
+        "void": 385879680
       },
-      "goldExp": {
-        "ancient": 96624,
-        "demonic": 193248,
-        "arcane": 322080,
-        "shadow": 724680,
-        "void": 1449360
+      "questGold": {
+        "ancient": 193248,
+        "demonic": 386496,
+        "arcane": 644160,
+        "shadow": 1449360,
+        "void": 2898720
       }
     },
     {
       "name": "Ancient Dragon",
-      "exp": 233898,
+      "region":"Airos",
+      "level":"220",
+      "exp": 467796,
       "hp": 3375000,
-      "gold": 17304,
+      "gold": 34608,
       "bossDamage": 86250,
       "questExp": {
-        "ancient": 1169490,
-        "demonic": 2338980,
-        "arcane": 4210164,
-        "shadow": 9355920,
-        "void": 18711840
+        "ancient": 2338980,
+        "demonic": 4677960,
+        "arcane": 8420328,
+        "shadow": 18711840,
+        "void": 37423680
       },
-      "goldExp": {
-        "ancient": 103824,
-        "demonic": 207648,
-        "arcane": 346080,
-        "shadow": 778680,
-        "void": 1557360
+      "questGold": {
+        "ancient": 207648,
+        "demonic": 415296,
+        "arcane": 692160,
+        "shadow": 1557360,
+        "void": 3114720
       }
     },
     {
       "name": "Sulfaros",
-      "exp": 282520,
+      "region":"Airos",
+      "level":"240",
+      "exp": 565040,
       "hp": 28000000,
-      "gold": 8607,
+      "gold": 17214,
       "bossDamage": 172500,
       "questExp": {
-        "ancient": 1412600,
-        "demonic": 2825200,
-        "arcane": 5085360,
-        "shadow": 11300800,
-        "void": 22601600
+        "ancient": 2825200,
+        "demonic": 5650400,
+        "arcane": 10170720,
+        "shadow": 22601600,
+        "void": 45203200
       },
-      "goldExp": {
-        "ancient": 51642,
-        "demonic": 103284,
-        "arcane": 172140,
-        "shadow": 387315,
-        "void": 774630
+      "questGold": {
+        "ancient": 103284,
+        "demonic": 206568,
+        "arcane": 344280,
+        "shadow": 774630,
+        "void": 1549260
       }
     },
     {
       "name": "Corki",
-      "exp": 775982,
+      "region":"Mitron",
+      "level":"255",
+      "exp": 1551964,
       "hp": 4000000,
-      "gold": 7251,
+      "gold": 14502,
       "bossDamage": 140000,
       "questExp": {
-        "ancient": 3879910,
-        "demonic": 7759820,
-        "arcane": 13967676,
-        "shadow": 31039280,
-        "void": 62078560
+        "ancient": 7759820,
+        "demonic": 15519640,
+        "arcane": 27935352,
+        "shadow": 62078560,
+        "void": 124157120
       },
-      "goldExp": {
-        "ancient": 43506,
-        "demonic": 87012,
-        "arcane": 145020,
-        "shadow": 326295,
-        "void": 652590
+      "questGold": {
+        "ancient": 87012,
+        "demonic": 174024,
+        "arcane": 290040,
+        "shadow": 652590,
+        "void": 1305180
       }
     },
     {
       "name": "Fayvz",
-      "exp": 2910230,
+      "region":"Mitron",
+      "level":"255",
+      "exp": 5820460,
       "hp": 16000000,
-      "gold": 29454,
+      "gold": 58908,
       "bossDamage": 140000,
       "questExp": {
-        "ancient": 14551150,
-        "demonic": 29102300,
-        "arcane": 52384140,
-        "shadow": 116409200,
-        "void": 232818400
+        "ancient": 29102300,
+        "demonic": 58204600,
+        "arcane": 104768280,
+        "shadow": 232818400,
+        "void": 465636800
       },
-      "goldExp": {
-        "ancient": 176724,
-        "demonic": 353448,
-        "arcane": 589080,
-        "shadow": 1325430,
-        "void": 2650860
+      "questGold": {
+        "ancient": 353448,
+        "demonic": 706896,
+        "arcane": 1178160,
+        "shadow": 2650860,
+        "void": 5301720
       }
     },
     {
       "name": "Belzeye",
-      "exp": 4534030,
+      "region":"Mitron",
+      "level":"265",
+      "exp": 9068060,
       "hp": 20000000,
-      "gold": 44156,
+      "gold": 88312,
       "bossDamage": 145000,
       "questExp": {
-        "ancient": 22670150,
-        "demonic": 45340300,
-        "arcane": 81612540,
-        "shadow": 181361200,
-        "void": 362722400
+      "ancient": 22670150,
+      "demonic": 45340300,
+      "arcane": 81612540,
+      "shadow": 181361200,
+      "void": 362722400
       },
-      "goldExp": {
-        "ancient": 264936,
-        "demonic": 529872,
-        "arcane": 883120,
-        "shadow": 1987020,
-        "void": 3974040
+      "questGold": {
+      "ancient": 264936,
+      "demonic": 529872,
+      "arcane": 883120,
+      "shadow": 1987020,
+      "void": 3974040
       }
     },
     {
       "name": "Gul Dahn",
-      "exp": 1133341,
+      "region":"Mitron",
+      "level":"265",
+      "exp": 2266682,
       "hp": 5000000,
-      "gold": 11437,
+      "gold": 22874,
       "bossDamage": 145000,
       "questExp": {
         "ancient": 5666705,
@@ -1021,7 +1119,7 @@
         "shadow": 45333640,
         "void": 90667280
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 68622,
         "demonic": 137244,
         "arcane": 228740,
@@ -1031,9 +1129,11 @@
     },
     {
       "name": "Syon",
-      "exp": 2649790,
+      "region":"Mitron",
+      "level":"275",
+      "exp": 5299580,
       "hp": 10000000,
-      "gold": 22514,
+      "gold": 45028,
       "bossDamage": 160000,
       "questExp": {
         "ancient": 13248950,
@@ -1042,7 +1142,7 @@
         "shadow": 105991600,
         "void": 211983200
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 135084,
         "demonic": 270168,
         "arcane": 450280,
@@ -1052,9 +1152,11 @@
     },
     {
       "name": "Clay Kiold",
-      "exp": 6624682,
+      "region":"Mitron",
+      "level":"275",
+      "exp": 13249364,
       "hp": 25000000,
-      "gold": 56285,
+      "gold": 112570,
       "bossDamage": 160000,
       "questExp": {
         "ancient": 33123410,
@@ -1063,7 +1165,7 @@
         "shadow": 264987280,
         "void": 529974560
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 337710,
         "demonic": 675420,
         "arcane": 1125700,
@@ -1073,9 +1175,11 @@
     },
     {
       "name": "Earth Grem",
-      "exp": 684679,
+      "region":"Mitron",
+      "level":"275",
+      "exp": 1369358,
       "hp": 35000000,
-      "gold": 9901,
+      "gold": 19802,
       "bossDamage": 160000,
       "questExp": {
         "ancient": 3423395,
@@ -1084,7 +1188,7 @@
         "shadow": 27387160,
         "void": 54774320
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 59406,
         "demonic": 118812,
         "arcane": 198020,
@@ -1094,9 +1198,11 @@
     },
     {
       "name": "Frost Wyrm",
-      "exp": 1326948,
-      "hp": 50000000,
-      "gold": 140713,
+      "region":"Jurand",
+      "level":"275",
+      "exp": 5307792,
+      "hp": 60000000,
+      "gold": 442852,
       "bossDamage": 150000,
       "questExp": {
         "ancient": 6634740,
@@ -1105,7 +1211,7 @@
         "shadow": 53077920,
         "void": 106155840
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 844278,
         "demonic": 1688556,
         "arcane": 2814260,
@@ -1115,9 +1221,11 @@
     },
     {
       "name": "Gazeleech",
-      "exp": 3643461,
+      "region":"Mitron",
+      "level":"285",
+      "exp": 7286922,
       "hp": 12500000,
-      "gold": 28142,
+      "gold": 56284,
       "bossDamage": 170000,
       "questExp": {
         "ancient": 18217305,
@@ -1126,7 +1234,7 @@
         "shadow": 145738440,
         "void": 291476880
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 168852,
         "demonic": 337704,
         "arcane": 562840,
@@ -1136,9 +1244,11 @@
     },
     {
       "name": "Crank",
-      "exp": 9730001,
+      "region":"Mitron",
+      "level":"285",
+      "exp": 19460002,
       "hp": 31250000,
-      "gold": 7035,
+      "gold": 14070,
       "bossDamage": 170000,
       "questExp": {
         "ancient": 48650005,
@@ -1147,7 +1257,7 @@
         "shadow": 389200040,
         "void": 778400080
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 42210,
         "demonic": 84420,
         "arcane": 140700,
@@ -1157,9 +1267,11 @@
     },
     {
       "name": "Venomwing",
-      "exp": 5167090,
+      "region":"Mitron",
+      "level":"300",
+      "exp": 10334180,
       "hp": 15000000,
-      "gold": 33771,
+      "gold": 67542,
       "bossDamage": 180000,
       "questExp": {
         "ancient": 25835450,
@@ -1168,7 +1280,7 @@
         "shadow": 206683600,
         "void": 413367200
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 202626,
         "demonic": 405252,
         "arcane": 675420,
@@ -1178,9 +1290,11 @@
     },
     {
       "name": "Grimshade Colossus",
-      "exp": 13663406,
+      "region":"Mitron",
+      "level":"300",
+      "exp": 27326812,
       "hp": 37500000,
-      "gold": 8442,
+      "gold": 16884,
       "bossDamage": 180000,
       "questExp": {
         "ancient": 68317030,
@@ -1189,7 +1303,7 @@
         "shadow": 546536240,
         "void": 1093072480
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 50652,
         "demonic": 101304,
         "arcane": 168840,
@@ -1199,9 +1313,11 @@
     },
     {
       "name": "Abyssal Warden",
-      "exp": 890082,
+      "region":"Mitron",
+      "level":"300",
+      "exp": 1780164,
       "hp": 50000000,
-      "gold": 11881,
+      "gold": 23762,
       "bossDamage": 200000,
       "questExp": {
         "ancient": 4450410,
@@ -1210,7 +1326,7 @@
         "shadow": 35603280,
         "void": 71206560
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 71286,
         "demonic": 142572,
         "arcane": 237620,
@@ -1220,10 +1336,11 @@
     },
     {
       "name": "Raptarion",
-      "level": 310,
-      "exp": 34158517,
+      "region":"Jurand",
+      "level":"310",
+      "exp": 68317033,
       "hp": 75000000,
-      "gold": 12664,
+      "gold": 25328,
       "bossDamage": 235000,
       "questExp": {
         "ancient": 170792585,
@@ -1232,7 +1349,7 @@
         "shadow": 1366340680,
         "void": 2732681360
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 75984,
         "demonic": 151968,
         "arcane": 253280,
@@ -1242,10 +1359,11 @@
     },
     {
       "name": "Pteralith",
-      "level": 320,
-      "exp": 51237775,
+      "region":"Jurand",
+      "level":"320",
+      "exp": 112723105,
       "hp": 100000000,
-      "gold": 13931,
+      "gold": 27861,
       "bossDamage": 250000,
       "questExp": {
         "ancient": 256188875,
@@ -1254,7 +1372,7 @@
         "shadow": 2049511000,
         "void": 4099022000
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 83586,
         "demonic": 167172,
         "arcane": 278620,
@@ -1264,10 +1382,11 @@
     },
     {
       "name": "Terraloid",
-      "level": 325,
-      "exp": 2705355,
+      "region":"Jurand",
+      "level":"325",
+      "exp": 5410710,
       "hp": 150000000,
-      "gold": 15324,
+      "gold": 30648,
       "bossDamage": 280000,
       "questExp": {
         "ancient": 13526775,
@@ -1276,7 +1395,7 @@
         "shadow": 108214200,
         "void": 216428400
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 91944,
         "demonic": 183888,
         "arcane": 306480,
@@ -1286,10 +1405,12 @@
     },
     {
       "name": "Megaloryth",
-      "exp": 0,
-      "hp": 0,
-      "gold": 0,
-      "bossDamage": 0,
+      "region":"Jurand",
+      "level":"330",
+      "exp": 157812347,
+      "hp": 125000000,
+      "gold": 36777,
+      "bossDamage": 275000,
       "questExp": {
         "ancient": 0,
         "demonic": 0,
@@ -1297,7 +1418,7 @@
         "shadow": 0,
         "void": 0
       },
-      "goldExp": {
+      "questGold": {
         "ancient": 0,
         "demonic": 0,
         "arcane": 0,
@@ -1307,10 +1428,12 @@
     },
     {
       "name": "Cryosauron",
-      "exp": 0,
-      "hp": 0,
-      "gold": 0,
-      "bossDamage": 0,
+      "region":"Jurand",
+      "level":"340",
+      "exp": 205156050,
+      "hp": 150000000,
+      "gold": 44132,
+      "bossDamage": 300000,
       "questExp": {
         "ancient": 0,
         "demonic": 0,
@@ -1318,7 +1441,53 @@
         "shadow": 0,
         "void": 0
       },
-      "goldExp": {
+      "questGold": {
+        "ancient": 0,
+        "demonic": 0,
+        "arcane": 0,
+        "shadow": 0,
+        "void": 0
+      }
+    },
+    {
+      "name": "Verdarok",
+      "region":"Jurand",
+      "level":"350",
+      "exp": 297476273,
+      "hp": 200000000,
+      "gold": 52958,
+      "bossDamage": 330000,
+      "questExp": {
+        "ancient": 0,
+        "demonic": 0,
+        "arcane": 0,
+        "shadow": 0,
+        "void": 0
+      },
+      "questGold": {
+        "ancient": 0,
+        "demonic": 0,
+        "arcane": 0,
+        "shadow": 0,
+        "void": 0
+      }
+    },
+    {
+      "name": "Noctarion",
+      "region":"Jurand",
+      "level":"360",
+      "exp": 401845341,
+      "hp": 250000000,
+      "gold": 63550,
+      "bossDamage": 370000,
+      "questExp": {
+        "ancient": 0,
+        "demonic": 0,
+        "arcane": 0,
+        "shadow": 0,
+        "void": 0
+      },
+      "questGold": {
         "ancient": 0,
         "demonic": 0,
         "arcane": 0,

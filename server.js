@@ -373,6 +373,17 @@ app.get('/api/xp-values', (req, res) => {
     }
 });
 
+// Serve Mob Values
+app.get('/api/mob-values', (req, res) => {
+    try {
+        const mobValues = JSON.parse(fs.readFileSync(path.join(__dirname, 'db', 'mobValues.json'), 'utf8'));
+        res.json(mobValues);
+    } catch (error) {
+        console.error('Error reading mob values:', error);
+        res.status(500).json({ error: 'Failed to read mob values' });
+    }
+});
+
 // Initialize DB and start server
 initDB().then(() => {
   app.listen(port, () => {

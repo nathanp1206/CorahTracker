@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mob Stats</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .mob-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .mob-card {
+      background: #222;
+      color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      padding: 1rem;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 0.95rem;
+    }
+    .mob-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transform: translateY(-2px) scale(1.03);
+    }
+    .mob-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0.2rem;
+      width: 100%;
+      text-align: left;
+    }
+    .mob-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1.5rem;
+    }
+    /* Modal styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      background: #222;
+      color: #fff;
+      border-radius: 10px;
+      padding: 2rem 2.5rem;
+      min-width: 320px;
+      max-width: 95vw;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      position: relative;
+      animation: popIn 0.18s cubic-bezier(.4,2,.6,1) both;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 0.7rem;
+      right: 1.2rem;
+      font-size: 1.7rem;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .modal-close:hover {
+      opacity: 1;
+    }
+    @media (max-width: 1200px) {
+      .mob-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 800px) {
+      .mob-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 500px) {
+      .mob-grid {
+        grid-template-columns: 1fr;
+      }
+      .modal-content {
+        padding: 1rem 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="hamburger-menu" onclick="toggleTabs()"><span class="hamburger-icon"><span></span><span></span><span></span></span></button>
+  <div class="tabs">
+    <a href="index.html" class="tab-button">Summary</a>
+    <a href="add-data.html" class="tab-button">Add Data</a>
+    <a href="graphs.html" class="tab-button">Graphs</a>
+    <a href="mobs.html" class="tab-button active">Mob Stats</a>
+  </div>
+  <div class="container">
+    <h1>Mob Stats</h1>
+    <!-- Accordion region sections will be injected here by mob-cards.js -->
+    <div id="mob-list" class="mob-list"></div>
+  </div>
+  <div id="mob-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+  <script src="mob-cards.js"></script>
+</body>
+</html> 

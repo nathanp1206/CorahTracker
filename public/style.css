@@ -743,3 +743,49 @@ button:hover {
     width: 100%;
   }
 }
+
+/* Accordion styles for mobs by region */
+.region-section {
+  margin-bottom: 1.2rem;
+  border-radius: 8px;
+  background: #23272a;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  overflow: hidden;
+}
+.region-header {
+  width: 100%;
+  background: #181a1b;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 1.1rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-bottom: 1px solid #2c2f33;
+  letter-spacing: 1px;
+}
+.region-header[aria-expanded="true"] {
+  background: #26282c;
+  color: #7aa2ff;
+}
+.region-header:after {
+  content: '\25BC';
+  float: right;
+  transition: transform 0.2s;
+}
+.region-header[aria-expanded="true"]:after {
+  transform: rotate(-180deg);
+}
+.region-content {
+  background: #23272a;
+  padding: 1.2rem 1.5rem 1.5rem 1.5rem;
+  display: none;
+  animation: fadeIn 0.2s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
