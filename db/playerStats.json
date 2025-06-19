@@ -799,11 +799,340 @@
       "dateTime": "2025-05-13T09:12:00.000Z"
     },
     {
+      "player": "Hunt3r1206",
+      "exp": 9326307304461,
+      "mobsKilled": 197367,
+      "gold": 14479919928,
+      "dateTime": "2025-05-28T17:25:34.165Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 9343451563009,
+      "mobsKilled": 197450,
+      "gold": 14487114609,
+      "dateTime": "2025-05-28T18:20:49.059Z"
+    },
+    {
+      "player": "Sinolos",
+      "exp": 9926020500242,
+      "mobsKilled": 279419,
+      "gold": 11620698135,
+      "dateTime": "2025-05-28T18:21:23.847Z"
+    },
+    {
+      "player": "Kahuku",
+      "exp": 11874155202980,
+      "mobsKilled": 552195,
+      "gold": 18217407138,
+      "dateTime": "2025-05-28T18:22:00.961Z"
+    },
+    {
+      "player": "Gigalogic",
+      "exp": 618556856358915,
+      "mobsKilled": 101077,
+      "gold": 6958386272,
+      "dateTime": "2025-05-28T18:22:40.502Z"
+    },
+    {
       "player": "Mousie",
       "exp": 2368179204667,
       "mobsKilled": 61871,
       "gold": 2525570655,
       "dateTime": "2025-05-28T11:20:00.000Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 9368875120095,
+      "mobsKilled": 197582,
+      "gold": 14499048479,
+      "dateTime": "2025-05-28T20:06:09.100Z"
+    },
+    {
+      "player": "Sinolos",
+      "exp": 10078918881941,
+      "mobsKilled": 279555,
+      "gold": 11634823780,
+      "dateTime": "2025-05-28T20:09:31.512Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 9637399485781,
+      "mobsKilled": 198310,
+      "gold": 14575496402,
+      "dateTime": "2025-05-29T05:34:12.080Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 9704878264483,
+      "mobsKilled": 198765,
+      "gold": 14620870049,
+      "dateTime": "2025-05-29T13:27:06.652Z"
+    },
+    {
+      "player": "Mousie",
+      "exp": 2491638607659,
+      "mobsKilled": 63472,
+      "gold": 2624289083,
+      "dateTime": "2025-05-29T13:30:54.078Z"
+    },
+    {
+      "player": "Sinolos",
+      "exp": 10288333153893,
+      "mobsKilled": 280610,
+      "gold": 11729956356,
+      "dateTime": "2025-05-29T13:33:35.038Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 9929846687182,
+      "mobsKilled": 199278,
+      "gold": 14666107252,
+      "dateTime": "2025-05-29T19:02:18.269Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 10025055264982,
+      "mobsKilled": 199635,
+      "gold": 14698042337,
+      "dateTime": "2025-05-29T22:50:44.944Z"
+    },
+    {
+      "player": "Mousie",
+      "exp": 2708565921965,
+      "mobsKilled": 65517,
+      "gold": 2746115626,
+      "dateTime": "2025-05-30T13:05:36.674Z"
+    },
+    {
+      "player": "Sinolos",
+      "exp": 11550663687597,
+      "mobsKilled": 283368,
+      "gold": 11969947638,
+      "dateTime": "2025-05-30T21:07:56.313Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 10865956156674,
+      "mobsKilled": 201976,
+      "gold": 14916366092,
+      "dateTime": "2025-05-31T04:23:04.366Z"
+    },
+    {
+      "player": "BoneCarver",
+      "exp": 2006182582648,
+      "mobsKilled": 18197,
+      "gold": 600672233,
+      "dateTime": "2025-05-31T21:37:39.393Z"
+    },
+    {
+      "player": "Babar",
+      "exp": 2457225564832,
+      "mobsKilled": 185018,
+      "gold": 5924835848,
+      "dateTime": "2025-05-31T21:41:47.416Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 11540141080392,
+      "mobsKilled": 203925,
+      "gold": 15082402323,
+      "dateTime": "2025-06-01T04:02:53.509Z"
+    },
+    {
+      "player": "BoneCarver",
+      "exp": 2788928163291,
+      "mobsKilled": 19498,
+      "gold": 711979071,
+      "dateTime": "2025-06-01T15:50:07.967Z"
+    },
+    {
+      "player": "BoneCarver",
+      "exp": 2788928163291,
+      "mobsKilled": 19498,
+      "gold": 711979071,
+      "dateTime": "2025-06-01T15:50:08.011Z"
+    },
+    {
+      "player": "Mousie",
+      "exp": 3043447056966,
+      "mobsKilled": 69871,
+      "gold": 2992207484,
+      "dateTime": "2025-06-01T15:51:56.505Z"
+    },
+    {
+      "player": "Babar",
+      "exp": 2540570222365,
+      "mobsKilled": 186085,
+      "gold": 5975473535,
+      "dateTime": "2025-06-01T15:53:17.065Z"
+    },
+    {
+      "player": "BoneCarver",
+      "exp": 6729905880540,
+      "mobsKilled": 24497,
+      "gold": 925373772,
+      "dateTime": "2025-06-04T13:35:12.935Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 11547298909918,
+      "mobsKilled": 208144,
+      "gold": 15143118856,
+      "dateTime": "2025-06-04T20:35:12.046Z"
+    },
+    {
+      "player": "BoneCarver",
+      "exp": 7884651717975,
+      "mobsKilled": 25316,
+      "gold": 970709150,
+      "dateTime": "2025-06-04T20:40:47.870Z"
+    },
+    {
+      "player": "Gigalogic",
+      "exp": 641135831342522,
+      "mobsKilled": 104402,
+      "gold": 7435896068,
+      "dateTime": "2025-06-04T20:41:25.480Z"
+    },
+    {
+      "player": "Kahuku",
+      "exp": 13197764923517,
+      "mobsKilled": 565101,
+      "gold": 18414531174,
+      "dateTime": "2025-06-04T20:41:56.679Z"
+    },
+    {
+      "player": "Panicgrim",
+      "exp": 11586052378978,
+      "mobsKilled": 57819,
+      "gold": 893264808,
+      "dateTime": "2025-06-04T20:42:29.675Z"
+    },
+    {
+      "player": "Sinolos",
+      "exp": 11582946110735,
+      "mobsKilled": 289273,
+      "gold": 12054498305,
+      "dateTime": "2025-06-04T20:42:58.836Z"
+    },
+    {
+      "player": "Vari",
+      "exp": 8187578488013,
+      "mobsKilled": 748377,
+      "gold": 27117383784,
+      "dateTime": "2025-06-04T20:43:27.586Z"
+    },
+    {
+      "player": "Braxtonian",
+      "exp": 13657165439119,
+      "mobsKilled": 721581,
+      "gold": 19426206062,
+      "dateTime": "2025-06-04T20:44:11.452Z"
+    },
+    {
+      "player": "CoorAngar",
+      "exp": 11890040012205,
+      "mobsKilled": 464750,
+      "gold": 11955571053,
+      "dateTime": "2025-06-04T20:44:45.359Z"
+    },
+    {
+      "player": "HunterBrad",
+      "exp": 342507562608361,
+      "mobsKilled": 954719,
+      "gold": 20450108955,
+      "dateTime": "2025-06-04T20:45:27.609Z"
+    },
+    {
+      "player": "Mousie",
+      "exp": 3495809329801,
+      "mobsKilled": 75521,
+      "gold": 3349232703,
+      "dateTime": "2025-06-04T20:46:01.512Z"
+    },
+    {
+      "player": "Babar",
+      "exp": 2949820745709,
+      "mobsKilled": 191910,
+      "gold": 6284456493,
+      "dateTime": "2025-06-04T20:46:29.377Z"
+    },
+    {
+      "player": "zLucas",
+      "exp": 32064982140142,
+      "mobsKilled": 1042506,
+      "gold": 27752714193,
+      "dateTime": "2025-06-04T20:47:12.716Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 11556309385711,
+      "mobsKilled": 211091,
+      "gold": 15347842569,
+      "dateTime": "2025-06-07T03:46:23.977Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 11570645742977,
+      "mobsKilled": 213492,
+      "gold": 15385181702,
+      "dateTime": "2025-06-09T00:06:14.152Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 12799845878489,
+      "mobsKilled": 215026,
+      "gold": 15402218590,
+      "dateTime": "2025-06-09T19:17:12.649Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 13007139113754,
+      "mobsKilled": 215689,
+      "gold": 15409764690,
+      "dateTime": "2025-06-10T02:20:42.910Z"
+    },
+    {
+      "player": "Sinolos",
+      "exp": 13079594589758,
+      "mobsKilled": 297344,
+      "gold": 12320072812,
+      "dateTime": "2025-06-10T04:14:06.953Z"
+    },
+    {
+      "player": "Kahuku",
+      "exp": 13501828841856,
+      "mobsKilled": 573021,
+      "gold": 19387782885,
+      "dateTime": "2025-06-10T04:14:55.392Z"
+    },
+    {
+      "player": "BoneCarver",
+      "exp": 15328844496266,
+      "mobsKilled": 34172,
+      "gold": 1211484553,
+      "dateTime": "2025-06-10T04:15:36.377Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 13238479019239,
+      "mobsKilled": 218466,
+      "gold": 15441047893,
+      "dateTime": "2025-06-11T22:00:09.701Z"
+    },
+    {
+      "player": "zLucas",
+      "exp": 41666457223437,
+      "mobsKilled": 1054405,
+      "gold": 29627150740,
+      "dateTime": "2025-06-13T23:21:53.374Z"
+    },
+    {
+      "player": "Hunt3r1206",
+      "exp": 13254979507492,
+      "mobsKilled": 225129,
+      "gold": 15593897581,
+      "dateTime": "2025-06-17T15:55:38.467Z"
     }
   ]
 }
