@@ -23,6 +23,20 @@ fetch('/api/mob-values')
     function formatNumber(val) {
       return typeof val === 'number' ? val.toLocaleString() : val;
     }
+
+    // Define the desired scroll order
+    const scrollOrder = ['sunlight', 'void', 'shadow', 'arcane', 'demoniac', 'ancient'];
+    function sortScrollEntries(entries) {
+      // Sort entries according to scrollOrder; unknown types go last
+      return entries.sort((a, b) => {
+        const ia = scrollOrder.indexOf(a[0].toLowerCase());
+        const ib = scrollOrder.indexOf(b[0].toLowerCase());
+        if (ia === -1 && ib === -1) return 0;
+        if (ia === -1) return 1;
+        if (ib === -1) return -1;
+        return ia - ib;
+      });
+    }
     function formatQuestEntry([k, v]) {
       // Capitalize first letter and tab in
       const label = k.charAt(0).toUpperCase() + k.slice(1);
@@ -88,8 +102,8 @@ fetch('/api/mob-values')
               <div><strong>HP:</strong> ${formatNumber(mob.hp)}</div>
               <div><strong>Gold:</strong> ${formatNumber(mob.gold)}</div>
               <div><strong>Boss Damage:</strong> ${formatNumber(mob.bossDamage)}</div>
-              <div><strong>Quest EXP:</strong><br>${Object.entries(mob.questExp).map(formatQuestEntry).join('<br>')}</div>
-              <div><strong>Quest Gold:</strong><br>${Object.entries(mob.questGold).map(formatQuestEntry).join('<br>')}</div>
+              <div><strong>Quest EXP:</strong><br>${sortScrollEntries(Object.entries(mob.questExp)).map(formatQuestEntry).join('<br>')}</div>
+              <div><strong>Quest Gold:</strong><br>${sortScrollEntries(Object.entries(mob.questGold)).map(formatQuestEntry).join('<br>')}</div>
             </div>
           `;
           showModal(detailsHtml);

@@ -8,8 +8,13 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# Copy everything else
+# Copy app source code
 COPY . .
+
+# Explicitly copy BigQuery credentials, config, and admin script
+COPY bigQuery/ bigQuery/
+COPY bigquery-config.js .
+COPY admin-delete-player.js .
 
 # Expose Express port
 EXPOSE 80

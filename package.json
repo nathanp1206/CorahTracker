@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@google-cloud/bigquery": "^8.1.0",
     "docker": "^1.0.0",
     "express": "^5.1.0",
     "lowdb": "^7.0.1",

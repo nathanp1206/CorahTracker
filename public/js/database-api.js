@@ -19,18 +19,19 @@ export async function fetchScrollGoldPrices() {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    // Assuming scroll-prices returns an object with scroll types as keys
-    // and an array of entries for each scroll type.
-    // We need to extract gold prices.
+    // Transform the data to extract gold prices by scroll type
     const goldPrices = {};
-    for (const scrollType in data) {
-      if (data.hasOwnProperty(scrollType)) {
-        goldPrices[scrollType] = data[scrollType].map(entry => ({
-          dateTime: entry.dateTime,
-          goldPrice: entry.goldPrice
-        }));
+    data.forEach(entry => {
+      if (!goldPrices[entry.type]) {
+        goldPrices[entry.type] = [];
       }
-    }
+      if (entry.goldPrice !== null) {
+        goldPrices[entry.type].push({
+          dateTime: entry.timestamp,
+          goldPrice: entry.goldPrice
+        });
+      }
+    });
     return goldPrices;
   } catch (error) {
     console.error('Error fetching scroll gold prices:', error);
@@ -45,18 +46,19 @@ export async function fetchScrollDiamondPrices() {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    // Assuming scroll-prices returns an object with scroll types as keys
-    // and an array of entries for each scroll type.
-    // We need to extract diamond prices.
+    // Transform the data to extract diamond prices by scroll type
     const diamondPrices = {};
-    for (const scrollType in data) {
-      if (data.hasOwnProperty(scrollType)) {
-        diamondPrices[scrollType] = data[scrollType].map(entry => ({
-          dateTime: entry.dateTime,
-          diamondPrice: entry.diamondPrice
-        }));
+    data.forEach(entry => {
+      if (!diamondPrices[entry.type]) {
+        diamondPrices[entry.type] = [];
       }
-    }
+      if (entry.diamondPrice !== null) {
+        diamondPrices[entry.type].push({
+          dateTime: entry.timestamp,
+          diamondPrice: entry.diamondPrice
+        });
+      }
+    });
     return diamondPrices;
   } catch (error) {
     console.error('Error fetching scroll diamond prices:', error);
@@ -106,14 +108,30 @@ export async function addPlayer(player) {
   }
 }
 
-// Fetch mob values
+// Fetch mob values via API
 export async function getMobValues() {
-  const res = await fetch('/db/mobValues.json');
-  return res.json();
+  try {
+    const response = await fetch('/api/mob-values');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching mob values:', error);
+    return null;
+  }
 }
 
-// Fetch scroll prices
+// Fetch scroll prices via API
 export async function getScrollPrices() {
-  const res = await fetch('/db/scrollPrices.json');
-  return res.json();
+  try {
+    const response = await fetch('/api/scroll-prices');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching scroll prices:', error);
+    return null;
+  }
 } 

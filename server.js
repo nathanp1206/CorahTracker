@@ -1,9 +1,23 @@
 import express from 'express';
 import path from 'path';
-import { Low } from 'lowdb';
-import { JSONFile } from 'lowdb/node';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import { 
+  getPlayerStats, 
+  addPlayerStat, 
+  getGoldPrices, 
+  addGoldPrice, 
+  getScrollPrices, 
+  addScrollPrice, 
+  getPlayers, 
+  addPlayer, 
+  getXpValues, 
+  getMobValues,
+  configureBigQuery,
+  testBigQueryConnection,
+  deletePlayer,
+  deletePlayerStats
+} from './bigquery-service.js';
 
 // Needed to emulate __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -17,78 +31,30 @@ const port = 8080;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
-// --- Setup separate lowdb instances ---
-
-// Player Stats Database
-const playerStatsFile = path.join(__dirname, 'db/playerStats.json');
-const playerStatsAdapter = new JSONFile(playerStatsFile);
-const defaultPlayerStats = { stats: [] };
-const playerStatsDb = new Low(playerStatsAdapter, defaultPlayerStats);
-
-// Gold Prices Database
-const goldPricesFile = path.join(__dirname, 'db/goldPrices.json');
-const goldPricesAdapter = new JSONFile(goldPricesFile);
-const defaultGoldPrices = { goldPrices: [] };
-const goldPricesDb = new Low(goldPricesAdapter, defaultGoldPrices);
-
-// Scroll Prices Database
-const scrollPricesFile = path.join(__dirname, 'db/scrollPrices.json');
-const scrollPricesAdapter = new JSONFile(scrollPricesFile);
-const defaultScrollPrices = {
-  scrollPrices: {
-    ancient: { gold: [], diamond: [] },
-    demoniac: { gold: [], diamond: [] },
-    arcane: { gold: [], diamond: [] },
-    shadow: { gold: [], diamond: [] },
-    void: { gold: [], diamond: [] },
-    sunlight: { gold: [], diamond: [] }
+// --- Initialize BigQuery Configuration ---
+async function initBigQuery() {
+  try {
+    // Test the connection
+    const connectionTest = await testBigQueryConnection();
+    if (!connectionTest) {
+      throw new Error('Failed to connect to BigQuery. Please check your configuration in bigquery-config.js');
+    }
+    
+    console.log('✅ BigQuery initialized successfully');
+  } catch (error) {
+    console.error('❌ BigQuery initialization failed:', error);
+    throw error;
   }
-};
-const scrollPricesDb = new Low(scrollPricesAdapter, defaultScrollPrices);
-
-// Players Database
-const playersFile = path.join(__dirname, 'db/players.json');
-const playersAdapter = new JSONFile(playersFile);
-const defaultPlayers = { players: ["Hunt3r1206", "Kahuku", "Gigalogic", "Sinolos"] }; // Keep initial players
-const playersDb = new Low(playersAdapter, defaultPlayers);
-
-// --- Initialize databases ---
-async function initDB() {
-  await playerStatsDb.read();
-  playerStatsDb.data = Object.assign({}, defaultPlayerStats, playerStatsDb.data);
-  await playerStatsDb.write();
-
-  await goldPricesDb.read();
-  goldPricesDb.data = Object.assign({}, defaultGoldPrices, goldPricesDb.data);
-  await goldPricesDb.write();
-
-  await scrollPricesDb.read();
-  scrollPricesDb.data = Object.assign({}, defaultScrollPrices, scrollPricesDb.data);
-  await scrollPricesDb.write();
-
-  await playersDb.read();
-  playersDb.data = Object.assign({}, defaultPlayers, playersDb.data);
-  await playersDb.write();
-
-  console.log('✅ All databases initialized');
 }
 
-// --- API Endpoints (updated to use separate databases) ---
+// --- API Endpoints (updated to use BigQuery) ---
 
 // GET route: Get player stats for charts (optionally filtered by player)
 app.get('/api/player-stats', async (req, res) => {
   try {
-    await playerStatsDb.read(); // Ensure latest data is read
     const playerName = req.query.player;
-    let stats = playerStatsDb.data.stats || [];
-
-    if (playerName) {
-      stats = stats.filter(entry => entry.player === playerName);
-    }
-
-    // Sort by dateTime to ensure chronological order
-    const sortedStats = stats.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
-    res.json(sortedStats);
+    const stats = await getPlayerStats(playerName);
+    res.json(stats);
   } catch (error) {
     console.error('❌ Error in /api/player-stats:', error);
     res.status(500).json({ error: error.message });
@@ -98,8 +64,7 @@ app.get('/api/player-stats', async (req, res) => {
 // GET route: Get scroll prices for charts
 app.get('/api/scroll-prices', async (req, res) => {
   try {
-    await scrollPricesDb.read(); // Ensure latest data is read
-    const scrollPrices = scrollPricesDb.data.scrollPrices || defaultScrollPrices.scrollPrices;
+    const scrollPrices = await getScrollPrices();
     const allPrices = [];
 
     // Transform the data structure to include both gold and diamond prices
@@ -133,11 +98,8 @@ app.get('/api/scroll-prices', async (req, res) => {
 // GET route: Get gold prices for charts
 app.get('/api/gold-prices', async (req, res) => {
   try {
-    await goldPricesDb.read(); // Ensure latest data is read
-    const prices = goldPricesDb.data.goldPrices || [];
-    // Sort by dateTime to ensure chronological order
-    const sortedPrices = prices.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
-    res.json(sortedPrices);
+    const prices = await getGoldPrices();
+    res.json(prices);
   } catch (error) {
     console.error('❌ Error in /api/gold-prices:', error);
     res.status(500).json({ error: error.message });
@@ -147,8 +109,7 @@ app.get('/api/gold-prices', async (req, res) => {
 // GET route: Get all players
 app.get('/api/players', async (req, res) => {
   try {
-    await playersDb.read(); // Ensure latest data is read
-    const players = playersDb.data.players || [];
+    const players = await getPlayers();
     res.json(players);
   } catch (error) {
     console.error('❌ Error in /api/players:', error);
@@ -171,13 +132,6 @@ app.post('/api/addStat', async (req, res) => {
       });
     }
 
-    await playerStatsDb.read(); // Ensure latest data is read before push
-
-    // Ensure stats array exists
-    if (!playerStatsDb.data.stats) {
-      playerStatsDb.data.stats = [];
-    }
-
     const entry = {
       player,
       exp: Number(exp),
@@ -188,18 +142,10 @@ app.post('/api/addStat', async (req, res) => {
 
     console.log('Adding entry:', entry);
 
-    playerStatsDb.data.stats.push(entry);
-    await playerStatsDb.write();
-
-    // Add player to players list if not already present (using playersDb)
-    await playersDb.read(); // Ensure latest data is read before checking
-    if (!playersDb.data.players.includes(player)) {
-      playersDb.data.players.push(player);
-      await playersDb.write();
-    }
+    const result = await addPlayerStat(entry);
 
     console.log('✅ Stats added successfully');
-    res.json({ success: true, entry });
+    res.json(result);
 
   } catch (error) {
     console.error('❌ Error in /api/addStat:', error);
@@ -222,24 +168,10 @@ app.post('/api/addGoldPrice', async (req, res) => {
       });
     }
 
-    await goldPricesDb.read(); // Ensure latest data is read before push
-
-    // Ensure goldPrices array exists
-    if (!goldPricesDb.data.goldPrices) {
-      goldPricesDb.data.goldPrices = [];
-    }
-
-    const timestamp = new Date().toISOString();
-    const entry = {
-      price: Number(price),
-      dateTime: timestamp
-    };
-
-    goldPricesDb.data.goldPrices.push(entry);
-    await goldPricesDb.write();
+    const result = await addGoldPrice(price);
 
     console.log('✅ Gold price added successfully');
-    res.json({ success: true, entry });
+    res.json(result);
 
   } catch (error) {
     console.error('❌ Error in /api/addGoldPrice:', error);
@@ -262,38 +194,10 @@ app.post('/api/addScrollPrice', async (req, res) => {
         });
     }
 
-    await scrollPricesDb.read(); // Ensure latest data is read before push
-
-    if (!scrollPricesDb.data.scrollPrices[scrollType]) {
-        scrollPricesDb.data.scrollPrices[scrollType] = { gold: [], diamond: [] };
-    }
-
-    const timestamp = new Date().toISOString();
-
-    // Add gold price entry
-    scrollPricesDb.data.scrollPrices[scrollType].gold.push({
-        price: Number(goldPrice),
-        dateTime: timestamp
-    });
-
-    // Add diamond price entry
-    scrollPricesDb.data.scrollPrices[scrollType].diamond.push({
-        price: Number(diamondPrice),
-        dateTime: timestamp
-    });
-
-    await scrollPricesDb.write();
+    const result = await addScrollPrice(scrollType, goldPrice, diamondPrice);
 
     console.log(`✅ ${scrollType} scroll price added successfully`);
-    res.json({
-      success: true,
-      entry: {
-        scrollType,
-        goldPrice: Number(goldPrice),
-        diamondPrice: Number(diamondPrice),
-        dateTime: timestamp
-      }
-    });
+    res.json(result);
 
   } catch (error) {
     console.error('❌ Error in /api/addScrollPrice:', error);
@@ -316,22 +220,10 @@ app.post('/api/addPlayer', async (req, res) => {
       });
     }
 
-    await playersDb.read(); // Ensure latest data is read before push
-
-    // Check if player already exists
-    if (playersDb.data.players.includes(player)) {
-      return res.status(400).json({
-        success: false,
-        error: 'Player already exists'
-      });
-    }
-
-    // Add new player
-    playersDb.data.players.push(player);
-    await playersDb.write();
+    const result = await addPlayer(player);
 
     console.log('✅ Player added successfully');
-    res.json({ success: true, player });
+    res.json(result);
 
   } catch (error) {
     console.error('❌ Error in /api/addPlayer:', error);
@@ -344,29 +236,35 @@ app.post('/api/addPlayer', async (req, res) => {
 
 // GET route: Test endpoint
 app.get('/api/test', async (req, res) => {
-    await playerStatsDb.read();
-    await goldPricesDb.read();
-    await scrollPricesDb.read();
-    await playersDb.read();
+    try {
+        const playerStats = await getPlayerStats();
+        const goldPrices = await getGoldPrices();
+        const scrollPrices = await getScrollPrices();
+        const players = await getPlayers();
 
-    const scrollPriceCount = Object.keys(scrollPricesDb.data.scrollPrices).reduce((sum, key) => sum + scrollPricesDb.data.scrollPrices[key].gold.length + scrollPricesDb.data.scrollPrices[key].diamond.length, 0);
+        const scrollPriceCount = Object.keys(scrollPrices).reduce((sum, key) => 
+            sum + scrollPrices[key].gold.length + scrollPrices[key].diamond.length, 0);
 
-    res.json({
-      status: 'Server is running',
-      dbSize: {
-        playerStats: playerStatsDb.data.stats.length,
-        goldPrices: goldPricesDb.data.goldPrices.length,
-        scrollPrices: scrollPriceCount,
-        players: playersDb.data.players.length
-      }
-    });
+        res.json({
+          status: 'Server is running',
+          dbSize: {
+            playerStats: playerStats.length,
+            goldPrices: goldPrices.length,
+            scrollPrices: scrollPriceCount,
+            players: players.length
+          }
+        });
+    } catch (error) {
+        console.error('❌ Error in /api/test:', error);
+        res.status(500).json({ error: error.message });
+    }
 });
 
 // Serve XP values (DEPRECATED: use /api/levels instead)
-app.get('/api/xp-values', (req, res) => {
+app.get('/api/xp-values', async (req, res) => {
     try {
-        const xpValues = JSON.parse(fs.readFileSync(path.join(__dirname, 'db', 'xpValues.json'), 'utf8'));
-        res.json(xpValues);
+        const xpValues = await getXpValues();
+        res.json({ levels: xpValues });
     } catch (error) {
         console.error('Error reading XP values:', error);
         res.status(500).json({ error: 'Failed to read XP values' });
@@ -374,10 +272,10 @@ app.get('/api/xp-values', (req, res) => {
 });
 
 // Serve Levels (XP values) for the levels page
-app.get('/api/levels', (req, res) => {
+app.get('/api/levels', async (req, res) => {
     try {
-        const xpValues = JSON.parse(fs.readFileSync(path.join(__dirname, 'db', 'xpValues.json'), 'utf8'));
-        res.json(xpValues);
+        const xpValues = await getXpValues();
+        res.json({ levels: xpValues });
     } catch (error) {
         console.error('Error reading Levels:', error);
         res.status(500).json({ error: 'Failed to read Levels' });
@@ -385,10 +283,23 @@ app.get('/api/levels', (req, res) => {
 });
 
 // Serve Mob Values
-app.get('/api/mob-values', (req, res) => {
+app.get('/api/mob-values', async (req, res) => {
     try {
-        const mobValues = JSON.parse(fs.readFileSync(path.join(__dirname, 'db', 'mobValues.json'), 'utf8'));
-        res.json(mobValues);
+        const mobValues = await getMobValues();
+        // Transform 'demonic' to 'demoniac' in questGold and questExp for each monster
+        const transformed = mobValues.map(monster => {
+            const newMonster = { ...monster };
+            if (newMonster.questGold && newMonster.questGold.demonic !== undefined) {
+                newMonster.questGold = { ...newMonster.questGold, demoniac: newMonster.questGold.demonic };
+                delete newMonster.questGold.demonic;
+            }
+            if (newMonster.questExp && newMonster.questExp.demonic !== undefined) {
+                newMonster.questExp = { ...newMonster.questExp, demoniac: newMonster.questExp.demonic };
+                delete newMonster.questExp.demonic;
+            }
+            return newMonster;
+        });
+        res.json({ monsters: transformed });
     } catch (error) {
         console.error('Error reading mob values:', error);
         res.status(500).json({ error: 'Failed to read mob values' });
@@ -396,10 +307,10 @@ app.get('/api/mob-values', (req, res) => {
 });
 
 // Initialize DB and start server
-initDB().then(() => {
+initBigQuery().then(() => {
   app.listen(port, () => {
     console.log(`✅ Server running at http://localhost:${port}`);
   });
 }).catch(err => {
-  console.error('❌ Failed to initialize databases or start server:', err);
+  console.error('❌ Failed to initialize BigQuery or start server:', err);
 });

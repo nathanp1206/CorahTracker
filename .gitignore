@@ -1,4 +1,14 @@
-/node_modules
+# BigQuery credentials and config
+bigQuery/
+bigquery-config.js
+
+# Admin/utility scripts
+admin-delete-player.js
+
+# Node modules and logs
+node_modules/
+npm-debug.log
+
 package-lock.json
 .DS_Store
 /Archive
