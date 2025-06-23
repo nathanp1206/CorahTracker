@@ -7,15 +7,17 @@
   <link rel="apple-touch-icon" href="img/CorahTracker.png">
   <link rel="icon" href="img/CorahTracker.ico" type="image/x-icon">
   <title>Corah Stats</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <button class="hamburger-menu" onclick="toggleTabs()"><span class="hamburger-icon"><span></span><span></span><span></span></span></button>
   <div class="tabs">
-    <a href="index.html" class="tab-button active">Summary</a>
-    <a href="add-data.html" class="tab-button">Add Data</a>
-    <a href="graphs.html" class="tab-button">Graphs</a>
-    <a href="mobs.html" class="tab-button">Mob Stats</a>
+    <a href="/" class="tab-button active">Summary</a>
+    <a href="/add-data/" class="tab-button">Add Data</a>
+    <a href="/graphs/" class="tab-button">Graphs</a>
+    <a href="/mobs/" class="tab-button">Mob Stats</a>
+    <a href="/scrolls/" class="tab-button">Scrolls</a>
+    <a href="/levels/" class="tab-button">Levels</a>
   </div>
 
   <div class="container">
@@ -100,8 +102,8 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
-  <script type="module" src="header.js"></script>
+  <script src="js/script.js"></script>
+  <script type="module" src="js/header.js"></script>
   <script>
     function toggleTabs() {
       const tabs = document.querySelector('.tabs');

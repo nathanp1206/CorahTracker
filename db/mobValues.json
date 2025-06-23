@@ -10,17 +10,19 @@
       "bossDamage": 58,
       "questExp": {
         "ancient": 110,
-        "demonic": 220,
+        "demoniac": 220,
         "arcane": 396,
         "shadow": 880,
-        "void": 1760
+        "void": 1760,
+        "sunlight": 3520
       },
       "questGold": {
         "ancient": 624,
-        "demonic": 1248,
+        "demoniac": 1248,
         "arcane": 2080,
         "shadow": 4680,
-        "void": 9360
+        "void": 9360,
+        "sunlight": 18720
       }
     },
     {
@@ -33,17 +35,19 @@
       "bossDamage": 92,
       "questExp": {
         "ancient": 200,
-        "demonic": 400,
+        "demoniac": 400,
         "arcane": 720,
         "shadow": 1600,
-        "void": 3200
+        "void": 3200,
+        "sunlight": 6400
       },
       "questGold": {
         "ancient": 948,
-        "demonic": 1896,
+        "demoniac": 1896,
         "arcane": 3160,
         "shadow": 7110,
-        "void": 14220
+        "void": 14220,
+        "sunlight": 28440
       }
     },
     {
@@ -56,17 +60,19 @@
       "bossDamage": 173,
       "questExp": {
         "ancient": 360,
-        "demonic": 720,
+        "demoniac": 720,
         "arcane": 1296,
         "shadow": 2880,
-        "void": 5760
+        "void": 5760,
+        "sunlight": 11520
       },
       "questGold": {
         "ancient": 1380,
-        "demonic": 2760,
+        "demoniac": 2760,
         "arcane": 4600,
         "shadow": 10350,
-        "void": 20700
+        "void": 20700,
+        "sunlight": 41400
       }
     },
     {
@@ -79,17 +85,19 @@
       "bossDamage": 173,
       "questExp": {
         "ancient": 650,
-        "demonic": 1300,
+        "demoniac": 1300,
         "arcane": 2340,
         "shadow": 5200,
-        "void": 10400
+        "void": 10400,
+        "sunlight": 20800
       },
       "questGold": {
         "ancient": 2028,
-        "demonic": 4056,
+        "demoniac": 4056,
         "arcane": 6760,
         "shadow": 15210,
-        "void": 30420
+        "void": 30420,
+        "sunlight": 60840
       }
     },
     {
@@ -102,17 +110,19 @@
       "bossDamage": 310,
       "questExp": {
         "ancient": 280,
-        "demonic": 560,
+        "demoniac": 560,
         "arcane": 1008,
         "shadow": 2240,
-        "void": 4480
+        "void": 4480,
+        "sunlight": 8960
       },
       "questGold": {
         "ancient": 252,
-        "demonic": 504,
+        "demoniac": 504,
         "arcane": 840,
         "shadow": 1890,
-        "void": 3780
+        "void": 3780,
+        "sunlight": 7560
       }
     },
     {
@@ -125,17 +135,19 @@
       "bossDamage": 288,
       "questExp": {
         "ancient": 1020,
-        "demonic": 2040,
+        "demoniac": 2040,
         "arcane": 3672,
         "shadow": 8160,
-        "void": 16320
+        "void": 16320,
+        "sunlight": 32640
       },
       "questGold": {
         "ancient": 2736,
-        "demonic": 5472,
+        "demoniac": 5472,
         "arcane": 9120,
         "shadow": 20520,
-        "void": 41040
+        "void": 41040,
+        "sunlight": 82080
       }
     },
     {
@@ -148,17 +160,19 @@
       "bossDamage": 506,
       "questExp": {
         "ancient": 1300,
-        "demonic": 2600,
+        "demoniac": 2600,
         "arcane": 4680,
         "shadow": 10400,
-        "void": 20800
+        "void": 20800,
+        "sunlight": 41600
       },
       "questGold": {
         "ancient": 3000,
-        "demonic": 6000,
+        "demoniac": 6000,
         "arcane": 10000,
         "shadow": 22500,
-        "void": 45000
+        "void": 45000,
+        "sunlight": 90000
       }
     },
     {
@@ -171,17 +185,19 @@
       "bossDamage": 720,
       "questExp": {
         "ancient": 1080,
-        "demonic": 2160,
+        "demoniac": 2160,
         "arcane": 3888,
         "shadow": 8640,
-        "void": 17280
+        "void": 17280,
+        "sunlight": 34560
       },
       "questGold": {
         "ancient": 1152,
-        "demonic": 2304,
+        "demoniac": 2304,
         "arcane": 3840,
         "shadow": 8640,
-        "void": 17280
+        "void": 17280,
+        "sunlight": 34560
       }
     },
     {
@@ -194,17 +210,19 @@
       "bossDamage": 633,
       "questExp": {
         "ancient": 5440,
-        "demonic": 10880,
+        "demoniac": 10880,
         "arcane": 19584,
         "shadow": 43520,
-        "void": 87040
+        "void": 87040,
+        "sunlight": 174080
       },
       "questGold": {
         "ancient": 3432,
-        "demonic": 6864,
+        "demoniac": 6864,
         "arcane": 11440,
         "shadow": 25740,
-        "void": 51480
+        "void": 51480,
+        "sunlight": 102960
       }
     },
     {
@@ -217,17 +235,19 @@
       "bossDamage": 863,
       "questExp": {
         "ancient": 6600,
-        "demonic": 13200,
+        "demoniac": 13200,
         "arcane": 23760,
         "shadow": 52800,
-        "void": 105600
+        "void": 105600,
+        "sunlight": 211200
       },
       "questGold": {
         "ancient": 4092,
-        "demonic": 8184,
+        "demoniac": 8184,
         "arcane": 13640,
         "shadow": 30690,
-        "void": 61380
+        "void": 61380,
+        "sunlight": 122760
       }
     },
     {
@@ -240,17 +260,19 @@
       "bossDamage": 1150,
       "questExp": {
         "ancient": 8700,
-        "demonic": 17400,
+        "demoniac": 17400,
         "arcane": 31320,
         "shadow": 69600,
-        "void": 139200
+        "void": 139200,
+        "sunlight": 278400
       },
       "questGold": {
         "ancient": 5184,
-        "demonic": 10368,
+        "demoniac": 10368,
         "arcane": 17280,
         "shadow": 38880,
-        "void": 77760
+        "void": 77760,
+        "sunlight": 155520
       }
     },
     {
@@ -263,17 +285,19 @@
       "bossDamage": 1725,
       "questExp": {
         "ancient": 4600,
-        "demonic": 9200,
+        "demoniac": 9200,
         "arcane": 16560,
         "shadow": 36800,
-        "void": 73600
+        "void": 73600,
+        "sunlight": 127200
       },
       "questGold": {
         "ancient": 3000,
-        "demonic": 6000,
+        "demoniac": 6000,
         "arcane": 10000,
         "shadow": 22500,
-        "void": 45000
+        "void": 45000,
+        "sunlight": 90000
       }
     },
     {
@@ -286,17 +310,19 @@
       "bossDamage": 1725,
       "questExp": {
         "ancient": 11300,
-        "demonic": 22600,
+        "demoniac": 22600,
         "arcane": 40680,
         "shadow": 90400,
-        "void": 180800
+        "void": 180800,
+        "sunlight": 361600
       },
       "questGold": {
         "ancient": 6132,
-        "demonic": 12264,
+        "demoniac": 12264,
         "arcane": 20440,
         "shadow": 45990,
-        "void": 91980
+        "void": 91980,
+        "sunlight": 183960
       }
     },
     {
@@ -309,17 +335,19 @@
       "bossDamage": 2300,
       "questExp": {
         "ancient": 16580,
-        "demonic": 33160,
+        "demoniac": 33160,
         "arcane": 59688,
         "shadow": 132640,
-        "void": 265280
+        "void": 265280,
+        "sunlight": 530560
       },
       "questGold": {
         "ancient": 8664,
-        "demonic": 17328,
+        "demoniac": 17328,
         "arcane": 28880,
         "shadow": 64980,
-        "void": 129960
+        "void": 129960,
+        "sunlight": 259920
       }
     },
     {
@@ -332,17 +360,19 @@
       "bossDamage": 4025,
       "questExp": {
         "ancient": 9540,
-        "demonic": 19080,
+        "demoniac": 19080,
         "arcane": 34344,
         "shadow": 76320,
-        "void": 152640
+        "void": 152640,
+        "sunlight": 305280
       },
       "questGold": {
         "ancient": 6108,
-        "demonic": 12216,
+        "demoniac": 12216,
         "arcane": 20360,
         "shadow": 45810,
-        "void": 91620
+        "void": 91620,
+        "sunlight": 183240
       }
     },
     {
@@ -355,17 +385,19 @@
       "bossDamage": 4140,
       "questExp": {
         "ancient": 51780,
-        "demonic": 103560,
+        "demoniac": 103560,
         "arcane": 186408,
         "shadow": 414240,
-        "void": 828480
+        "void": 828480,
+        "sunlight": 1656960
       },
       "questGold": {
         "ancient": 8280,
-        "demonic": 16560,
+        "demoniac": 16560,
         "arcane": 27600,
         "shadow": 62100,
-        "void": 124200
+        "void": 124200,
+        "sunlight": 248400
       }
     },
     {
@@ -378,17 +410,19 @@
       "bossDamage": 5980,
       "questExp": {
         "ancient": 10360,
-        "demonic": 20720,
+        "demoniac": 20720,
         "arcane": 37296,
         "shadow": 82880,
-        "void": 165760
+        "void": 165760,
+        "sunlight": 331520
       },
       "questGold": {
         "ancient": 1272,
-        "demonic": 2544,
+        "demoniac": 2544,
         "arcane": 4240,
         "shadow": 9540,
-        "void": 19080
+        "void": 19080,
+        "sunlight": 39660
       }
     },
     {
@@ -401,17 +435,19 @@
       "bossDamage": 5520,
       "questExp": {
         "ancient": 62820,
-        "demonic": 125640,
+        "demoniac": 125640,
         "arcane": 226152,
         "shadow": 502560,
-        "void": 1005120
+        "void": 1005120,
+        "sunlight": 2010240
       },
       "questGold": {
         "ancient": 9276,
-        "demonic": 18552,
+        "demoniac": 18552,
         "arcane": 30920,
         "shadow": 69570,
-        "void": 139140
+        "void": 139140,
+        "sunlight": 278280
       }
     },
     {
@@ -424,17 +460,19 @@
       "bossDamage": 7820,
       "questExp": {
         "ancient": 14660,
-        "demonic": 29320,
+        "demoniac": 29320,
         "arcane": 52776,
         "shadow": 117280,
-        "void": 234560
+        "void": 234560,
+        "sunlight": 469120
       },
       "questGold": {
         "ancient": 1800,
-        "demonic": 3600,
+        "demoniac": 3600,
         "arcane": 6000,
         "shadow": 13500,
-        "void": 27000
+        "void": 27000,
+        "sunlight": 54000
       }
     },
     {
@@ -447,17 +485,19 @@
       "bossDamage": 6900,
       "questExp": {
         "ancient": 121520,
-        "demonic": 243040,
+        "demoniac": 243040,
         "arcane": 437472,
         "shadow": 972160,
-        "void": 1944320
+        "void": 1944320,
+        "sunlight": 3888640
       },
       "questGold": {
         "ancient": 12312,
-        "demonic": 24624,
+        "demoniac": 24624,
         "arcane": 41040,
         "shadow": 92340,
-        "void": 184680
+        "void": 184680,
+        "sunlight": 369360
       }
     },
     {
@@ -470,17 +510,19 @@
       "bossDamage": 8338,
       "questExp": {
         "ancient": 20140,
-        "demonic": 40280,
+        "demoniac": 40280,
         "arcane": 72504,
         "shadow": 161120,
-        "void": 322240
+        "void": 322240,
+        "sunlight": 644480
       },
       "questGold": {
         "ancient": 2496,
-        "demonic": 4992,
+        "demoniac": 4992,
         "arcane": 8320,
         "shadow": 18720,
-        "void": 37440
+        "void": 37440,
+        "sunlight": 74880
       }
     },
     {
@@ -493,17 +535,19 @@
       "bossDamage": 9775,
       "questExp": {
         "ancient": 205330,
-        "demonic": 410660,
+        "demoniac": 410660,
         "arcane": 739188,
         "shadow": 1642640,
-        "void": 3285280
+        "void": 3285280,
+        "sunlight": 6570560
       },
       "questGold": {
         "ancient": 1992,
-        "demonic": 3984,
+        "demoniac": 3984,
         "arcane": 6640,
         "shadow": 14940,
-        "void": 29880
+        "void": 29880,
+        "sunlight": 59760
       }
     },
     {
@@ -516,17 +560,19 @@
       "bossDamage": 16675,
       "questExp": {
         "ancient": 16760,
-        "demonic": 33520,
+        "demoniac": 33520,
         "arcane": 60336,
         "shadow": 134080,
-        "void": 268160
+        "void": 268160,
+        "sunlight": 536320
       },
       "questGold": {
         "ancient": 2088,
-        "demonic": 4176,
+        "demoniac": 4176,
         "arcane": 6960,
         "shadow": 15660,
-        "void": 31320
+        "void": 31320,
+        "sunlight": 62640
       }
     },
     {
@@ -539,17 +585,19 @@
       "bossDamage": 11500,
       "questExp": {
         "ancient": 143880,
-        "demonic": 287760,
+        "demoniac": 287760,
         "arcane": 517968,
         "shadow": 1151040,
-        "void": 2302080
+        "void": 2302080,
+        "sunlight": 4604160
       },
       "questGold": {
         "ancient": 16284,
-        "demonic": 32568,
+        "demoniac": 32568,
         "arcane": 54280,
         "shadow": 122130,
-        "void": 244260
+        "void": 244260,
+        "sunlight": 488520
       }
     },
     {
@@ -562,17 +610,19 @@
       "bossDamage": 14950,
       "questExp": {
         "ancient": 56760,
-        "demonic": 113520,
+        "demoniac": 113520,
         "arcane": 204336,
         "shadow": 454080,
-        "void": 908160
+        "void": 908160,
+        "sunlight": 1816320
       },
       "questGold": {
         "ancient": 6600,
-        "demonic": 13200,
+        "demoniac": 13200,
         "arcane": 22000,
         "shadow": 49500,
-        "void": 99000
+        "void": 99000,
+        "sunlight": 198000
       }
     },
     {
@@ -585,17 +635,19 @@
       "bossDamage": 13800,
       "questExp": {
         "ancient": 203460,
-        "demonic": 406920,
+        "demoniac": 406920,
         "arcane": 732456,
         "shadow": 1627680,
-        "void": 3255360
+        "void": 3255360,
+        "sunlight": 6510720
       },
       "questGold": {
         "ancient": 18948,
-        "demonic": 37896,
+        "demoniac": 37896,
         "arcane": 63160,
         "shadow": 142110,
-        "void": 284220
+        "void": 284220,
+        "sunlight": 568440
       }
     },
     {
@@ -608,17 +660,19 @@
       "bossDamage": 19550,
       "questExp": {
         "ancient": 70760,
-        "demonic": 141520,
+        "demoniac": 141520,
         "arcane": 254736,
         "shadow": 566080,
-        "void": 1132160
+        "void": 1132160,
+        "sunlight": 2264320
       },
       "questGold": {
         "ancient": 7872,
-        "demonic": 15744,
+        "demoniac": 15744,
         "arcane": 26240,
         "shadow": 59040,
-        "void": 118080
+        "void": 118080,
+        "sunlight": 236160
       }
     },
     {
@@ -631,17 +685,19 @@
       "bossDamage": 24150,
       "questExp": {
         "ancient": 94640,
-        "demonic": 189280,
+        "demoniac": 189280,
         "arcane": 340704,
         "shadow": 757120,
-        "void": 1514240
+        "void": 1514240,
+        "sunlight": 3028480
       },
       "questGold": {
         "ancient": 10596,
-        "demonic": 21192,
+        "demoniac": 21192,
         "arcane": 35320,
         "shadow": 79470,
-        "void": 158940
+        "void": 158940,
+        "sunlight": 317880
       }
     },
     {
@@ -654,17 +710,19 @@
       "bossDamage": 20700,
       "questExp": {
         "ancient": 524550,
-        "demonic": 1049100,
+        "demoniac": 1049100,
         "arcane": 1888380,
         "shadow": 4196400,
-        "void": 8392800
+        "void": 8392800,
+        "sunlight": 16785600
       },
       "questGold": {
         "ancient": 4656,
-        "demonic": 9312,
+        "demoniac": 9312,
         "arcane": 15520,
         "shadow": 34920,
-        "void": 69840
+        "void": 69840,
+        "sunlight": 139680
       }
     },
     {
@@ -677,17 +735,19 @@
       "bossDamage": 28750,
       "questExp": {
         "ancient": 510760,
-        "demonic": 1021520,
+        "demoniac": 1021520,
         "arcane": 1838736,
         "shadow": 4086080,
-        "void": 8172160
+        "void": 8172160,
+        "sunlight": 16344320
       },
       "questGold": {
         "ancient": 20088,
-        "demonic": 40176,
+        "demoniac": 40176,
         "arcane": 66960,
         "shadow": 150660,
-        "void": 301320
+        "void": 301320,
+        "sunlight": 602640
       }
     },
     {
@@ -700,17 +760,19 @@
       "bossDamage": 34500,
       "questExp": {
         "ancient": 32040,
-        "demonic": 64080,
+        "demoniac": 64080,
         "arcane": 115344,
         "shadow": 256320,
-        "void": 512640
+        "void": 512640,
+        "sunlight": 1025280
       },
       "questGold": {
         "ancient": 3972,
-        "demonic": 7944,
+        "demoniac": 7944,
         "arcane": 13240,
         "shadow": 29790,
-        "void": 59580
+        "void": 59580,
+        "sunlight": 119160
       }
     },
     {
@@ -723,17 +785,19 @@
       "bossDamage": 34500,
       "questExp": {
         "ancient": 778240,
-        "demonic": 1556480,
+        "demoniac": 1556480,
         "arcane": 2801664,
         "shadow": 6225920,
-        "void": 12451840
+        "void": 12451840,
+        "sunlight": 24903680
       },
       "questGold": {
         "ancient": 28440,
-        "demonic": 56880,
+        "demoniac": 56880,
         "arcane": 94800,
         "shadow": 213300,
-        "void": 426600
+        "void": 426600,
+        "sunlight": 853200
       }
     },
     {
@@ -746,17 +810,19 @@
       "bossDamage": 40250,
       "questExp": {
         "ancient": 213900,
-        "demonic": 427800,
+        "demoniac": 427800,
         "arcane": 770040,
         "shadow": 1711200,
-        "void": 3422400
+        "void": 3422400,
+        "sunlight": 6844800
       },
       "questGold": {
         "ancient": 19440,
-        "demonic": 38880,
+        "demoniac": 38880,
         "arcane": 64800,
         "shadow": 145800,
-        "void": 291600
+        "void": 291600,
+        "sunlight": 583200
       }
     },
     {
@@ -769,17 +835,19 @@
       "bossDamage": 46000,
       "questExp": {
         "ancient": 325700,
-        "demonic": 651400,
+        "demoniac": 651400,
         "arcane": 1172520,
         "shadow": 2605600,
-        "void": 5211200
+        "void": 5211200,
+        "sunlight": 10422400
       },
       "questGold": {
         "ancient": 28836,
-        "demonic": 57672,
+        "demoniac": 57672,
         "arcane": 96120,
         "shadow": 216270,
-        "void": 432540
+        "void": 432540,
+        "sunlight": 865080
       }
     },
     {
@@ -792,17 +860,19 @@
       "bossDamage": 40250,
       "questExp": {
         "ancient": 1665880,
-        "demonic": 3331760,
+        "demoniac": 3331760,
         "arcane": 5997168,
         "shadow": 13327040,
-        "void": 26654080
+        "void": 26654080,
+        "sunlight": 53308160
       },
       "questGold": {
         "ancient": 53964,
-        "demonic": 107928,
+        "demoniac": 107928,
         "arcane": 179880,
         "shadow": 404730,
-        "void": 809460
+        "void": 809460,
+        "sunlight": 1618920
       }
     },
     {
@@ -815,17 +885,19 @@
       "bossDamage": 51750,
       "questExp": {
         "ancient": 442700,
-        "demonic": 885400,
+        "demoniac": 885400,
         "arcane": 1593720,
         "shadow": 3541600,
-        "void": 7083200
+        "void": 7083200,
+        "sunlight": 14166400
       },
       "questGold": {
         "ancient": 29088,
-        "demonic": 58176,
+        "demoniac": 58176,
         "arcane": 96960,
         "shadow": 218160,
-        "void": 436320
+        "void": 436320,
+        "sunlight": 872640
       }
     },
     {
@@ -838,17 +910,19 @@
       "bossDamage": 46000,
       "questExp": {
         "ancient": 721020,
-        "demonic": 1442040,
+        "demoniac": 1442040,
         "arcane": 2595672,
         "shadow": 5768160,
-        "void": 11536320
+        "void": 11536320,
+        "sunlight": 23072640
       },
       "questGold": {
         "ancient": 66384,
-        "demonic": 132768,
+        "demoniac": 132768,
         "arcane": 221280,
         "shadow": 497880,
-        "void": 995760
+        "void": 995760,
+        "sunlight": 1991520
       }
     },
     {
@@ -861,17 +935,19 @@
       "bossDamage": 69000,
       "questExp": {
         "ancient": 10131880,
-        "demonic": 20263760,
+        "demoniac": 20263760,
         "arcane": 36474768,
         "shadow": 81055040,
-        "void": 162110080
+        "void": 162110080,
+        "sunlight": 324220160
       },
       "questGold": {
         "ancient": 45540,
-        "demonic": 91080,
+        "demoniac": 91080,
         "arcane": 151800,
         "shadow": 341550,
-        "void": 683100
+        "void": 683100,
+        "sunlight": 1366200
       }
     },
     {
@@ -884,17 +960,19 @@
       "bossDamage": 80500,
       "questExp": {
         "ancient": 1091480,
-        "demonic": 2182960,
+        "demoniac": 2182960,
         "arcane": 3929328,
         "shadow": 8731840,
-        "void": 17463680
+        "void": 17463680,
+        "sunlight": 34927360
       },
       "questGold": {
         "ancient": 71244,
-        "demonic": 142488,
+        "demoniac": 142488,
         "arcane": 237480,
         "shadow": 534330,
-        "void": 1068660
+        "void": 1068660,
+        "sunlight": 2137320
       }
     },
     {
@@ -907,17 +985,19 @@
       "bossDamage": 57500,
       "questExp": {
         "ancient": 4298480,
-        "demonic": 8596960,
+        "demoniac": 8596960,
         "arcane": 15474528,
         "shadow": 34387840,
-        "void": 68775680
+        "void": 68775680,
+        "sunlight": 137551360
       },
       "questGold": {
         "ancient": 117648,
-        "demonic": 235296,
+        "demoniac": 235296,
         "arcane": 392160,
         "shadow": 882360,
-        "void": 1764720
+        "void": 1764720,
+        "sunlight": 3529440
       }
     },
     {
@@ -930,17 +1010,19 @@
       "bossDamage": 63250,
       "questExp": {
         "ancient": 7688440,
-        "demonic": 15376880,
+        "demoniac": 15376880,
         "arcane": 27678384,
         "shadow": 61507520,
-        "void": 123015040
+        "void": 123015040,
+        "sunlight": 246030080
       },
       "questGold": {
         "ancient": 200484,
-        "demonic": 400968,
+        "demoniac": 400968,
         "arcane": 668280,
         "shadow": 1503630,
-        "void": 3007260
+        "void": 3007260,
+        "sunlight": 6014520
       }
     },
     {
@@ -953,17 +1035,19 @@
       "bossDamage": 63250,
       "questExp": {
         "ancient": 1496280,
-        "demonic": 2992560,
+        "demoniac": 2992560,
         "arcane": 5386608,
         "shadow": 11970240,
-        "void": 23940480
+        "void": 23940480,
+        "sunlight": 47880960
       },
       "questGold": {
         "ancient": 131076,
-        "demonic": 262152,
+        "demoniac": 262152,
         "arcane": 436920,
         "shadow": 983070,
-        "void": 1966140
+        "void": 1966140,
+        "sunlight": 3932280
       }
     },
     {
@@ -976,17 +1060,19 @@
       "bossDamage": 102350,
       "questExp": {
         "ancient": 24117480,
-        "demonic": 48234960,
+        "demoniac": 48234960,
         "arcane": 86822928,
         "shadow": 192939840,
-        "void": 385879680
+        "void": 385879680,
+        "sunlight": 771759360
       },
       "questGold": {
         "ancient": 193248,
-        "demonic": 386496,
+        "demoniac": 386496,
         "arcane": 644160,
         "shadow": 1449360,
-        "void": 2898720
+        "void": 2898720,
+        "sunlight": 5797440
       }
     },
     {
@@ -999,17 +1085,19 @@
       "bossDamage": 86250,
       "questExp": {
         "ancient": 2338980,
-        "demonic": 4677960,
+        "demoniac": 4677960,
         "arcane": 8420328,
         "shadow": 18711840,
-        "void": 37423680
+        "void": 37423680,
+        "sunlight": 74847360
       },
       "questGold": {
         "ancient": 207648,
-        "demonic": 415296,
+        "demoniac": 415296,
         "arcane": 692160,
         "shadow": 1557360,
-        "void": 3114720
+        "void": 3114720,
+        "sunlight": 6229440
       }
     },
     {
@@ -1022,17 +1110,19 @@
       "bossDamage": 172500,
       "questExp": {
         "ancient": 2825200,
-        "demonic": 5650400,
+        "demoniac": 5650400,
         "arcane": 10170720,
         "shadow": 22601600,
-        "void": 45203200
+        "void": 45203200,
+        "sunlight": 90406400
       },
       "questGold": {
         "ancient": 103284,
-        "demonic": 206568,
+        "demoniac": 206568,
         "arcane": 344280,
         "shadow": 774630,
-        "void": 1549260
+        "void": 1549260,
+        "sunlight": 3098520
       }
     },
     {
@@ -1045,17 +1135,19 @@
       "bossDamage": 140000,
       "questExp": {
         "ancient": 7759820,
-        "demonic": 15519640,
+        "demoniac": 15519640,
         "arcane": 27935352,
         "shadow": 62078560,
-        "void": 124157120
+        "void": 124157120,
+        "sunlight": 248314240
       },
       "questGold": {
         "ancient": 87012,
-        "demonic": 174024,
+        "demoniac": 174024,
         "arcane": 290040,
         "shadow": 652590,
-        "void": 1305180
+        "void": 1305180,
+        "sunlight": 2610360
       }
     },
     {
@@ -1068,17 +1160,19 @@
       "bossDamage": 140000,
       "questExp": {
         "ancient": 29102300,
-        "demonic": 58204600,
+        "demoniac": 58204600,
         "arcane": 104768280,
         "shadow": 232818400,
-        "void": 465636800
+        "void": 465636800,
+        "sunlight": 931273600
       },
       "questGold": {
         "ancient": 353448,
-        "demonic": 706896,
+        "demoniac": 706896,
         "arcane": 1178160,
         "shadow": 2650860,
-        "void": 5301720
+        "void": 5301720,
+        "sunlight": 10603440
       }
     },
     {
@@ -1090,18 +1184,20 @@
       "gold": 88312,
       "bossDamage": 145000,
       "questExp": {
-      "ancient": 22670150,
-      "demonic": 45340300,
-      "arcane": 81612540,
-      "shadow": 181361200,
-      "void": 362722400
+      "ancient": 45340300,
+      "demoniac": 81612540,
+      "arcane": 181361200,
+      "shadow": 362722400,
+      "void": 725444800,
+      "sunlight": 1450889600
       },
       "questGold": {
-      "ancient": 264936,
-      "demonic": 529872,
-      "arcane": 883120,
-      "shadow": 1987020,
-      "void": 3974040
+      "ancient": 529872,
+      "demoniac": 883120,
+      "arcane": 1987020,
+      "shadow": 3974040,
+      "void": 7948080,
+      "sunlight": 15896160
       }
     },
     {
@@ -1113,18 +1209,20 @@
       "gold": 22874,
       "bossDamage": 145000,
       "questExp": {
-        "ancient": 5666705,
-        "demonic": 11333410,
-        "arcane": 20400138,
-        "shadow": 45333640,
-        "void": 90667280
+        "ancient": 11333410,
+        "demoniac": 22666820,
+        "arcane": 40800276,
+        "shadow": 90667280,
+        "void": 181334560,
+        "sunlight": 362669120
       },
       "questGold": {
-        "ancient": 68622,
-        "demonic": 137244,
-        "arcane": 228740,
-        "shadow": 514665,
-        "void": 1029330
+        "ancient": 137244,
+        "demoniac": 274488,
+        "arcane": 457480,
+        "shadow": 1029330,
+        "void": 2058660,
+        "sunlight": 4117320
       }
     },
     {
@@ -1136,18 +1234,20 @@
       "gold": 45028,
       "bossDamage": 160000,
       "questExp": {
-        "ancient": 13248950,
-        "demonic": 26497900,
-        "arcane": 47696220,
-        "shadow": 105991600,
-        "void": 211983200
+        "ancient": 26497900,
+        "demoniac": 52995800,
+        "arcane": 95392440,
+        "shadow": 211983200,
+        "void": 423966400,
+        "sunlight": 847932800
       },
       "questGold": {
         "ancient": 135084,
-        "demonic": 270168,
+        "demoniac": 270168,
         "arcane": 450280,
         "shadow": 1013130,
-        "void": 2026260
+        "void": 2026260,
+        "sunlight": 4052520
       }
     },
     {
@@ -1159,18 +1259,20 @@
       "gold": 112570,
       "bossDamage": 160000,
       "questExp": {
-        "ancient": 33123410,
-        "demonic": 66246820,
-        "arcane": 119244276,
-        "shadow": 264987280,
-        "void": 529974560
+        "ancient": 66246820,
+        "demoniac": 132493640,
+        "arcane": 238488552,
+        "shadow": 529974560,
+        "void": 1059949120,
+        "sunlight": 2119898240
       },
       "questGold": {
-        "ancient": 337710,
-        "demonic": 675420,
-        "arcane": 1125700,
-        "shadow": 2532825,
-        "void": 5065650
+        "ancient": 675420,
+        "demoniac": 1125700,
+        "arcane": 2532825,
+        "shadow": 5065650,
+        "void": 10131300,
+        "sunlight": 20262600
       }
     },
     {
@@ -1182,18 +1284,20 @@
       "gold": 19802,
       "bossDamage": 160000,
       "questExp": {
-        "ancient": 3423395,
-        "demonic": 6846790,
-        "arcane": 12324222,
-        "shadow": 27387160,
-        "void": 54774320
+        "ancient": 6846790,
+        "demoniac": 13693580,
+        "arcane": 24648444,
+        "shadow": 54774320,
+        "void": 109548640,
+        "sunlight": 219097280
       },
       "questGold": {
-        "ancient": 59406,
-        "demonic": 118812,
-        "arcane": 198020,
-        "shadow": 445545,
-        "void": 891090
+        "ancient": 118812,
+        "demoniac": 237624,
+        "arcane": 396040,
+        "shadow": 891090,
+        "void": 1782180,
+        "sunlight": 3564360
       }
     },
     {
@@ -1205,18 +1309,20 @@
       "gold": 442852,
       "bossDamage": 150000,
       "questExp": {
-        "ancient": 6634740,
-        "demonic": 13269480,
-        "arcane": 23885064,
-        "shadow": 53077920,
-        "void": 106155840
+        "ancient": 13269480,
+        "demoniac": 26538960,
+        "arcane": 47770128,
+        "shadow": 106155840,
+        "void": 212311680,
+        "sunlight": 424623360
       },
       "questGold": {
-        "ancient": 844278,
-        "demonic": 1688556,
-        "arcane": 2814260,
-        "shadow": 6332085,
-        "void": 12664170
+        "ancient": 1688556,
+        "demoniac": 2657112,
+        "arcane": 4428520,
+        "shadow": 12664170,
+        "void": 25328340,
+        "sunlight": 39856680
       }
     },
     {
@@ -1228,18 +1334,20 @@
       "gold": 56284,
       "bossDamage": 170000,
       "questExp": {
-        "ancient": 18217305,
-        "demonic": 36434610,
-        "arcane": 65582298,
-        "shadow": 145738440,
-        "void": 291476880
+        "ancient": 36434610,
+        "demoniac": 72869230,
+        "arcane": 131164614,
+        "shadow": 291476880,
+        "void": 582953760,
+        "sunlight": 1165907680
       },
       "questGold": {
-        "ancient": 168852,
-        "demonic": 337704,
-        "arcane": 562840,
-        "shadow": 1266390,
-        "void": 2532780
+        "ancient": 337704,
+        "demoniac": 675420,
+        "arcane": 1125700,
+        "shadow": 2532780,
+        "void": 5065560,
+        "sunlight": 10131300
       }
     },
     {
@@ -1251,18 +1359,20 @@
       "gold": 14070,
       "bossDamage": 170000,
       "questExp": {
-        "ancient": 48650005,
-        "demonic": 97300010,
-        "arcane": 175140018,
-        "shadow": 389200040,
-        "void": 778400080
+        "ancient": 97300010,
+        "demoniac": 194600030,
+        "arcane": 350280054,
+        "shadow": 778400080,
+        "void": 1556800160,
+        "sunlight": 3113600480
       },
       "questGold": {
-        "ancient": 42210,
-        "demonic": 84420,
-        "arcane": 140700,
-        "shadow": 316575,
-        "void": 633150
+        "ancient": 84420,
+        "demoniac": 168852,
+        "arcane": 281420,
+        "shadow": 633150,
+        "void": 1266300,
+        "sunlight": 2532780
       }
     },
     {
@@ -1274,18 +1384,20 @@
       "gold": 67542,
       "bossDamage": 180000,
       "questExp": {
-        "ancient": 25835450,
-        "demonic": 51670900,
-        "arcane": 93007620,
-        "shadow": 206683600,
-        "void": 413367200
+        "ancient": 51670900,
+        "demoniac": 103341810,
+        "arcane": 186015258,
+        "shadow": 413367200,
+        "void": 826734400,
+        "sunlight": 1653468960
       },
       "questGold": {
-        "ancient": 202626,
-        "demonic": 405252,
-        "arcane": 675420,
-        "shadow": 1519695,
-        "void": 3039390
+        "ancient": 405252,
+        "demoniac": 810504,
+        "arcane": 1350840,
+        "shadow": 3039390,
+        "void": 6078780,
+        "sunlight": 12157560
       }
     },
     {
@@ -1297,18 +1409,20 @@
       "gold": 16884,
       "bossDamage": 180000,
       "questExp": {
-        "ancient": 68317030,
-        "demonic": 136634060,
-        "arcane": 245941308,
-        "shadow": 546536240,
-        "void": 1093072480
+        "ancient": 136634060,
+        "demoniac": 273268130,
+        "arcane": 491882634,
+        "shadow": 1093072480,
+        "void": 2186144960,
+        "sunlight": 4372290080
       },
       "questGold": {
-        "ancient": 50652,
-        "demonic": 101304,
-        "arcane": 168840,
-        "shadow": 379890,
-        "void": 759780
+        "ancient": 101304,
+        "demoniac": 202632,
+        "arcane": 337720,
+        "shadow": 759780,
+        "void": 1519560,
+        "sunlight": 3039480
       }
     },
     {
@@ -1320,18 +1434,20 @@
       "gold": 23762,
       "bossDamage": 200000,
       "questExp": {
-        "ancient": 4450410,
-        "demonic": 8900820,
-        "arcane": 16021476,
-        "shadow": 35603280,
-        "void": 71206560
+        "ancient": 8900820,
+        "demoniac": 17801650,
+        "arcane": 32042970,
+        "shadow": 71206560,
+        "void": 142413120,
+        "sunlight": 284826400
       },
       "questGold": {
-        "ancient": 71286,
-        "demonic": 142572,
-        "arcane": 237620,
-        "shadow": 534645,
-        "void": 1069290
+        "ancient": 142572,
+        "demoniac": 285144,
+        "arcane": 475240,
+        "shadow": 1069290,
+        "void": 2138580,
+        "sunlight": 4277160
       }
     },
     {
@@ -1344,17 +1460,19 @@
       "bossDamage": 235000,
       "questExp": {
         "ancient": 170792585,
-        "demonic": 341585170,
+        "demoniac": 341585170,
         "arcane": 614853306,
         "shadow": 1366340680,
-        "void": 2732681360
+        "void": 2732681360,
+        "sunlight": 5465362720
       },
       "questGold": {
         "ancient": 75984,
-        "demonic": 151968,
+        "demoniac": 151968,
         "arcane": 253280,
         "shadow": 569880,
-        "void": 1139760
+        "void": 1139760,
+        "sunlight": 2279520
       }
     },
     {
@@ -1367,17 +1485,19 @@
       "bossDamage": 250000,
       "questExp": {
         "ancient": 256188875,
-        "demonic": 512377750,
+        "demoniac": 512377750,
         "arcane": 922279950,
         "shadow": 2049511000,
-        "void": 4099022000
+        "void": 4099022000,
+        "sunlight": 8198044000
       },
       "questGold": {
         "ancient": 83586,
-        "demonic": 167172,
+        "demoniac": 167172,
         "arcane": 278620,
         "shadow": 626895,
-        "void": 1253790
+        "void": 1253790,
+        "sunlight": 2507580
       }
     },
     {
@@ -1390,17 +1510,19 @@
       "bossDamage": 280000,
       "questExp": {
         "ancient": 13526775,
-        "demonic": 27053550,
+        "demoniac": 27053550,
         "arcane": 48696390,
         "shadow": 108214200,
-        "void": 216428400
+        "void": 216428400,
+        "sunlight": 432856800
       },
       "questGold": {
         "ancient": 91944,
-        "demonic": 183888,
+        "demoniac": 183888,
         "arcane": 306480,
         "shadow": 689580,
-        "void": 1379160
+        "void": 1379160,
+        "sunlight": 2758320
       }
     },
     {
@@ -1412,18 +1534,20 @@
       "gold": 36777,
       "bossDamage": 275000,
       "questExp": {
-        "ancient": 0,
-        "demonic": 0,
-        "arcane": 0,
-        "shadow": 0,
-        "void": 0
+        "ancient": 789061735,
+        "demoniac": 1578123470,
+        "arcane": 2840622246,
+        "shadow": 6312493880,
+        "void": 12624987760,
+        "sunlight": 25249975520
       },
       "questGold": {
-        "ancient": 0,
-        "demonic": 0,
-        "arcane": 0,
-        "shadow": 0,
-        "void": 0
+        "ancient": 220662,
+        "demoniac": 441324,
+        "arcane": 735540,
+        "shadow": 1654965,
+        "void": 3309930,
+        "sunlight": 6619860
       }
     },
     {
@@ -1436,17 +1560,19 @@
       "bossDamage": 300000,
       "questExp": {
         "ancient": 0,
-        "demonic": 0,
+        "demoniac": 0,
         "arcane": 0,
         "shadow": 0,
-        "void": 0
+        "void": 0,
+        "sunlight": 0
       },
       "questGold": {
         "ancient": 0,
-        "demonic": 0,
+        "demoniac": 0,
         "arcane": 0,
         "shadow": 0,
-        "void": 0
+        "void": 0,
+        "sunlight": 0
       }
     },
     {
@@ -1459,17 +1585,19 @@
       "bossDamage": 330000,
       "questExp": {
         "ancient": 0,
-        "demonic": 0,
+        "demoniac": 0,
         "arcane": 0,
         "shadow": 0,
-        "void": 0
+        "void": 0,
+        "sunlight": 0
       },
       "questGold": {
         "ancient": 0,
-        "demonic": 0,
+        "demoniac": 0,
         "arcane": 0,
         "shadow": 0,
-        "void": 0
+        "void": 0,
+        "sunlight": 0
       }
     },
     {
@@ -1482,17 +1610,19 @@
       "bossDamage": 370000,
       "questExp": {
         "ancient": 0,
-        "demonic": 0,
+        "demoniac": 0,
         "arcane": 0,
         "shadow": 0,
-        "void": 0
+        "void": 0,
+        "sunlight": 0
       },
       "questGold": {
         "ancient": 0,
-        "demonic": 0,
+        "demoniac": 0,
         "arcane": 0,
         "shadow": 0,
-        "void": 0
+        "void": 0,
+        "sunlight": 0
       }
     }
   ]

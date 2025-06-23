@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 
 // Setup Express
 const app = express();
-const port = 80;
+const port = 8080;
 
 // Serve static files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -362,7 +362,7 @@ app.get('/api/test', async (req, res) => {
     });
 });
 
-// Serve XP values
+// Serve XP values (DEPRECATED: use /api/levels instead)
 app.get('/api/xp-values', (req, res) => {
     try {
         const xpValues = JSON.parse(fs.readFileSync(path.join(__dirname, 'db', 'xpValues.json'), 'utf8'));
@@ -370,6 +370,17 @@ app.get('/api/xp-values', (req, res) => {
     } catch (error) {
         console.error('Error reading XP values:', error);
         res.status(500).json({ error: 'Failed to read XP values' });
+    }
+});
+
+// Serve Levels (XP values) for the levels page
+app.get('/api/levels', (req, res) => {
+    try {
+        const xpValues = JSON.parse(fs.readFileSync(path.join(__dirname, 'db', 'xpValues.json'), 'utf8'));
+        res.json(xpValues);
+    } catch (error) {
+        console.error('Error reading Levels:', error);
+        res.status(500).json({ error: 'Failed to read Levels' });
     }
 });
 

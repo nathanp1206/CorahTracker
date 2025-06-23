@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="/img/CorahTracker.png">
+  <link rel="icon" href="/img/CorahTracker.ico" type="image/x-icon">
+  <title>Scrolls Calculator</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <button class="hamburger-menu" onclick="toggleTabs()"><span class="hamburger-icon"><span></span><span></span><span></span></span></button>
+  <div class="tabs">
+    <a href="/" class="tab-button">Summary</a>
+    <a href="/add-data/" class="tab-button">Add Data</a>
+    <a href="/graphs/" class="tab-button">Graphs</a>
+    <a href="/mobs/" class="tab-button">Mob Stats</a>
+    <a href="/scrolls/" class="tab-button active">Scrolls</a>
+    <a href="/levels/" class="tab-button">Levels</a>
+  </div>
+
+  <div class="container">
+    <div class="content-box" id="scrolls-calc">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-bottom: 1.5rem;">
+        <h2 style="margin: 0;">Scrolls Calculator</h2>
+        <div style="display: flex; align-items: center; gap: 1.5rem; justify-content: flex-end;">
+          <label>Quest XP % (ex. 40.32)</label>
+          <input type="number" id="questXpPercentInput" min="0" max="100" step="1" placeholder="QuestXP %" style="width: 90px; margin-right: 1.5rem;" />
+          <label style="display: flex; align-items: center; gap: 0.4em; font-weight: normal;">
+            <input type="checkbox" id="questXpEventCheckbox" /> QuestXP Event?
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.4em; font-weight: normal;">
+            <input type="checkbox" id="challengerBuffCheckbox" /> Challenger Buff?
+          </label>
+        </div>
+      </div>
+      <div class="scrolls-grid">
+        <div class="grid-item scroll-inputs">
+          <label><h2>Scroll Inputs:</h2></label>
+          <div id="scrollsInputsContainer">
+            <!-- Inputs for each scroll type will be generated here by JS -->
+          </div>
+        </div>
+        <div class="scrolls-row">
+          <div class="grid-item player-select">
+            <label for="scrollsPlayerSelect"><h3>Player:</h3></label>
+            <select id="scrollsPlayerSelect"></select>
+            <div id="scrollsPlayerStats" style="margin-top:0.5em;font-size:0.95em;color:#aaa;"></div>
+            <br />
+            <label for="scrollsGoalLevel"><h3>Goal Level:</h3></label>
+            <select id="scrollsGoalLevel"></select>
+            <div style="margin-top:0.5em;">
+              <span>Level: <span id="scrollsGoalLevelDisplay">--</span></span><br>
+              <span>XP: <span id="scrollsGoalXPDisplay">--</span></span>
+            </div>
+            <br />
+            <label for="scrollsMobSelect"><h3>Mob:</h3></label>
+            <select id="scrollsMobSelect"></select>
+            <div id="scrollsMobQuestExp" style="margin-top:0.5em;font-size:0.95em;color:#aaa;"></div>
+          </div>
+        </div>
+        <div class="content-box" id="scrolls-results">
+      <h2>Results</h2>
+        <!-- Results content will go here -->
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/script.js"></script>
+  <script type="module" src="/js/header.js"></script>
+  <script src="/js/scrolls.js"></script>
+  <script>
+    function toggleTabs() {
+      const tabs = document.querySelector('.tabs');
+      tabs.classList.toggle('active');
+    }
+
+    function generateScrollInputs() {
+      scrollsInputsContainer.innerHTML = '';
+      scrollTypes.forEach(type => {
+        const div = document.createElement('div');
+        div.style.marginBottom = '0.5em';
+        let extra = '';
+        if (type === 'shadow' || type === 'void' || type === 'sunlight') {
+          extra = `<label style='margin-left:0.5em; font-weight:normal;'><input type='checkbox' id='${type}MultiplierCheckbox' /> x2.5?</label>`;
+        }
+        div.innerHTML = `
+          <label for="scrollInput_${type}">${type.charAt(0).toUpperCase() + type.slice(1)} Scroll:</label>
+          <input type="number" id="scrollInput_${type}" min="0" placeholder="Enter value...">${extra}
+        `;
+        scrollsInputsContainer.appendChild(div);
+      });
+      addScrollInputListeners();
+    }
+  </script>
+</body>
+</html> 

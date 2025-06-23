@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Levels Table</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .level-dropdown { margin-bottom: 1em; }
+    .level-table { border-collapse: collapse; width: 100%; margin-bottom: 1em; }
+    .level-table th, .level-table td { border: 1px solid #ccc; padding: 0.5em; text-align: right; }
+    .level-table th { background: #f0f0f0; }
+    .dropdown-header { cursor: pointer; background: #e0e0e0; padding: 0.5em; font-weight: bold; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <button class="hamburger-menu" onclick="toggleTabs()"><span class="hamburger-icon"><span></span><span></span><span></span></span></button>
+  <div class="tabs">
+    <a href="/" class="tab-button">Summary</a>
+    <a href="/add-data/" class="tab-button">Add Data</a>
+    <a href="/graphs/" class="tab-button">Graphs</a>
+    <a href="/mobs/" class="tab-button">Mob Stats</a>
+    <a href="/scrolls/" class="tab-button">Scrolls</a>
+    <a href="/levels/" class="tab-button active">Levels</a>
+  </div>
+
+  <div class="container">
+    <h1 class="page-title">Level XP Table</h1>
+    <div id="levels-container"></div>
+  </div>
+  <script src="/js/levels.js"></script>
+</body>
+</html> 

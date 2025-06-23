@@ -104,4 +104,16 @@ export async function addPlayer(player) {
     console.error('Error adding player:', error);
     throw error;
   }
+}
+
+// Fetch mob values
+export async function getMobValues() {
+  const res = await fetch('/db/mobValues.json');
+  return res.json();
+}
+
+// Fetch scroll prices
+export async function getScrollPrices() {
+  const res = await fetch('/db/scrollPrices.json');
+  return res.json();
 } 
