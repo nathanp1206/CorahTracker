@@ -157,6 +157,17 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('DOMContentLoaded: Displaying latest player stats...');
         displayLatestPlayerStats();
     }
+
+    // Setup searchable player dropdowns on the main page
+    if (document.getElementById('summaryPlayerSelect')) {
+        makeSummaryPlayerDropdownSearchable();
+    }
+    if (document.getElementById('avgXpPlayerSelect')) {
+        makeAvgXpPlayerDropdownSearchable();
+    }
+    if (document.getElementById('snapshotPlayerSelect')) {
+        makeSnapshotPlayerDropdownSearchable();
+    }
 });
 
 // Chart instances
@@ -196,9 +207,9 @@ function initializeCharts() {
             layout: {
                 padding: {
                     top: 10,
-                    right: 10,
-                    bottom: 10,
-                    left: 10
+                    right: 5,
+                    bottom: 5,
+                    left: 5
                 }
             },
             scales: {
@@ -208,7 +219,7 @@ function initializeCharts() {
                     beginAtZero: true,
                     title: {
                       display: true,
-                      text: 'Total EXP',
+                      text: '',
                       font: { size: 10 },
                       color: '#4CAF50'
                     },
@@ -226,7 +237,7 @@ function initializeCharts() {
                     },
                      title: {
                       display: true,
-                      text: 'Gold',
+                      text: '',
                       font: { size: 10 },
                       color: '#FFC107'
                     },
@@ -244,7 +255,7 @@ function initializeCharts() {
                     },
                     title: {
                       display: true,
-                      text: 'Mobs Killed',
+                      text: '',
                       font: { size: 10 },
                       color: '#2196F3'
                     },
@@ -382,7 +393,7 @@ function initializeCharts() {
             },
             scales: {
                 y: {
-                    min: 1.4,
+                    min: 1.0,
                     beginAtZero: false
                 }
             }
@@ -868,7 +879,7 @@ async function populatePlayerDropdown() {
     const hunt3rIndex = players.indexOf('Hunt3r1206');
     let hunt3r = null;
     if (hunt3rIndex > -1) {
-      hunt3r = players.splice(hunt3rIndex, 1)[0]; // Remove Hunt3r1206 from the players array
+      hunt3r = players.splice(hunt3rIndex, 1)[0];
     }
 
     // Sort the remaining players alphabetically
@@ -900,6 +911,21 @@ async function populatePlayerDropdown() {
       option.textContent = player;
       playerSelect.appendChild(option);
     });
+
+    // Prepare items for searchable select
+    const items = [];
+    if (hunt3r) {
+      items.push({ value: hunt3r, text: hunt3r });
+    }
+    items.push({ value: '', text: 'All Players' });
+    players.forEach(player => {
+      items.push({ value: player, text: player });
+    });
+
+    // Make the dropdown searchable
+    if (typeof setupSearchableSelect === 'function') {
+      setupSearchableSelect(playerSelect, items, { placeholder: 'Select a player' });
+    }
 
     // Determine the initially selected player based on the dropdown state after population
     const initialPlayer = playerSelect.value;
@@ -1067,7 +1093,7 @@ async function setupPlayerSnapshot() {
         
         // Populate goal level dropdown
         goalLevelSelect.innerHTML = '<option value="">Select a level</option>';
-        xpValues.forEach(level => {
+        xpValues.slice().reverse().forEach(level => {
             const option = document.createElement('option');
             option.value = level.total_exp;
             option.textContent = level.level;
@@ -1319,7 +1345,7 @@ async function setupPlayerSnapshot() {
 
         if (goalLevelValue) {
             // If a goal level is selected, use its XP value and the goal date
-            const selectedLevel = xpValues.find(level => level.total_exp === goalLevelValue); // Find the level object
+            const selectedLevel = xpValues.find(level => String(level.total_exp) === String(goalLevelValue)); // Find the level object
              goalLevelDisplaySpan.textContent = selectedLevel ? selectedLevel.level : '--'; // Display level number
             goalXPDisplaySpan.textContent = parseInt(goalLevelValue).toLocaleString();
             // Update Goal Snapshot Date directly from the goal date input value
@@ -1519,7 +1545,7 @@ async function setupAverageDailyXP() {
             
             // Populate goal level dropdown
             goalLevelSelect.innerHTML = '<option value="">Select a level</option>';
-            xpValues.forEach(level => {
+            xpValues.slice().reverse().forEach(level => {
                 const option = document.createElement('option');
                 option.value = level.total_exp;
                 option.textContent = level.level;
@@ -1761,4 +1787,59 @@ async function setupAverageDailyXP() {
         console.error('Error loading players:', error);
         playerSelect.innerHTML = '<option value="">Error loading players</option>';
     }
+}
+
+// Add helper functions to make dropdowns searchable
+async function makeSummaryPlayerDropdownSearchable() {
+    const select = document.getElementById('summaryPlayerSelect');
+    if (!select) return;
+    try {
+        const response = await fetch('/api/players');
+        if (!response.ok) throw new Error('Failed to fetch players');
+        let players = await response.json();
+        const hunt3rIndex = players.indexOf('Hunt3r1206');
+        let hunt3r = null;
+        if (hunt3rIndex > -1) hunt3r = players.splice(hunt3rIndex, 1)[0];
+        players.sort();
+        const items = [];
+        if (hunt3r) items.push({ value: hunt3r, text: hunt3r });
+        players.forEach(player => items.push({ value: player, text: player }));
+        setupSearchableSelect(select, items, { placeholder: 'Select a player' });
+    } catch (e) { console.error(e); }
+}
+
+async function makeAvgXpPlayerDropdownSearchable() {
+    const select = document.getElementById('avgXpPlayerSelect');
+    if (!select) return;
+    try {
+        const response = await fetch('/api/players');
+        if (!response.ok) throw new Error('Failed to fetch players');
+        let players = await response.json();
+        const hunt3rIndex = players.indexOf('Hunt3r1206');
+        let hunt3r = null;
+        if (hunt3rIndex > -1) hunt3r = players.splice(hunt3rIndex, 1)[0];
+        players.sort();
+        const items = [];
+        if (hunt3r) items.push({ value: hunt3r, text: hunt3r });
+        players.forEach(player => items.push({ value: player, text: player }));
+        setupSearchableSelect(select, items, { placeholder: 'Select a player' });
+    } catch (e) { console.error(e); }
+}
+
+async function makeSnapshotPlayerDropdownSearchable() {
+    const select = document.getElementById('snapshotPlayerSelect');
+    if (!select) return;
+    try {
+        const response = await fetch('/api/players');
+        if (!response.ok) throw new Error('Failed to fetch players');
+        let players = await response.json();
+        const hunt3rIndex = players.indexOf('Hunt3r1206');
+        let hunt3r = null;
+        if (hunt3rIndex > -1) hunt3r = players.splice(hunt3rIndex, 1)[0];
+        players.sort();
+        const items = [];
+        if (hunt3r) items.push({ value: hunt3r, text: hunt3r });
+        players.forEach(player => items.push({ value: player, text: player }));
+        setupSearchableSelect(select, items, { placeholder: 'Select a player' });
+    } catch (e) { console.error(e); }
 }

@@ -50,13 +50,8 @@ async function fetchAllData() {
 
 // Populate player dropdown and show most recent stats
 function populatePlayerDropdown() {
-  playerSelect.innerHTML = '';
-  players.forEach(player => {
-    const option = document.createElement('option');
-    option.value = player;
-    option.textContent = player;
-    playerSelect.appendChild(option);
-  });
+  const playerItems = players.map(player => ({ text: player, value: player }));
+  setupSearchableSelect(playerSelect, playerItems, { displayClass: 'searchable-select-display-scrolls' });
   updatePlayerStatsDisplay();
 }
 
@@ -76,7 +71,7 @@ function updatePlayerStatsDisplay() {
 // Populate goal level dropdown
 function populateGoalLevelDropdown() {
   goalLevelSelect.innerHTML = '<option value="">Select a level</option>';
-  xpLevels.forEach(level => {
+  xpLevels.slice().reverse().forEach(level => {
     const option = document.createElement('option');
     option.value = level.total_exp;
     option.textContent = level.level;
@@ -91,21 +86,42 @@ function populateGoalLevelDropdown() {
 
 function updateGoalLevelDisplay() {
   const selectedXP = goalLevelSelect.value;
-  const selectedLevel = xpLevels.find(l => l.total_exp === selectedXP);
+  const selectedLevel = xpLevels.find(l => String(l.total_exp) === String(selectedXP));
   goalLevelDisplay.textContent = selectedLevel ? selectedLevel.level : '--';
   goalXPDisplay.textContent = selectedLevel ? parseInt(selectedLevel.total_exp).toLocaleString() : '--';
 }
 
 // Populate mob dropdown
 function populateMobDropdown() {
+  const regionOrder = [
+    'Jurand', 'Mitron', 'Airos', 'Forilon', 
+    'Iceroost', 'Volcardi', 'Dekdun', 'Ranhain'
+  ];
+
+  const sortedMobs = mobs.slice().sort((a, b) => {
+    const regionAIndex = regionOrder.indexOf(a.region);
+    const regionBIndex = regionOrder.indexOf(b.region);
+
+    // If a region is not in the list, place it at the end
+    const effectiveIndexA = regionAIndex === -1 ? Infinity : regionAIndex;
+    const effectiveIndexB = regionBIndex === -1 ? Infinity : regionBIndex;
+
+    if (effectiveIndexA !== effectiveIndexB) {
+      return effectiveIndexA - effectiveIndexB;
+    }
+
+    // If regions are the same, sort by exp in descending order
+    return b.exp - a.exp;
+  });
+
   mobSelect.innerHTML = '';
-  // Reverse the order of mobs
-  mobs.slice().reverse().forEach(mob => {
+  sortedMobs.forEach(mob => {
     const option = document.createElement('option');
     option.value = mob.name;
     option.textContent = mob.name;
     mobSelect.appendChild(option);
   });
+
   // Default to Grimshade Colossus if present
   const grimshadeOption = Array.from(mobSelect.options).find(opt => opt.value === 'Grimshade Colossus');
   if (grimshadeOption) {
@@ -120,7 +136,8 @@ function updateMobQuestExpDisplay() {
   if (!mob) { mobQuestExpDiv.textContent = '--'; return; }
   let html = '<strong>Quest EXP per scroll:</strong><br>';
   scrollTypes.forEach(type => {
-    html += `${type.charAt(0).toUpperCase() + type.slice(1)}: <span>${mob.questExp[type]}</span><br>`;
+    const exp = mob.questExp[type] || 0;
+    html += `${type.charAt(0).toUpperCase() + type.slice(1)}: <span>${exp.toLocaleString()}</span><br>`;
   });
   mobQuestExpDiv.innerHTML = html;
 }
