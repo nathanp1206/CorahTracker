@@ -1063,3 +1063,11 @@ input[type="checkbox"]:checked {
 .searchable-select-dropdown[style*="display: block"] {
   display: block !important;
 }
+
+.mgmt-dropdown { position: relative; display: inline-block; margin-left: 1em; }
+.mgmt-dropbtn { background: #2d6cdf; color: #fff; padding: 0.5em 1.2em; border: none; border-radius: 6px; cursor: pointer; font-size: 1em; }
+.mgmt-dropbtn:hover, .mgmt-dropbtn:focus { background: #1b4e9b; }
+.mgmt-dropdown-content { display: none; position: absolute; right: 0; background: #fff; min-width: 160px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 3000; border-radius: 6px; overflow: hidden; }
+.mgmt-dropdown-content a { color: #333; padding: 12px 16px; text-decoration: none; display: block; font-size: 1em; }
+.mgmt-dropdown-content a:hover { background: #f1f1f1; }
+.mgmt-dropdown:hover .mgmt-dropdown-content, .mgmt-dropdown:focus-within .mgmt-dropdown-content { display: block; }

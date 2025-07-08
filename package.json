@@ -15,7 +15,9 @@
     "docker": "^1.0.0",
     "express": "^5.1.0",
     "lowdb": "^7.0.1",
-    "nowdb": "^0.0.7"
+    "nowdb": "^0.0.7",
+    "bcrypt": "^5.1.0",
+    "jsonwebtoken": "^9.0.0"
   },
   "type": "module"
 }

@@ -51,7 +51,30 @@ async function fetchAllData() {
 // Populate player dropdown and show most recent stats
 function populatePlayerDropdown() {
   const playerItems = players.map(player => ({ text: player, value: player }));
+
+  // Get signed-in player from JWT
+  let signedInPlayer = null;
+  const token = localStorage.getItem('jwt');
+  if (token) {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      signedInPlayer = payload.username;
+    } catch (e) {}
+  }
+
+  // Determine default selection: signed-in player, else Hunt3r1206, else first player
+  let defaultValue = '';
+  if (signedInPlayer && playerItems.some(i => i.value === signedInPlayer)) {
+    defaultValue = signedInPlayer;
+  } else if (playerItems.some(i => i.value === 'Hunt3r1206')) {
+    defaultValue = 'Hunt3r1206';
+  } else if (playerItems.length > 0) {
+    defaultValue = playerItems[0].value;
+  }
+
   setupSearchableSelect(playerSelect, playerItems, { displayClass: 'searchable-select-display-scrolls' });
+  playerSelect.value = defaultValue;
+  playerSelect.dispatchEvent(new Event('change', { bubbles: true }));
   updatePlayerStatsDisplay();
 }
 

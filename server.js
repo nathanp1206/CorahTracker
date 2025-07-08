@@ -16,12 +16,48 @@ import {
   configureBigQuery,
   testBigQueryConnection,
   deletePlayer,
-  deletePlayerStats
+  deletePlayerStats,
+  getUserByUsername,
+  addUser,
+  checkUserCredentials,
+  getAllUsers,
+  updateUser,
+  deleteUserByUsername,
+  deletePlayerStat,
+  deleteGoldPrice
 } from './bigquery-service.js';
+import jwt from 'jsonwebtoken';
 
 // Needed to emulate __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_here';
+const JWT_EXPIRES_IN = '2h';
+
+// Middleware to check JWT
+function authenticateJWT(req, res, next) {
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = authHeader.split(' ')[1];
+    jwt.verify(token, JWT_SECRET, async (err, user) => {
+      if (err) return res.status(403).json({ error: 'Invalid token' });
+      // Check if user is still active
+      try {
+        const dbUser = await getUserByUsername(user.username);
+        if (!dbUser || dbUser.is_active === false) {
+          return res.status(403).json({ error: 'User is not active' });
+        }
+      } catch (e) {
+        return res.status(500).json({ error: 'User status check failed' });
+      }
+      req.user = user;
+      next();
+    });
+  } else {
+    res.status(401).json({ error: 'Unauthorized' });
+  }
+}
 
 // Setup Express
 const app = express();
@@ -304,6 +340,127 @@ app.get('/api/mob-values', async (req, res) => {
         console.error('Error reading mob values:', error);
         res.status(500).json({ error: 'Failed to read mob values' });
     }
+});
+
+// Login endpoint
+app.post('/api/login', express.json(), async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const user = await checkUserCredentials(username, password);
+    if (!user) return res.status(401).json({ error: 'Invalid credentials or inactive user' });
+    if (user.is_active === false) return res.status(403).json({ error: 'User is not active' });
+    const token = jwt.sign({ username: user.username, is_admin: user.is_admin, is_active: user.is_active }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+    res.json({ token });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Registration endpoint (admin only)
+app.post('/api/register', express.json(), authenticateJWT, async (req, res) => {
+  if (!req.user || !req.user.is_admin) return res.status(403).json({ error: 'Forbidden' });
+  const { username, password, is_admin = false, is_active = true } = req.body;
+  try {
+    const result = await addUser({ username, password, is_admin, is_active });
+    res.json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// --- Admin User Management Endpoints ---
+app.get('/api/users', authenticateJWT, async (req, res) => {
+  if (!req.user || !req.user.is_admin) return res.status(403).json({ error: 'Forbidden' });
+  try {
+    const users = await getAllUsers();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/users/update', authenticateJWT, async (req, res) => {
+  if (!req.user || !req.user.is_admin) return res.status(403).json({ error: 'Forbidden' });
+  const { username, is_admin, is_active } = req.body;
+  try {
+    await updateUser({ username, is_admin, is_active });
+    res.json({ success: true });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+app.post('/api/users/delete', authenticateJWT, async (req, res) => {
+  if (!req.user || !req.user.is_admin) return res.status(403).json({ error: 'Forbidden' });
+  const { username } = req.body;
+  try {
+    await deleteUserByUsername(username);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// POST route: Delete player stat by player and dateTime
+app.post('/api/player-stats/delete', authenticateJWT, async (req, res) => {
+  if (!req.user || !req.user.is_admin) return res.status(403).json({ error: 'Forbidden' });
+  const { player, dateTime } = req.body;
+  try {
+    await deletePlayerStat(player, dateTime);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// DELETE route: Delete gold price by dateTime and price
+app.post('/api/gold-prices/delete', authenticateJWT, async (req, res) => {
+  const { dateTime, price } = req.body;
+  if (!dateTime || price === undefined) return res.status(400).json({ success: false, error: 'dateTime and price are required' });
+  try {
+    await deleteGoldPrice(dateTime, price);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// POST route: Delete player
+app.post('/api/deletePlayer', authenticateJWT, async (req, res) => {
+  try {
+    const { player } = req.body;
+    if (!player) {
+      return res.status(400).json({ success: false, error: 'Player name is required' });
+    }
+    // Only allow admin users
+    if (!req.user || !req.user.is_admin) {
+      return res.status(403).json({ success: false, error: 'Admin privileges required' });
+    }
+    await deletePlayer(player);
+    await deletePlayerStats(player);
+    res.json({ success: true, player });
+  } catch (error) {
+    console.error('❌ Error in /api/deletePlayer:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Protect all API routes except login and registration
+app.use((req, res, next) => {
+  if (
+    req.path.startsWith('/api/login') ||
+    (req.path.startsWith('/api/register') && req.method === 'POST') ||
+    req.path.startsWith('/public') ||
+    req.path === '/' ||
+    req.path.endsWith('.js') ||
+    req.path.endsWith('.css') ||
+    req.path.endsWith('.ico') ||
+    req.path.endsWith('.png') ||
+    req.path.endsWith('.html')
+  ) {
+    return next();
+  }
+  authenticateJWT(req, res, next);
 });
 
 // Initialize DB and start server

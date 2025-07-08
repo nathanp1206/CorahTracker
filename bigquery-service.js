@@ -1,5 +1,6 @@
 import { BigQuery } from '@google-cloud/bigquery';
 import { bigqueryConfig } from './bigquery-config.js';
+import bcrypt from 'bcrypt';
 
 // BigQuery configuration
 const bigquery = new BigQuery({
@@ -423,6 +424,159 @@ export async function deletePlayerStats(player) {
     return { success: true, player };
   } catch (error) {
     console.error('Error deleting player stats from BigQuery:', error);
+    throw error;
+  }
+} 
+
+// Update deletePlayerStat to delete by player and dateTime
+export async function deletePlayerStat(player, dateTime) {
+  try {
+    const query = `
+      UPDATE \`${getTableName('playerStats')}\`
+      SET stats = ARRAY(
+        SELECT s FROM UNNEST(stats) AS s
+        WHERE NOT (
+          s.player = @player
+          AND s.dateTime IN (TIMESTAMP(@dateTime))
+        )
+      )
+      WHERE EXISTS (
+        SELECT 1 FROM UNNEST(stats) AS s
+        WHERE s.player = @player
+          AND s.dateTime IN (TIMESTAMP(@dateTime))
+      )
+    `;
+    const options = {
+      query: query,
+      params: { player, dateTime },
+      location: bigqueryConfig.location
+    };
+    await bigquery.query(options);
+    return { success: true, player };
+  } catch (error) {
+    console.error('Error deleting player stat from BigQuery:', error);
+    throw error;
+  }
+}
+
+// Delete a gold price entry by dateTime and price (dateTime as string in DB format)
+export async function deleteGoldPrice(dateTime, price) {
+  try {
+    const query = `
+      UPDATE \`${getTableName('goldPrices')}\`
+      SET goldPrices = ARRAY(
+        SELECT g FROM UNNEST(goldPrices) AS g
+        WHERE NOT (STRING(g.dateTime) = @dateTime AND ABS(g.price - @price) < 0.0001)
+      )
+      WHERE TRUE
+    `;
+    const options = {
+      query: query,
+      params: { dateTime, price: Number(price) },
+      location: bigqueryConfig.location
+    };
+    await bigquery.query(options);
+    return { success: true, dateTime, price };
+  } catch (error) {
+    console.error('Error deleting gold price from BigQuery:', error);
+    throw error;
+  }
+}
+
+// User Authentication Operations
+export async function getUserByUsername(username) {
+  try {
+    const query = `SELECT * FROM \`${getTableName('users')}\` WHERE username = @username`;
+    const options = {
+      query,
+      params: { username },
+      location: bigqueryConfig.location
+    };
+    const [rows] = await bigquery.query(options);
+    return rows.length > 0 ? rows[0] : null;
+  } catch (error) {
+    console.error('Error fetching user from BigQuery:', error);
+    throw error;
+  }
+}
+
+export async function addUser({ username, password, is_admin = false, is_active = true }) {
+  try {
+    // Check if user already exists
+    const existingUser = await getUserByUsername(username);
+    if (existingUser) {
+      throw new Error('User already exists');
+    }
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const query = `INSERT INTO \`${getTableName('users')}\` (username, password, is_admin, is_active) VALUES (@username, @password, @is_admin, @is_active)`;
+    const options = {
+      query,
+      params: { username, password: hashedPassword, is_admin, is_active },
+      location: bigqueryConfig.location
+    };
+    await bigquery.query(options);
+    return { success: true, username };
+  } catch (error) {
+    console.error('Error adding user to BigQuery:', error);
+    throw error;
+  }
+}
+
+export async function checkUserCredentials(username, password) {
+  try {
+    const user = await getUserByUsername(username);
+    if (!user || !user.is_active) return null;
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) return null;
+    return user;
+  } catch (error) {
+    console.error('Error checking user credentials:', error);
+    throw error;
+  }
+} 
+
+// Admin User Management
+export async function getAllUsers() {
+  try {
+    const query = `SELECT username, is_admin, is_active FROM \`${getTableName('users')}\``;
+    const options = { query, location: bigqueryConfig.location };
+    const [rows] = await bigquery.query(options);
+    return rows;
+  } catch (error) {
+    console.error('Error fetching all users:', error);
+    throw error;
+  }
+}
+
+export async function updateUser({ username, is_admin, is_active }) {
+  try {
+    const query = `UPDATE \`${getTableName('users')}\` SET is_admin = @is_admin, is_active = @is_active WHERE username = @username`;
+    const options = {
+      query,
+      params: { username, is_admin, is_active },
+      location: bigqueryConfig.location
+    };
+    await bigquery.query(options);
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw error;
+  }
+}
+
+export async function deleteUserByUsername(username) {
+  try {
+    const query = `DELETE FROM \`${getTableName('users')}\` WHERE username = @username`;
+    const options = {
+      query,
+      params: { username },
+      location: bigqueryConfig.location
+    };
+    await bigquery.query(options);
+    return { success: true };
+  } catch (error) {
+    console.error('Error deleting user:', error);
     throw error;
   }
 } 

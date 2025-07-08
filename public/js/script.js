@@ -1,3 +1,25 @@
+// JWT check: redirect to login if not present or expired
+(function() {
+  // Don't run on the login page itself
+  if (window.location.pathname.endsWith('/login.html')) return;
+  const token = localStorage.getItem('jwt');
+  if (!token) {
+    window.location.href = '/login.html';
+    return;
+  }
+  // Check expiration (decode JWT payload)
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    if (payload.exp && Date.now() / 1000 > payload.exp) {
+      localStorage.removeItem('jwt');
+      window.location.href = '/login.html';
+    }
+  } catch (e) {
+    localStorage.removeItem('jwt');
+    window.location.href = '/login.html';
+  }
+})();
+
 // Theme handling
 const themeStorageKey = 'theme';
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
@@ -623,46 +645,79 @@ function submitStats() {
     return;
   }
 
-  console.log('Submitting stats:', { player, exp, mobsKilled, gold });
+  // Helper to actually submit after validation
+  async function doSubmit() {
+    console.log('Submitting stats:', { player, exp, mobsKilled, gold });
+    fetch('/api/addStat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ player, exp, mobsKilled, gold })
+    })
+      .then(res => {
+        console.log('Response status:', res.status);
+        return res.json();
+      })
+      .then(data => {
+        console.log('Response data:', data);
+        if (data.success) {
+          alert('Stats added successfully');
+          // Clear form
+          document.getElementById('player').value = '';
+          document.getElementById('exp').value = '';
+          document.getElementById('mobsKilled').value = '';
+          document.getElementById('gold').value = '';
+          // Refresh player chart data and dropdown after adding new stat
+          if (playerChart) {
+            const playerSelect = document.getElementById('playerSelect');
+            const selectedPlayer = playerSelect ? playerSelect.value : ''; // Use empty string for All Players
+            loadChartData(selectedPlayer);
+          }
+          // Also refresh the add data player dropdown
+          fetchPlayers();
+          // Refresh the Latest Player Stats dropdown if on the index page
+          if (document.getElementById('latest-player-stats')) {
+            displayLatestPlayerStats();
+          }
+        } else {
+          alert('Error: ' + (data.error || 'Unknown error'));
+        }
+      })
+      .catch(err => {
+        console.error('Fetch error:', err);
+        alert('Error adding stats: ' + err.message);
+      });
+  }
 
-  fetch('/api/addStat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ player, exp, mobsKilled, gold })
-  })
-    .then(res => {
-      console.log('Response status:', res.status);
-      return res.json();
-    })
-    .then(data => {
-      console.log('Response data:', data);
-      if (data.success) {
-        alert('Stats added successfully');
-        // Clear form
-        document.getElementById('player').value = '';
-        document.getElementById('exp').value = '';
-        document.getElementById('mobsKilled').value = '';
-        document.getElementById('gold').value = '';
-        // Refresh player chart data and dropdown after adding new stat
-        if (playerChart) {
-          const playerSelect = document.getElementById('playerSelect');
-          const selectedPlayer = playerSelect ? playerSelect.value : ''; // Use empty string for All Players
-          loadChartData(selectedPlayer);
-        }
-        // Also refresh the add data player dropdown
-        fetchPlayers();
-        // Refresh the Latest Player Stats dropdown if on the index page
-        if (document.getElementById('latest-player-stats')) {
-          displayLatestPlayerStats();
-        }
-      } else {
-        alert('Error: ' + (data.error || 'Unknown error'));
-      }
-    })
-    .catch(err => {
-      console.error('Fetch error:', err);
-      alert('Error adding stats: ' + err.message);
-    });
+  // Fetch latest stats for the player and validate
+  fetchPlayerStats().then(stats => {
+    if (!stats || !Array.isArray(stats)) {
+      // If can't fetch, just submit
+      doSubmit();
+      return;
+    }
+    // Find latest stat for this player
+    const playerStats = stats.filter(s => s.player === player);
+    if (!playerStats.length) {
+      doSubmit();
+      return;
+    }
+    const latest = playerStats.reduce((a, b) => new Date(a.dateTime) > new Date(b.dateTime) ? a : b);
+    let warnFields = [];
+    if (Number(exp) < Number(latest.exp)) warnFields.push({name: 'EXP', entered: exp, latest: latest.exp});
+    if (Number(mobsKilled) < Number(latest.mobsKilled)) warnFields.push({name: 'Total Mobs Killed', entered: mobsKilled, latest: latest.mobsKilled});
+    if (Number(gold) < Number(latest.gold)) warnFields.push({name: 'Total Gold', entered: gold, latest: latest.gold});
+    if (warnFields.length > 0) {
+      const fieldMsgs = warnFields.map(f => {
+        const enteredFormatted = Number(f.entered).toLocaleString();
+        const latestFormatted = Number(f.latest).toLocaleString();
+        return `${f.name}: Entered (${enteredFormatted}) - Latest (${latestFormatted})<br /><br />`;
+      }).join('');
+      const msg = `The following values are lower than the most recent data:<br /><br /><br />${fieldMsgs}<br /><br />Please correct these values before submitting.`;
+      showBackOnlyAlert(msg, true);
+      return; // Do not submit
+    }
+    doSubmit();
+  });
 }
 
 function submitGoldPrice() {
@@ -822,28 +877,45 @@ async function fetchPlayers() {
     const data = await response.json();
 
     if (response.ok) {
-      let playerNames = data; 
-      const playerSelect = document.getElementById('player'); // Target the dropdown on add data page
-      if (playerSelect) { // Check if the element exists
-        playerSelect.innerHTML = ''; // Clear existing options
-
-        // Separate 'Hunt3r1206' and sort the rest alphabetically
-        const hunt3rIndex = playerNames.indexOf('Hunt3r1206');
-        let sortedPlayerNames = [];
-        if (hunt3rIndex > -1) {
-          const hunt3r = playerNames.splice(hunt3rIndex, 1)[0]; // Remove and get Hunt3r1206
-          sortedPlayerNames = playerNames.sort(); // Sort remaining
-          sortedPlayerNames.unshift(hunt3r); // Add Hunt3r1206 to the front
-        } else {
-          sortedPlayerNames = playerNames.sort(); // Just sort if Hunt3r1206 is not present
+      let playerNames = data;
+      const playerSelect = document.getElementById('player');
+      if (playerSelect) {
+        playerSelect.innerHTML = '';
+        // Get JWT and decode
+        const token = localStorage.getItem('jwt');
+        let isAdmin = false;
+        let username = '';
+        if (token) {
+          try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            isAdmin = !!payload.is_admin;
+            username = payload.username;
+          } catch (e) {}
         }
-
-        sortedPlayerNames.forEach(name => {
+        if (isAdmin) {
+          // Admin: show all players (sorted, Hunt3r1206 first)
+          const hunt3rIndex = playerNames.indexOf('Hunt3r1206');
+          let sortedPlayerNames = [];
+          if (hunt3rIndex > -1) {
+            const hunt3r = playerNames.splice(hunt3rIndex, 1)[0];
+            sortedPlayerNames = playerNames.sort();
+            sortedPlayerNames.unshift(hunt3r);
+          } else {
+            sortedPlayerNames = playerNames.sort();
+          }
+          sortedPlayerNames.forEach(name => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            playerSelect.appendChild(option);
+          });
+        } else {
+          // Non-admin: show only their own username
           const option = document.createElement('option');
-          option.value = name;
-          option.textContent = name;
+          option.value = username;
+          option.textContent = username;
           playerSelect.appendChild(option);
-        });
+        }
       }
     } else {
       console.error('Error fetching players:', data.error);
@@ -872,6 +944,16 @@ async function populatePlayerDropdown() {
 
     if (!playerSelect) return; // Exit if the dropdown doesn't exist
 
+    // Get signed-in player from JWT
+    let signedInPlayer = null;
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        signedInPlayer = payload.username;
+      } catch (e) {}
+    }
+
     // Clear existing options
     playerSelect.innerHTML = '';
 
@@ -890,7 +972,6 @@ async function populatePlayerDropdown() {
       const hunt3rOption = document.createElement('option');
       hunt3rOption.value = hunt3r;
       hunt3rOption.textContent = hunt3r;
-      hunt3rOption.selected = true; // Set as default selected
       playerSelect.appendChild(hunt3rOption);
     }
 
@@ -898,10 +979,6 @@ async function populatePlayerDropdown() {
     const allPlayersOption = document.createElement('option');
     allPlayersOption.value = '';
     allPlayersOption.textContent = 'All Players';
-    // Set 'All Players' as selected only if Hunt3r1206 was not found
-    if (!hunt3r) {
-        allPlayersOption.selected = true;
-    }
     playerSelect.appendChild(allPlayersOption);
 
     // Add the rest of the sorted players
@@ -922,15 +999,24 @@ async function populatePlayerDropdown() {
       items.push({ value: player, text: player });
     });
 
+    // Determine default selection: signed-in player, else Hunt3r1206, else All Players
+    let defaultValue = '';
+    if (signedInPlayer && items.some(i => i.value === signedInPlayer)) {
+      defaultValue = signedInPlayer;
+    } else if (hunt3r) {
+      defaultValue = hunt3r;
+    }
+    playerSelect.value = defaultValue;
+
     // Make the dropdown searchable
     if (typeof setupSearchableSelect === 'function') {
       setupSearchableSelect(playerSelect, items, { placeholder: 'Select a player' });
+      playerSelect.value = defaultValue; // Ensure select value matches after setup
+      playerSelect.dispatchEvent(new Event('change', { bubbles: true }));
     }
 
-    // Determine the initially selected player based on the dropdown state after population
-    const initialPlayer = playerSelect.value;
     // Load chart data for the initial selected player, applying the filter state
-    loadChartData(initialPlayer);
+    loadChartData(playerSelect.value);
 
   } catch (error) {
     console.error('Error fetching players:', error);
@@ -1804,7 +1890,25 @@ async function makeSummaryPlayerDropdownSearchable() {
         const items = [];
         if (hunt3r) items.push({ value: hunt3r, text: hunt3r });
         players.forEach(player => items.push({ value: player, text: player }));
+        // Get signed-in player from JWT
+        let signedInPlayer = null;
+        const token = localStorage.getItem('jwt');
+        if (token) {
+          try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            signedInPlayer = payload.username;
+          } catch (e) {}
+        }
+        // Determine default selection
+        let defaultValue = '';
+        if (signedInPlayer && items.some(i => i.value === signedInPlayer)) {
+          defaultValue = signedInPlayer;
+        } else if (hunt3r) {
+          defaultValue = hunt3r;
+        }
         setupSearchableSelect(select, items, { placeholder: 'Select a player' });
+        select.value = defaultValue;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
     } catch (e) { console.error(e); }
 }
 
@@ -1822,7 +1926,25 @@ async function makeAvgXpPlayerDropdownSearchable() {
         const items = [];
         if (hunt3r) items.push({ value: hunt3r, text: hunt3r });
         players.forEach(player => items.push({ value: player, text: player }));
+        // Get signed-in player from JWT
+        let signedInPlayer = null;
+        const token = localStorage.getItem('jwt');
+        if (token) {
+          try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            signedInPlayer = payload.username;
+          } catch (e) {}
+        }
+        // Determine default selection
+        let defaultValue = '';
+        if (signedInPlayer && items.some(i => i.value === signedInPlayer)) {
+          defaultValue = signedInPlayer;
+        } else if (hunt3r) {
+          defaultValue = hunt3r;
+        }
         setupSearchableSelect(select, items, { placeholder: 'Select a player' });
+        select.value = defaultValue;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
     } catch (e) { console.error(e); }
 }
 
@@ -1840,6 +1962,164 @@ async function makeSnapshotPlayerDropdownSearchable() {
         const items = [];
         if (hunt3r) items.push({ value: hunt3r, text: hunt3r });
         players.forEach(player => items.push({ value: player, text: player }));
+        // Get signed-in player from JWT
+        let signedInPlayer = null;
+        const token = localStorage.getItem('jwt');
+        if (token) {
+          try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            signedInPlayer = payload.username;
+          } catch (e) {}
+        }
+        // Determine default selection
+        let defaultValue = '';
+        if (signedInPlayer && items.some(i => i.value === signedInPlayer)) {
+          defaultValue = signedInPlayer;
+        } else if (hunt3r) {
+          defaultValue = hunt3r;
+        }
         setupSearchableSelect(select, items, { placeholder: 'Select a player' });
+        select.value = defaultValue;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
     } catch (e) { console.error(e); }
+}
+
+// Admin Registration Modal Logic
+(function() {
+  // Only run if not on login page
+  if (window.location.pathname.endsWith('/login.html')) return;
+  const token = localStorage.getItem('jwt');
+  if (!token) return;
+  let isAdmin = false;
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    isAdmin = !!payload.is_admin;
+  } catch (e) {}
+  // Always inject the modal, but do not create the floating button or logout button here
+  // Modal HTML
+  const modal = document.createElement('div');
+  modal.innerHTML = `
+    <div id="adminRegModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:2000;align-items:center;justify-content:center;">
+      <div style="background:#23272a;color:#f1f1f1;padding:2em;border-radius:8px;max-width:400px;width:100%;position:relative;">
+        <button id="closeRegModal" style="position:absolute;top:8px;right:8px;font-size:1.2em;color:#fff;background:none;border:none;cursor:pointer;">&times;</button>
+        <h2 style="color:#f1f1f1;">Register New User</h2>
+        <div id="regError" style="color:#c00;display:none;"></div>
+        <div id="regSuccess" style="color:#0c0;display:none;"></div>
+        <form id="adminRegForm">
+          <input type="text" id="regUsername" placeholder="Username" required style="width:100%;margin-bottom:1em;background:#181a1b;color:#f1f1f1;border:1px solid #42464c;">
+          <input type="password" id="regPassword" placeholder="Password" required style="width:100%;margin-bottom:1em;background:#181a1b;color:#f1f1f1;border:1px solid #42464c;">
+          <label style="color:#f1f1f1;"><input type="checkbox" id="regIsAdmin"> Admin</label>
+          <label style="margin-left:1em;color:#f1f1f1;"><input type="checkbox" id="regIsActive" checked> Active</label>
+          <button type="submit" id="regSubmit" disabled style="background:#2d6cdf;color:#fff;border:none;border-radius:4px;">Register</button>
+        </form>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  const modalDiv = document.getElementById('adminRegModal');
+  // Modal open/close and submit logic will be triggered from header.js
+})();
+
+// Hide gold/scroll price sections for non-admins on add-data page
+(function() {
+  if (!window.location.pathname.startsWith('/add-data')) return;
+  const token = localStorage.getItem('jwt');
+  let isAdmin = false;
+  if (token) {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      isAdmin = !!payload.is_admin;
+    } catch (e) {}
+  }
+  if (!isAdmin) {
+    // Hide gold price section
+    const goldSection = Array.from(document.querySelectorAll('.content-box')).find(box => box.querySelector('#goldPrice'));
+    if (goldSection) goldSection.style.display = 'none';
+    // Hide scroll price section
+    const scrollSection = Array.from(document.querySelectorAll('.content-box')).find(box => box.querySelector('.scroll-prices'));
+    if (scrollSection) scrollSection.style.display = 'none';
+    // Center the player add-data section
+    const leftSection = document.querySelector('.left-section');
+    if (leftSection) {
+      leftSection.style.margin = '0 auto';
+      leftSection.style.float = 'none';
+      leftSection.style.width = '100%';
+      leftSection.style.maxWidth = '500px';
+    }
+    // Hide the right section
+    const rightSection = document.querySelector('.right-section');
+    if (rightSection) rightSection.style.display = 'none';
+    // Center the container
+    const container = document.querySelector('.container');
+    if (container) container.style.display = 'flex';
+    if (container) container.style.justifyContent = 'center';
+  }
+})();
+
+// Add this at the top if not present already
+// Remove the ES6 import for fetchPlayerStats
+// Add fetchPlayerStats directly here
+async function fetchPlayerStats() {
+  try {
+    const response = await fetch('/api/player-stats');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching player stats:', error);
+    return null;
+  }
+}
+
+// Add this helper at the end of the file
+function showBackOnlyAlert(message, isHtml) {
+  // Create modal elements
+  const modal = document.createElement('div');
+  modal.style.position = 'fixed';
+  modal.style.top = '0';
+  modal.style.left = '0';
+  modal.style.width = '100vw';
+  modal.style.height = '100vh';
+  modal.style.background = 'rgba(0,0,0,0.5)';
+  modal.style.display = 'flex';
+  modal.style.alignItems = 'center';
+  modal.style.justifyContent = 'center';
+  modal.style.zIndex = '9999';
+
+  const box = document.createElement('div');
+  box.style.background = '#222';
+  box.style.color = '#fff';
+  box.style.padding = '2em';
+  box.style.borderRadius = '10px';
+  box.style.maxWidth = '90vw';
+  box.style.boxShadow = '0 2px 16px rgba(0,0,0,0.3)';
+  box.style.textAlign = 'left';
+  box.style.fontSize = '1.1em';
+
+  const msgElem = document.createElement('pre');
+  if (isHtml) {
+    msgElem.innerHTML = message;
+  } else {
+    msgElem.textContent = message;
+  }
+  msgElem.style.whiteSpace = isHtml ? 'normal' : 'pre-wrap';
+  msgElem.style.marginBottom = '1.5em';
+  box.appendChild(msgElem);
+
+  const btn = document.createElement('button');
+  btn.textContent = 'Back';
+  btn.style.background = '#5F7FFF';
+  btn.style.color = '#fff';
+  btn.style.border = 'none';
+  btn.style.padding = '0.7em 2em';
+  btn.style.borderRadius = '5px';
+  btn.style.fontSize = '1em';
+  btn.style.cursor = 'pointer';
+  btn.onclick = () => document.body.removeChild(modal);
+  box.appendChild(btn);
+
+  modal.appendChild(box);
+  document.body.appendChild(modal);
 }

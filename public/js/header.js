@@ -41,5 +41,35 @@ function createPlayerInputForm() {
   }
 }
 
+// Add MNGMT dropdown for admin users
+function addManagementDropdown() {
+  const token = localStorage.getItem('jwt');
+  let isAdmin = false;
+  if (token) {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      isAdmin = !!payload.is_admin;
+    } catch (e) {}
+  }
+  if (!isAdmin) return;
+
+  // Create Dashboard button
+  const dashboardBtn = document.createElement('a');
+  dashboardBtn.href = '/dashboard.html';
+  dashboardBtn.className = 'tab-button';
+  dashboardBtn.textContent = 'Dashboard';
+  // Add 'active' class if on dashboard page
+  if (window.location.pathname.endsWith('/dashboard.html')) {
+    dashboardBtn.classList.add('active');
+  }
+  // Insert as the first button in the tabs container
+  const tabs = document.querySelector('.tabs');
+  if (tabs) {
+    tabs.insertBefore(dashboardBtn, tabs.firstChild);
+  }
+}
+
 // Initialize the header when the DOM is loaded
-document.addEventListener('DOMContentLoaded', createPlayerInputForm); 
+document.addEventListener('DOMContentLoaded', () => {
+  addManagementDropdown();
+}); 
