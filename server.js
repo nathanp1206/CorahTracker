@@ -27,6 +27,7 @@ import {
   deleteGoldPrice
 } from './bigquery-service.js';
 import jwt from 'jsonwebtoken';
+import rateLimit from 'express-rate-limit';
 
 // Needed to emulate __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -66,6 +67,42 @@ const port = 8080;
 // Serve static files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+
+// Rate limiting: 5 pushes per 10 minutes, 15 per hour per IP
+const pushLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 5, // limit each IP to 5 requests per windowMs
+  standardHeaders: true, // Return rate limit info in the RateLimit-* headers
+  legacyHeaders: false, // Disable the X-RateLimit-* headers
+  keyGenerator: (req) => req.ip, // Use IP address for limiting
+});
+const pushLimiterHourly = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 15, // limit each IP to 15 requests per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
+  keyGenerator: (req) => req.ip,
+});
+// Global rate limiting: 100 pushes per hour across all IPs
+const globalPushLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 100, // limit total requests across all IPs
+  standardHeaders: true,
+  legacyHeaders: false,
+  keyGenerator: () => 'global', // All requests share the same key
+});
+// Helper to combine multiple limiters
+function doubleRateLimit(...limiters) {
+  return (req, res, next) => {
+    let i = 0;
+    function runLimiter(err) {
+      if (err) return next(err);
+      if (i >= limiters.length) return next();
+      limiters[i++](req, res, runLimiter);
+    }
+    runLimiter();
+  };
+}
 
 // --- Initialize BigQuery Configuration ---
 async function initBigQuery() {
@@ -154,7 +191,7 @@ app.get('/api/players', async (req, res) => {
 });
 
 // POST route: Add stat
-app.post('/api/addStat', async (req, res) => {
+app.post('/api/addStat', doubleRateLimit(globalPushLimiter, pushLimiter, pushLimiterHourly), async (req, res) => {
   try {
     console.log('Received request body:', req.body);
 
@@ -193,7 +230,7 @@ app.post('/api/addStat', async (req, res) => {
 });
 
 // POST route: Add gold price
-app.post('/api/addGoldPrice', async (req, res) => {
+app.post('/api/addGoldPrice', doubleRateLimit(globalPushLimiter, pushLimiter, pushLimiterHourly), async (req, res) => {
   try {
     const { price } = req.body;
 
@@ -219,7 +256,7 @@ app.post('/api/addGoldPrice', async (req, res) => {
 });
 
 // POST route: Add scroll price
-app.post('/api/addScrollPrice', async (req, res) => {
+app.post('/api/addScrollPrice', doubleRateLimit(globalPushLimiter, pushLimiter, pushLimiterHourly), async (req, res) => {
   try {
     const { scrollType, goldPrice, diamondPrice } = req.body;
 
@@ -245,7 +282,7 @@ app.post('/api/addScrollPrice', async (req, res) => {
 });
 
 // POST route: Add player
-app.post('/api/addPlayer', async (req, res) => {
+app.post('/api/addPlayer', doubleRateLimit(globalPushLimiter, pushLimiter, pushLimiterHourly), async (req, res) => {
   try {
     const { player } = req.body;
 

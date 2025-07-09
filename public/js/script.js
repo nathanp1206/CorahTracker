@@ -634,6 +634,11 @@ function updateGoldChart(data) {
 }
 
 function submitStats() {
+  const submitBtn = document.querySelector("button[onclick='submitStats()']");
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+  }
   const player = document.getElementById('player').value;
   const exp = document.getElementById('exp').value;
   const mobsKilled = document.getElementById('mobsKilled').value;
@@ -642,39 +647,33 @@ function submitStats() {
   // Validate inputs
   if (!player || !exp || !mobsKilled || !gold) {
     alert('Please fill in all fields');
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit';
+    }
     return;
   }
 
-  // Helper to actually submit after validation
   async function doSubmit() {
-    console.log('Submitting stats:', { player, exp, mobsKilled, gold });
     fetch('/api/addStat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ player, exp, mobsKilled, gold })
     })
-      .then(res => {
-        console.log('Response status:', res.status);
-        return res.json();
-      })
+      .then(res => res.json())
       .then(data => {
-        console.log('Response data:', data);
         if (data.success) {
           alert('Stats added successfully');
-          // Clear form
           document.getElementById('player').value = '';
           document.getElementById('exp').value = '';
           document.getElementById('mobsKilled').value = '';
           document.getElementById('gold').value = '';
-          // Refresh player chart data and dropdown after adding new stat
           if (playerChart) {
             const playerSelect = document.getElementById('playerSelect');
-            const selectedPlayer = playerSelect ? playerSelect.value : ''; // Use empty string for All Players
+            const selectedPlayer = playerSelect ? playerSelect.value : '';
             loadChartData(selectedPlayer);
           }
-          // Also refresh the add data player dropdown
           fetchPlayers();
-          // Refresh the Latest Player Stats dropdown if on the index page
           if (document.getElementById('latest-player-stats')) {
             displayLatestPlayerStats();
           }
@@ -683,19 +682,23 @@ function submitStats() {
         }
       })
       .catch(err => {
-        console.error('Fetch error:', err);
         alert('Error adding stats: ' + err.message);
+      })
+      .finally(() => {
+        if (submitBtn) {
+          submitBtn.textContent = 'Wait 10s...';
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
+          }, 10000);
+        }
       });
   }
-
-  // Fetch latest stats for the player and validate
   fetchPlayerStats().then(stats => {
     if (!stats || !Array.isArray(stats)) {
-      // If can't fetch, just submit
       doSubmit();
       return;
     }
-    // Find latest stat for this player
     const playerStats = stats.filter(s => s.player === player);
     if (!playerStats.length) {
       doSubmit();
@@ -714,36 +717,40 @@ function submitStats() {
       }).join('');
       const msg = `The following values are lower than the most recent data:<br /><br /><br />${fieldMsgs}<br /><br />Please correct these values before submitting.`;
       showBackOnlyAlert(msg, true);
-      return; // Do not submit
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit';
+      }
+      return;
     }
     doSubmit();
   });
 }
 
 function submitGoldPrice() {
+  const submitBtn = document.querySelector("button[onclick='submitGoldPrice()']");
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+  }
   const price = document.getElementById('goldPrice').value;
-
   if (!price) {
     alert('Please enter a gold price');
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit';
+    }
     return;
   }
-
-  console.log('Submitting gold price:', price);
-
   fetch('/api/addGoldPrice', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ price })
   })
-    .then(res => {
-      console.log('Response status:', res.status);
-      return res.json();
-    })
+    .then(res => res.json())
     .then(data => {
-      console.log('Response data:', data);
       if (data.success) {
         alert('Gold price added successfully');
-        // Clear form
         document.getElementById('goldPrice').value = '';
         if (goldChart) {
           loadChartData();
@@ -753,27 +760,40 @@ function submitGoldPrice() {
       }
     })
     .catch(err => {
-      console.error('Fetch error:', err);
       alert('Error adding gold price: ' + err.message);
+    })
+    .finally(() => {
+      if (submitBtn) {
+        submitBtn.textContent = 'Wait 10s...';
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit';
+        }, 10000);
+      }
     });
 }
 
 function submitScrollPrice(scrollType) {
+  const submitBtn = document.querySelector(`button[onclick="submitScrollPrice('${scrollType}')"]`);
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+  }
   const goldPrice = document.getElementById(`${scrollType}Gold`).value;
   const diamondPrice = document.getElementById(`${scrollType}Diamond`).value;
-
   if (!goldPrice || !diamondPrice) {
     alert('Please enter both gold and diamond prices');
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit';
+    }
     return;
   }
-
   const requestBody = { 
     scrollType, 
     goldPrice: Number(goldPrice), 
     diamondPrice: Number(diamondPrice) 
   };
-  console.log('Submitting scroll price request:', requestBody);
-
   fetch('/api/addScrollPrice', {
     method: 'POST',
     headers: { 
@@ -783,27 +803,17 @@ function submitScrollPrice(scrollType) {
     body: JSON.stringify(requestBody)
   })
     .then(async res => {
-      console.log('Response status:', res.status);
       const text = await res.text();
-      console.log('Raw response:', text);
-      
-      if (!text) {
-        throw new Error('Empty response from server');
-      }
-      
+      if (!text) throw new Error('Empty response from server');
       try {
         return JSON.parse(text);
       } catch (e) {
-        console.error('Failed to parse response as JSON:', e);
-        console.error('Raw response was:', text);
         throw new Error('Invalid JSON response from server');
       }
     })
     .then(data => {
-      console.log('Response data:', data);
       if (data.success) {
         alert('Scroll price added successfully');
-        // Clear form
         document.getElementById(`${scrollType}Gold`).value = '';
         document.getElementById(`${scrollType}Diamond`).value = '';
         if (scrollChartGold) {
@@ -814,8 +824,16 @@ function submitScrollPrice(scrollType) {
       }
     })
     .catch(err => {
-      console.error('Fetch error:', err);
       alert('Error adding scroll price: ' + err.message);
+    })
+    .finally(() => {
+      if (submitBtn) {
+        submitBtn.textContent = 'Wait 10s...';
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit';
+        }, 10000);
+      }
     });
 }
 
