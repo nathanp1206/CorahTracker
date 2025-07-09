@@ -1,6 +1,6 @@
 import { BigQuery } from '@google-cloud/bigquery';
 import { bigqueryConfig } from './bigquery-config.js';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 // BigQuery configuration
 const bigquery = new BigQuery({

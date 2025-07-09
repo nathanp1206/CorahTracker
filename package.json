@@ -12,12 +12,12 @@
   "description": "",
   "dependencies": {
     "@google-cloud/bigquery": "^8.1.0",
+    "bcryptjs": "^2.4.3",
     "docker": "^1.0.0",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
     "lowdb": "^7.0.1",
-    "nowdb": "^0.0.7",
-    "bcrypt": "^5.1.0",
-    "jsonwebtoken": "^9.0.0"
+    "nowdb": "^0.0.7"
   },
   "type": "module"
 }
