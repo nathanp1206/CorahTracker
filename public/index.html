@@ -100,6 +100,46 @@
               </div>
           </div>
       </div>
+
+      <!-- Custom XP/Gold/Monster Calculation Section -->
+      <div class="content-box" id="custom-xp-gold-monster">
+        <h2>Average Daily XP(No Scrolls)</h2>
+        <div class="snapshot-grid">
+          <div class="grid-item player-select">
+            <label for="customPlayerSelect">Player:</label>
+            <select id="customPlayerSelect"></select>
+          </div>
+          <div class="grid-item initial-datetime">
+            <label for="customStartTimeSelect">Start Date and Time:</label>
+            <select id="customStartTimeSelect"></select>
+          </div>
+          <div class="grid-item latest-datetime">
+            <label for="customEndTimeSelect">End Date and Time:</label>
+            <select id="customEndTimeSelect"></select>
+          </div>
+          <div class="grid-item xp-rate">
+            <label for="customXpRate">XP Rate(eg. 347.23):</label>
+            <input type="number" id="customXpRate" placeholder="Enter XP rate">
+          </div>
+          <div class="grid-item gold-rate">
+            <label for="customGoldRate">Gold Rate(eg. 90.03):</label>
+            <input type="number" id="customGoldRate" placeholder="Enter Gold rate">
+          </div>
+          <div class="grid-item monster-select">
+            <label for="customMonsterSelect">Monster:</label>
+            <select id="customMonsterSelect"></select>
+          </div>
+        </div>
+        <div class="custom-averages" style="margin-top:2em;">
+          <!-- <h3>Averages</h3> -->
+          <p><strong>Average Daily XP:</strong> <span id="customAvgDailyXp">--</span></p>
+          <p><strong>Average Daily Gold:</strong> <span id="customAvgDailyGold">--</span></p>
+          <p><strong>Average Daily Mob Kills:</strong> <span id="customAvgDailyMobKills">--</span></p>
+          <p><strong>Average Mob Kills per Minute:</strong> <span id="customAvgMobKillsPerMinute">--</span></p>
+          <p><strong>Average Gold per Kill:</strong> <span id="customAvgGoldPerKill">--</span></p>
+          <p style="display:none;"><strong>Average % of Mob Killed:</strong> <span id="customAvgPercentMobKilled">--</span></p>
+        </div>
+      </div>
     </div>
   </div>
 

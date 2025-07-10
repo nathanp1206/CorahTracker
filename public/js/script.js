@@ -190,6 +190,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('snapshotPlayerSelect')) {
         makeSnapshotPlayerDropdownSearchable();
     }
+
+    // --- Custom XP/Gold/Monster Calculator Section ---
+    if (document.getElementById('custom-xp-gold-monster')) {
+      setupCustomXpGoldMonsterSection();
+    }
 });
 
 // Chart instances
@@ -1574,6 +1579,13 @@ async function setupPlayerSnapshot() {
     } catch (error) {
         // ... existing code ...
     }
+
+    // After allPlayerStatsData, xpValues, and DOM element checks in setupPlayerSnapshot
+
+    // Add event listeners to recalculate on change
+    goalLevelSelect.addEventListener('change', updateSnapshotDisplays);
+    goalDateTimeInput.addEventListener('change', updateSnapshotDisplays);
+    timeSelect.addEventListener('change', updateSnapshotDisplays);
 }
 
 // Call setupPlayerSnapshot when the DOM is fully loaded
@@ -1875,6 +1887,13 @@ async function setupAverageDailyXP() {
     } catch (error) {
         // ... existing code ...
     }
+
+    // After allPlayerStatsData, xpValues, and DOM element checks in setupAverageDailyXP
+
+    // Add event listeners to recalculate on change
+    goalLevelSelect.addEventListener('change', updateAverageDailyXP);
+    initialTimeSelect.addEventListener('change', updateAverageDailyXP);
+    latestTimeSelect.addEventListener('change', updateAverageDailyXP);
 }
 
 // Add helper functions to make dropdowns searchable
@@ -2085,4 +2104,241 @@ function showBackOnlyAlert(message, isHtml) {
 
   modal.appendChild(box);
   document.body.appendChild(modal);
+}
+
+async function setupCustomXpGoldMonsterSection() {
+  const playerSelect = document.getElementById('customPlayerSelect');
+  const startTimeSelect = document.getElementById('customStartTimeSelect');
+  const endTimeSelect = document.getElementById('customEndTimeSelect');
+  const monsterSelect = document.getElementById('customMonsterSelect');
+
+  // --- Populate Player Dropdown (searchable, like others) ---
+  try {
+    const response = await fetch('/api/players');
+    if (!response.ok) throw new Error('Failed to fetch players');
+    let players = await response.json();
+    const hunt3rIndex = players.indexOf('Hunt3r1206');
+    let hunt3r = null;
+    if (hunt3rIndex > -1) hunt3r = players.splice(hunt3rIndex, 1)[0];
+    players.sort();
+    const items = [];
+    items.push({ value: '', text: 'Select a player' });
+    if (hunt3r) items.push({ value: hunt3r, text: hunt3r });
+    players.forEach(player => items.push({ value: player, text: player }));
+    setupSearchableSelect(playerSelect, items, { placeholder: 'Select a player' });
+    playerSelect.value = '';
+  } catch (e) { console.error(e); }
+
+  // --- Populate Monster Dropdown ---
+  try {
+    const response = await fetch('/api/mob-values');
+    if (!response.ok) throw new Error('Failed to fetch monsters');
+    const data = await response.json();
+    const mobs = Array.isArray(data.monsters) ? data.monsters : [];
+    // Use Scrolls page region/exp ordering
+    const regionOrder = [
+      'Jurand', 'Mitron', 'Airos', 'Forilon', 
+      'Iceroost', 'Volcardi', 'Dekdun', 'Ranhain'
+    ];
+    const sortedMobs = mobs.slice().sort((a, b) => {
+      const regionAIndex = regionOrder.indexOf(a.region);
+      const regionBIndex = regionOrder.indexOf(b.region);
+      const effectiveIndexA = regionAIndex === -1 ? Infinity : regionAIndex;
+      const effectiveIndexB = regionBIndex === -1 ? Infinity : regionBIndex;
+      if (effectiveIndexA !== effectiveIndexB) {
+        return effectiveIndexA - effectiveIndexB;
+      }
+      // If regions are the same, sort by exp in descending order
+      return b.exp - a.exp;
+    });
+    monsterSelect.innerHTML = '';
+    sortedMobs.forEach(mob => {
+      const option = document.createElement('option');
+      option.value = mob.name;
+      option.textContent = mob.name;
+      monsterSelect.appendChild(option);
+    });
+  } catch (e) { console.error(e); }
+
+  // --- Populate Start/End Time Dropdowns when player changes ---
+  playerSelect.addEventListener('change', async function() {
+    const selectedPlayer = this.value;
+    startTimeSelect.innerHTML = '';
+    endTimeSelect.innerHTML = '';
+    if (!selectedPlayer) {
+      startTimeSelect.innerHTML = '<option value="">Select a player</option>';
+      endTimeSelect.innerHTML = '<option value="">Select a player</option>';
+      updateCustomAverages();
+      return;
+    }
+    try {
+      const statsResponse = await fetch(`/api/player-stats?player=${encodeURIComponent(selectedPlayer)}`);
+      if (!statsResponse.ok) throw new Error('Failed to fetch player stats');
+      const stats = await statsResponse.json();
+      stats.sort((a, b) => new Date(b.dateTime) - new Date(a.dateTime)); // Most recent first
+      startTimeSelect.innerHTML = '';
+      endTimeSelect.innerHTML = '';
+      stats.forEach(stat => {
+        const dateTime = new Date(stat.dateTime);
+        const optionText = `${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`;
+        const option1 = document.createElement('option');
+        option1.value = stat.dateTime;
+        option1.textContent = optionText;
+        startTimeSelect.appendChild(option1);
+        const option2 = document.createElement('option');
+        option2.value = stat.dateTime;
+        option2.textContent = optionText;
+        endTimeSelect.appendChild(option2);
+      });
+      // Set default selections: start = second latest, end = latest
+      if (stats.length > 1) {
+        startTimeSelect.value = stats[1].dateTime;
+        endTimeSelect.value = stats[0].dateTime;
+      } else if (stats.length === 1) {
+        startTimeSelect.value = stats[0].dateTime;
+        endTimeSelect.value = stats[0].dateTime;
+      }
+      updateCustomAverages();
+    } catch (e) {
+      startTimeSelect.innerHTML = '<option value="">Error loading data</option>';
+      endTimeSelect.innerHTML = '<option value="">Error loading data</option>';
+      updateCustomAverages();
+    }
+  });
+
+  // Update averages when start/end time changes
+  startTimeSelect.addEventListener('change', updateCustomAverages);
+  endTimeSelect.addEventListener('change', updateCustomAverages);
+
+  async function updateCustomAverages() {
+    const player = playerSelect.value;
+    const start = startTimeSelect.value;
+    const end = endTimeSelect.value;
+    const avgMobKillsPerMinuteSpan = document.getElementById('customAvgMobKillsPerMinute');
+    const avgDailyMobKillsSpan = document.getElementById('customAvgDailyMobKills');
+    const avgDailyGoldSpan = document.getElementById('customAvgDailyGold');
+    const avgGoldPerKillSpan = document.getElementById('customAvgGoldPerKill');
+    const goldRateInput = document.getElementById('customGoldRate');
+    const avgPercentMobKilledSpan = document.getElementById('customAvgPercentMobKilled');
+    const monsterSelect = document.getElementById('customMonsterSelect');
+    const avgDailyXpSpan = document.getElementById('customAvgDailyXp');
+    const xpRateInput = document.getElementById('customXpRate');
+    if (!player || !start || !end) {
+      avgMobKillsPerMinuteSpan.textContent = '--';
+      avgDailyMobKillsSpan.textContent = '--';
+      avgDailyGoldSpan.textContent = '--';
+      avgGoldPerKillSpan.textContent = '--';
+      avgPercentMobKilledSpan.textContent = '--';
+      avgDailyXpSpan.textContent = '--';
+      return;
+    }
+    try {
+      const statsResponse = await fetch(`/api/player-stats?player=${encodeURIComponent(player)}`);
+      if (!statsResponse.ok) throw new Error('Failed to fetch player stats');
+      const stats = await statsResponse.json();
+      const startStat = stats.find(s => s.dateTime === start);
+      const endStat = stats.find(s => s.dateTime === end);
+      if (!startStat || !endStat) {
+        avgMobKillsPerMinuteSpan.textContent = '--';
+        avgDailyMobKillsSpan.textContent = '--';
+        avgDailyGoldSpan.textContent = '--';
+        avgGoldPerKillSpan.textContent = '--';
+        avgPercentMobKilledSpan.textContent = '--';
+        avgDailyXpSpan.textContent = '--';
+        return;
+      }
+      const mobKillsDiff = endStat.mobsKilled - startStat.mobsKilled;
+      const goldDiff = endStat.gold - startStat.gold;
+      const startDate = new Date(startStat.dateTime);
+      const endDate = new Date(endStat.dateTime);
+      const minutes = Math.abs((endDate - startDate) / (1000 * 60));
+      if (minutes === 0) {
+        avgMobKillsPerMinuteSpan.textContent = '--';
+        avgDailyMobKillsSpan.textContent = '--';
+        avgDailyGoldSpan.textContent = '--';
+        avgGoldPerKillSpan.textContent = '--';
+        avgPercentMobKilledSpan.textContent = '--';
+        avgDailyXpSpan.textContent = '--';
+        return;
+      }
+      const avg = mobKillsDiff / minutes;
+      avgMobKillsPerMinuteSpan.textContent = avg.toFixed(2);
+      // Extrapolate to 24 hours (1440 minutes)
+      const avgDaily = Math.round(avg * 1440);
+      avgDailyMobKillsSpan.textContent = avgDaily.toLocaleString();
+      // Average Daily Gold
+      const avgGoldPerMinute = goldDiff / minutes;
+      const avgDailyGold = Math.round(avgGoldPerMinute * 1440);
+      avgDailyGoldSpan.textContent = avgDailyGold.toLocaleString();
+      // Average Gold per Kill (adjusted by Gold Rate)
+      let avgGoldPerKill = null;
+      if (mobKillsDiff !== 0) {
+        avgGoldPerKill = goldDiff / mobKillsDiff;
+        let goldRate = parseFloat(goldRateInput.value);
+        if (!isNaN(goldRate)) {
+          avgGoldPerKill = avgGoldPerKill / (1 + (goldRate / 100));
+        }
+        avgGoldPerKillSpan.textContent = Math.round(avgGoldPerKill).toLocaleString();
+      } else {
+        avgGoldPerKillSpan.textContent = '--';
+      }
+      // Average % of Mob Killed
+      let avgPercentMobKilled = null;
+      let monsterExp = null;
+      if (avgGoldPerKill !== null && monsterSelect.value) {
+        // Find the selected monster's gold and exp value
+        let monsterGold = null;
+        if (monsterSelect.options.length > 0) {
+          if (!window._customMonsterGoldMap || !window._customMonsterExpMap) {
+            // Build a map of monster name to gold and exp value from the last fetch
+            const mobDataResp = await fetch('/api/mob-values');
+            const mobData = await mobDataResp.json();
+            window._customMonsterGoldMap = {};
+            window._customMonsterExpMap = {};
+            if (Array.isArray(mobData.monsters)) {
+              mobData.monsters.forEach(mob => {
+                window._customMonsterGoldMap[mob.name] = mob.gold;
+                window._customMonsterExpMap[mob.name] = mob.exp;
+              });
+            }
+          }
+          monsterGold = window._customMonsterGoldMap[monsterSelect.value];
+          monsterExp = window._customMonsterExpMap[monsterSelect.value];
+        }
+        if (monsterGold && monsterGold !== 0) {
+          avgPercentMobKilled = avgGoldPerKill / monsterGold;
+          avgPercentMobKilledSpan.textContent = avgPercentMobKilled.toFixed(4);
+        } else {
+          avgPercentMobKilledSpan.textContent = '--';
+        }
+      } else {
+        avgPercentMobKilledSpan.textContent = '--';
+      }
+      // Average Daily XP
+      if (avgPercentMobKilled !== null && monsterExp && avgDaily) {
+        let xpRate = parseFloat(xpRateInput.value);
+        if (isNaN(xpRate)) xpRate = 0;
+        let avgDailyXp = (avgPercentMobKilled * monsterExp) * avgDaily;
+        avgDailyXp = avgDailyXp * (1 + (xpRate / 100));
+        avgDailyXpSpan.textContent = Math.round(avgDailyXp).toLocaleString();
+      } else {
+        avgDailyXpSpan.textContent = '--';
+      }
+    } catch (e) {
+      avgMobKillsPerMinuteSpan.textContent = '--';
+      avgDailyMobKillsSpan.textContent = '--';
+      avgDailyGoldSpan.textContent = '--';
+      avgGoldPerKillSpan.textContent = '--';
+      avgPercentMobKilledSpan.textContent = '--';
+      avgDailyXpSpan.textContent = '--';
+    }
+
+    // Update on gold rate, xp rate, or monster change
+    goldRateInput.removeEventListener('input', updateCustomAverages);
+    goldRateInput.addEventListener('input', updateCustomAverages);
+    xpRateInput.removeEventListener('input', updateCustomAverages);
+    xpRateInput.addEventListener('input', updateCustomAverages);
+    monsterSelect.removeEventListener('change', updateCustomAverages);
+    monsterSelect.addEventListener('change', updateCustomAverages);
+  }
 }

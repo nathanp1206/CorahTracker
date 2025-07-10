@@ -158,6 +158,14 @@
   </script>
 </head>
 <body>
+  <!-- Hamburger menu for mobile -->
+  <button class="hamburger-menu" aria-label="Open navigation" style="display:none;">
+    <span class="hamburger-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
   <div class="tabs">
     <a href="/" class="tab-button">Summary</a>
     <a href="/add-data/" class="tab-button">Add Data</a>
@@ -166,6 +174,27 @@
     <a href="/mobs/" class="tab-button">Mob Stats</a>
     <a href="/levels/" class="tab-button">Levels</a>
   </div>
+  <script>
+    // Hamburger menu toggle for mobile navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.querySelector('.hamburger-menu');
+      const tabs = document.querySelector('.tabs');
+      function checkMobile() {
+        if (window.innerWidth <= 700) {
+          hamburger.style.display = '';
+          tabs.classList.remove('active');
+        } else {
+          hamburger.style.display = 'none';
+          tabs.classList.remove('active');
+        }
+      }
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+      hamburger.addEventListener('click', function() {
+        tabs.classList.toggle('active');
+      });
+    });
+  </script>
   <div class="dashboard-grid">
     <div class="dashboard-section" id="dashboard-users">
       <h2 style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
